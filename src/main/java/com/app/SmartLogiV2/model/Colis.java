@@ -1,7 +1,6 @@
 package com.app.SmartLogiV2.model;
 import com.app.SmartLogiV2.enums.ColisStatus;
 import jakarta.persistence.*;
-
 import java.util.Set;
 
 @Entity
@@ -15,6 +14,7 @@ public class Colis {
     private String description;
     private String adresse;
     private String villeDestination;
+    private short priorie;
     @Enumerated(EnumType.STRING)
     private ColisStatus status;
     @ManyToOne
@@ -22,6 +22,17 @@ public class Colis {
     private Livreur livreur;
     @OneToMany(mappedBy = "colis")
     private Set<ColisProduit> colisProduits;
+    @OneToMany(mappedBy = "colis")
+    private Set<HistoriqueLivraison> historiqueLivraison;
+    @ManyToOne
+    @JoinColumn(name = "expediteur_id")
+    private Expediteur expediteur;
+    @ManyToOne
+    @JoinColumn(name = "destinataire_id")
+    private Destinataire destinataire;
+    @ManyToOne
+    @JoinColumn(name = "zone_id")
+    private Zone zone;
 
     public Long getId() {
         return id;
@@ -85,5 +96,45 @@ public class Colis {
 
     public void setColisProduits(Set<ColisProduit> colisProduits) {
         this.colisProduits = colisProduits;
+    }
+
+    public short getPriorie() {
+        return priorie;
+    }
+
+    public void setPriorie(short priorie) {
+        this.priorie = priorie;
+    }
+
+    public void setHistoriqueLivraison(Set<HistoriqueLivraison> historiqueLivraison) {
+        this.historiqueLivraison = historiqueLivraison;
+    }
+
+    public Set<HistoriqueLivraison> getHistoriqueLivraison() {
+        return historiqueLivraison;
+    }
+
+    public Expediteur getExpediteur() {
+        return expediteur;
+    }
+
+    public void setExpediteur(Expediteur expediteur) {
+        this.expediteur = expediteur;
+    }
+
+    public Destinataire getDestinataire() {
+        return destinataire;
+    }
+
+    public void setDestinataire(Destinataire destinataire) {
+        this.destinataire = destinataire;
+    }
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
     }
 }
