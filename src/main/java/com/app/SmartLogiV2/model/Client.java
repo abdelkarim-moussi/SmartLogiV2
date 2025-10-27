@@ -1,59 +1,24 @@
 package com.app.SmartLogiV2.model;
 
 import jakarta.persistence.*;
-import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
-public abstract class Client {
-    @Id
-    private String id;
-    private String nom;
-    private String prenom;
-    private String telephone;
-    private String email;
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "entity_type")
+public abstract class Client extends Person {
+
     private String adresse;
+    @OneToMany(mappedBy = "client")
+    private List<Colis> colisList;
 
-    public String getId() {
-        return id;
+    public Client(){}
+    public Client(String nom, String prenom, String telephone, String email,String adresse){
+        super(nom,prenom,telephone,email);
+        this.adresse = adresse;
     }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getAdresse() {
         return adresse;
     }
