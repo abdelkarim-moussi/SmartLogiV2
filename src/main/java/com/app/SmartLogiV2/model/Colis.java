@@ -2,6 +2,8 @@ package com.app.SmartLogiV2.model;
 import com.app.SmartLogiV2.enums.ColisStatus;
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "colis")
 public class Colis {
@@ -18,6 +20,8 @@ public class Colis {
     @ManyToOne
     @JoinColumn(name = "livreur_id")
     private Livreur livreur;
+    @OneToMany(mappedBy = "colis")
+    private Set<ColisProduit> colisProduits;
 
     public Long getId() {
         return id;
@@ -73,5 +77,13 @@ public class Colis {
 
     public void setVilleDestination(String villeDestination) {
         this.villeDestination = villeDestination;
+    }
+
+    public Set<ColisProduit> getColisProduits() {
+        return colisProduits;
+    }
+
+    public void setColisProduits(Set<ColisProduit> colisProduits) {
+        this.colisProduits = colisProduits;
     }
 }

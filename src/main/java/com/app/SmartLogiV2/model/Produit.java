@@ -2,6 +2,8 @@ package com.app.SmartLogiV2.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "produit")
 public class Produit {
@@ -13,9 +15,9 @@ public class Produit {
     private String categorie;
     private Float poids;
 
-    @ManyToMany
-    @JoinTable(name = "colis_produit")
-    private Colis colis;
+    @OneToMany(mappedBy = "produits")
+    private Set<ColisProduit> colisProduits;
+
     public Long getId() {
         return id;
     }
@@ -54,5 +56,13 @@ public class Produit {
 
     public void setPoids(Float poids) {
         this.poids = poids;
+    }
+
+    public Set<ColisProduit> getColisProduits() {
+        return colisProduits;
+    }
+
+    public void setColisProduits(Set<ColisProduit> colisProduits) {
+        this.colisProduits = colisProduits;
     }
 }
