@@ -2,6 +2,8 @@ package com.app.SmartLogiV2.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "zones")
 public class Zone{
@@ -9,6 +11,10 @@ public class Zone{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String codePostal;
+    @OneToMany(mappedBy = "zone")
+    private List<Colis> colisList;
+    @OneToMany(mappedBy = "zone")
+    private List<Livreur> livreurList;
 
     public Long getId() {
         return id;
@@ -24,5 +30,13 @@ public class Zone{
 
     public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
+    }
+
+    public List<Colis> getColisList() {
+        return colisList;
+    }
+
+    public void setColisList(List<Colis> colisList) {
+        this.colisList = colisList;
     }
 }

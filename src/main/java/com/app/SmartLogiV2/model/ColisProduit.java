@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "colis_produits")
 public class ColisProduit {
     @EmbeddedId
     ColisProduitKey id;
-
     @ManyToOne
     @MapsId("colisId")
     @JoinColumn(name = "colis_id")
