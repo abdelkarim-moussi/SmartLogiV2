@@ -1,4 +1,5 @@
 package com.app.SmartLogiV2.model;
 
-public class Person {
+public abstract class Person {
+
 }
