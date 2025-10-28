@@ -1,6 +1,6 @@
-package com.app.SmartLogiV2.model;
+package com.app.SmartLogiV2.domain.model;
 
-import com.app.SmartLogiV2.enums.ColisStatus;
+import com.app.SmartLogiV2.domain.enums.ColisStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

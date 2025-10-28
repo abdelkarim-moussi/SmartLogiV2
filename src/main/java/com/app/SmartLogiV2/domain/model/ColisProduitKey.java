@@ -1,4 +1,4 @@
-package com.app.SmartLogiV2.model;
+package com.app.SmartLogiV2.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

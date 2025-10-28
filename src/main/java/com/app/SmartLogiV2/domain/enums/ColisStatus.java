@@ -1,4 +1,4 @@
-package com.app.SmartLogiV2.enums;
+package com.app.SmartLogiV2.domain.enums;
 
 public enum ColisStatus {
     creer,
