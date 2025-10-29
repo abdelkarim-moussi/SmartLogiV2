@@ -39,4 +39,12 @@ public class Zone{
     public void setColisList(List<Colis> colisList) {
         this.colisList = colisList;
     }
+
+    public List<Livreur> getLivreurList() {
+        return livreurList;
+    }
+
+    public void setLivreurList(List<Livreur> livreurList) {
+        this.livreurList = livreurList;
+    }
 }

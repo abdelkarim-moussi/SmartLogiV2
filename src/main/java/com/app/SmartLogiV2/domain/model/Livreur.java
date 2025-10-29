@@ -35,4 +35,12 @@ public class Livreur extends Person{
     public void setColisList(List<Colis> colisList) {
         this.colisList = colisList;
     }
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
+    }
 }

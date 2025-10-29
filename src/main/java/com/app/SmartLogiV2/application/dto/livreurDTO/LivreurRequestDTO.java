@@ -1,8 +1,11 @@
 package com.app.SmartLogiV2.application.dto.livreurDTO;
 
+import org.antlr.v4.runtime.misc.NotNull;
+
 public class LivreurRequestDTO {
+
     private String nom;
-    private String preom;
+    private String prenom;
     private String email;
     private String telephone;
     private String vehicule;
@@ -16,12 +19,12 @@ public class LivreurRequestDTO {
         this.nom = nom;
     }
 
-    public String getPreom() {
-        return preom;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setPreom(String preom) {
-        this.preom = preom;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public String getEmail() {

@@ -4,7 +4,7 @@ import com.app.SmartLogiV2.domain.model.Zone;
 
 public class LivreurResponseDTO {
     private String nom;
-    private String preom;
+    private String prenom;
     private String email;
     private String telephone;
     private String vehicule;
@@ -18,12 +18,12 @@ public class LivreurResponseDTO {
         this.nom = nom;
     }
 
-    public String getPreom() {
-        return preom;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setPreom(String preom) {
-        this.preom = preom;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public String getEmail() {
@@ -54,7 +54,7 @@ public class LivreurResponseDTO {
         return zone;
     }
 
-    public void setZone(Long zoneId) {
+    public void setZone(Zone zone) {
         this.zone = zone;
     }
 }
