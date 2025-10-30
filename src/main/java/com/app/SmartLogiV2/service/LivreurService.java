@@ -9,6 +9,8 @@ import com.app.SmartLogiV2.repository.LivreurRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,6 +46,20 @@ public class LivreurService {
 
         return livreurMapper.toDTO(livreur);
 
+    }
+
+    public List<LivreurResponseDTO> getAllLivreur(){
+
+        List<Livreur> livreurs = livreurRepository.findAll();
+        List<LivreurResponseDTO> livreurResponseDTOS = new ArrayList<>();
+
+        if(livreurs.isEmpty()) return null;
+
+        livreurs.forEach(livreur ->
+                livreurResponseDTOS.add(livreurMapper.toDTO(livreur))
+                );
+
+        return livreurResponseDTOS;
     }
 
 }
