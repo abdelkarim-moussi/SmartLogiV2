@@ -1,14 +1,13 @@
-package com.app.SmartLogiV2.domain.model;
+package com.app.SmartLogiV2.entity;
 
 import jakarta.persistence.*;
-
-import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Person {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false, length = 36, columnDefinition = "VARCHAR(36)")
     private String id;
     private String nom;
     private String prenom;
@@ -17,7 +16,6 @@ public abstract class Person {
 
     public Person(){}
     public Person(String nom,String prenom, String telephone, String email){
-        this.id = generateId();
         this.nom = nom;
         this.prenom = prenom;
         this.telephone = telephone;
@@ -62,10 +60,6 @@ public abstract class Person {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String generateId(){
-        return UUID.randomUUID().toString().replace("-","").substring(0,10);
     }
 
 }

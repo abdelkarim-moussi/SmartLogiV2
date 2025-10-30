@@ -1,8 +1,8 @@
-package com.app.SmartLogiV2.application.mapper;
+package com.app.SmartLogiV2.mapper;
 
-import com.app.SmartLogiV2.application.dto.livreurDTO.LivreurRequestDTO;
-import com.app.SmartLogiV2.application.dto.livreurDTO.LivreurResponseDTO;
-import com.app.SmartLogiV2.domain.model.Livreur;
+import com.app.SmartLogiV2.dto.livreurDTO.LivreurRequestDTO;
+import com.app.SmartLogiV2.dto.livreurDTO.LivreurResponseDTO;
+import com.app.SmartLogiV2.entity.Livreur;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

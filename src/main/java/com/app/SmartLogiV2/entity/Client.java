@@ -1,4 +1,4 @@
-package com.app.SmartLogiV2.domain.model;
+package com.app.SmartLogiV2.entity;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "clients")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "entity_type")
 public abstract class Client extends Person{
 

@@ -1,4 +1,4 @@
-package com.app.SmartLogiV2.domain.model;
+package com.app.SmartLogiV2.entity;
 
 import jakarta.persistence.*;
 

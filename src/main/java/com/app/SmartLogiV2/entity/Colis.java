@@ -1,5 +1,5 @@
-package com.app.SmartLogiV2.domain.model;
-import com.app.SmartLogiV2.domain.enums.ColisStatus;
+package com.app.SmartLogiV2.entity;
+import com.app.SmartLogiV2.enums.ColisStatus;
 import jakarta.persistence.*;
 import java.util.Set;
 

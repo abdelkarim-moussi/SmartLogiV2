@@ -1,14 +1,15 @@
-package com.app.SmartLogiV2.application.dto.livreurDTO;
+package com.app.SmartLogiV2.dto.livreurDTO;
 
-import com.app.SmartLogiV2.domain.model.Zone;
+import org.antlr.v4.runtime.misc.NotNull;
 
-public class LivreurResponseDTO {
+public class LivreurRequestDTO {
+
     private String nom;
     private String prenom;
     private String email;
     private String telephone;
     private String vehicule;
-    private Zone zone;
+    private Long zoneId;
 
     public String getNom() {
         return nom;
@@ -50,11 +51,11 @@ public class LivreurResponseDTO {
         this.vehicule = vehicule;
     }
 
-    public Zone getZone() {
-        return zone;
+    public Long getZoneId() {
+        return zoneId;
     }
 
-    public void setZone(Zone zone) {
-        this.zone = zone;
+    public void setZoneId(Long zoneId) {
+        this.zoneId = zoneId;
     }
 }
