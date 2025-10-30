@@ -37,13 +37,6 @@ public class LivreurController {
 
     @PutMapping("/{id}/update")
     LivreurResponseDTO updateLivreur(@PathVariable("id") String id,@RequestBody LivreurRequestDTO livreurRequestDTO){
-        if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("id invalide id = "+id);
-        }
-        if(livreurRequestDTO == null) {
-            throw new InvalidDataException("données invalide = "+livreurRequestDTO);
-        }
-
         LivreurResponseDTO livreurResponseDTO = livreurService.updateLivreur(id,livreurRequestDTO);
         return livreurResponseDTO;
     }
