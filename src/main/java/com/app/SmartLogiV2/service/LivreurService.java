@@ -38,6 +38,21 @@ public class LivreurService {
 
     }
 
+    public boolean deleteLivreur(String id){
+        if(id == null || id.trim().isEmpty()) return false;
+        livreurRepository.deleteById(id);
+        return true;
+    }
+
+    public LivreurResponseDTO updateLivreur(String id,LivreurRequestDTO livreurRequestDTO){
+        if(id == null || id.trim().isEmpty()) return null;
+        if(livreurRequestDTO == null) return null;
+
+        Livreur livreur = livreurRepository.save(livreurMapper.toEntity(livreurRequestDTO));
+
+        return livreurMapper.toDTO(livreur);
+    }
+
     public LivreurResponseDTO getOneLivreur(String id){
         if(id == null || id.trim().isEmpty()) return null;
 
