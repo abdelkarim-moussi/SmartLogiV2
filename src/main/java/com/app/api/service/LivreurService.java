@@ -28,7 +28,7 @@ public class LivreurService {
     public LivreurResponseDTO createLivreur(LivreurRequestDTO livreurRequestDTO){
 
         if(livreurRequestDTO == null){
-            return null;
+            throw new InvalidDataException("données invalide "+null);
         }
 
         Livreur livreur = livreurMapper.toEntity(livreurRequestDTO);
@@ -38,10 +38,11 @@ public class LivreurService {
 
     }
 
-    public boolean deleteLivreur(String id){
-        if(id == null || id.trim().isEmpty()) return false;
+    public void deleteLivreur(String id){
+        if(id == null || id.trim().isEmpty()) {
+            throw new InvalidDataException("id invalide id = "+id);
+        };
         livreurRepository.deleteById(id);
-        return true;
     }
 
     public LivreurResponseDTO updateLivreur(String id,LivreurRequestDTO livreurRequestDTO){
@@ -69,7 +70,9 @@ public class LivreurService {
     }
 
     public LivreurResponseDTO getOneLivreur(String id){
-        if(id == null || id.trim().isEmpty()) return null;
+        if(id == null || id.trim().isEmpty()) {
+            throw new InvalidDataException("invalide id = "+id);
+        };
 
         Livreur livreur = livreurRepository.findById(id).
                 orElseThrow(()->new ResourceNotFoundException("aucun livreur trouver avec id = "+id));
