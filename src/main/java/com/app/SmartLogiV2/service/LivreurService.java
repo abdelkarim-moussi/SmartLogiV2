@@ -2,13 +2,17 @@ package com.app.SmartLogiV2.service;
 
 import com.app.SmartLogiV2.dto.livreurDTO.LivreurRequestDTO;
 import com.app.SmartLogiV2.dto.livreurDTO.LivreurResponseDTO;
+import com.app.SmartLogiV2.exception.LivreurNotFoundExpception;
 import com.app.SmartLogiV2.mapper.LivreurMapper;
 import com.app.SmartLogiV2.entity.Livreur;
 import com.app.SmartLogiV2.repository.LivreurRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
+@Transactional
 public class LivreurService {
 
     LivreurMapper livreurMapper;
@@ -19,7 +23,6 @@ public class LivreurService {
         this.livreurRepository = livreurRepository;
     }
 
-    @Transactional
     public LivreurResponseDTO createLivreur(LivreurRequestDTO livreurRequestDTO){
 
         if(livreurRequestDTO == null){
@@ -32,4 +35,15 @@ public class LivreurService {
         return livreurMapper.toDTO(createdLivreur);
 
     }
+
+    public LivreurResponseDTO getOneLivreur(String id){
+        if(id == null || id.trim().isEmpty()) return null;
+
+        Livreur livreur = livreurRepository.findById(id).
+                orElseThrow(()->new LivreurNotFoundExpception("aucun livreur avec id :"+id +" trouver!"));
+
+        return livreurMapper.toDTO(livreur);
+
+    }
+
 }
