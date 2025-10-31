@@ -3,127 +3,36 @@ package com.app.api.dto.colisDTO;
 import com.app.api.entity.*;
 import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
-import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
+@Getter
+@Setter
 public class ColisRequestDTO {
-
-    private String id;
+    @Min(value = 1, message = "poid doit être supereieur à 1g")
     private Float poids;
     private String description;
+    @NotBlank(message = "entrer une adresse valide")
     private String adresse;
+    @NotBlank(message = "entrer ville de destination valide")
     private String villeDestination;
+    @NotBlank(message = "definir la prioritie de la colis (standard,express)")
     private ColisPriority priority;
+    @NotBlank(message = "definir le status (créer,colécté,en_stock,en_transite,livré)")
     private ColisStatus status;
+    @NotBlank(message = "choisir un livreur valide")
     private String livreurId;
+    @NotEmpty(message = "colis doit avoir au minimum un produit")
     private Set<ColisProduit> colisProduits;
     private Set<HistoriqueLivraison> historiqueLivraison;
-    private Expediteur expediteurId;
-    private Destinataire destinataireId;
-    private Zone zoneId;
+    @NotBlank(message = "entrer l'expediteur")
+    private String expediteurId;
+    @NotBlank(message = "entrer le destinataire")
+    private String destinataireId;
+    @NotBlank(message = "definir la zone ou la coli doit s'envoyé")
+    private String zoneId;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Float getPoids() {
-        return poids;
-    }
-
-    public void setPoids(Float poids) {
-        this.poids = poids;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public String getVilleDestination() {
-        return villeDestination;
-    }
-
-    public void setVilleDestination(String villeDestination) {
-        this.villeDestination = villeDestination;
-    }
-
-    public ColisPriority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(ColisPriority priority) {
-        this.priority = priority;
-    }
-
-    public ColisStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ColisStatus status) {
-        this.status = status;
-    }
-
-    public String getLivreurId() {
-        return livreurId;
-    }
-
-    public void setLivreurId(String livreurId) {
-        this.livreurId = livreurId;
-    }
-
-    public Set<ColisProduit> getColisProduits() {
-        return colisProduits;
-    }
-
-    public void setColisProduits(Set<ColisProduit> colisProduits) {
-        this.colisProduits = colisProduits;
-    }
-
-    public Set<HistoriqueLivraison> getHistoriqueLivraison() {
-        return historiqueLivraison;
-    }
-
-    public void setHistoriqueLivraison(Set<HistoriqueLivraison> historiqueLivraison) {
-        this.historiqueLivraison = historiqueLivraison;
-    }
-
-    public Expediteur getExpediteurId() {
-        return expediteurId;
-    }
-
-    public void setExpediteurId(Expediteur expediteurId) {
-        this.expediteurId = expediteurId;
-    }
-
-    public Destinataire getDestinataireId() {
-        return destinataireId;
-    }
-
-    public void setDestinataireId(Destinataire destinataireId) {
-        this.destinataireId = destinataireId;
-    }
-
-    public Zone getZoneId() {
-        return zoneId;
-    }
-
-    public void setZoneId(Zone zoneId) {
-        this.zoneId = zoneId;
-    }
 }
