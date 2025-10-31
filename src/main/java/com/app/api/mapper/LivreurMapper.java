@@ -9,6 +9,5 @@ import org.mapstruct.Mapper;
 public interface LivreurMapper {
 
     Livreur toEntity(LivreurRequestDTO livreurRequestDTO);
-
     LivreurResponseDTO toDTO(Livreur livreur);
 }

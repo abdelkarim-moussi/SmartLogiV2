@@ -15,6 +15,7 @@ public class Colis {
     private String description;
     private String adresse;
     private String villeDestination;
+    @Enumerated(EnumType.STRING)
     private ColisPriority priority;
     @Enumerated(EnumType.STRING)
     private ColisStatus status;
