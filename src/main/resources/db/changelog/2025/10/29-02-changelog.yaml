@@ -1,0 +1,374 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1761742997874-1
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_clients
+                  name: id
+                  type: VARCHAR(36)
+              - column:
+                  name: nom
+                  type: VARCHAR(255)
+              - column:
+                  name: prenom
+                  type: VARCHAR(255)
+              - column:
+                  name: telephone
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: adresse
+                  type: VARCHAR(255)
+            tableName: clients
+  - changeSet:
+      id: 1761742997874-2
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_colis
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: poids
+                  type: FLOAT
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: adresse
+                  type: VARCHAR(255)
+              - column:
+                  name: ville_destination
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: priorie
+                  type: SMALLINT
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: livreur_id
+                  type: VARCHAR(36)
+              - column:
+                  name: expediteur_id
+                  type: VARCHAR(36)
+              - column:
+                  name: destinataire_id
+                  type: VARCHAR(36)
+              - column:
+                  name: zone_id
+                  type: BIGINT
+            tableName: colis
+  - changeSet:
+      id: 1761742997874-3
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: quantite
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: prix
+                  type: FLOAT
+              - column:
+                  name: date_ajout
+                  type: DATE
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_colis_produits
+                  name: produit_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_colis_produits
+                  name: colis_id
+                  type: BIGINT
+            tableName: colis_produits
+  - changeSet:
+      id: 1761742997874-4
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_destinataire
+                  name: id
+                  type: VARCHAR(36)
+              - column:
+                  name: nom
+                  type: VARCHAR(255)
+              - column:
+                  name: prenom
+                  type: VARCHAR(255)
+              - column:
+                  name: telephone
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: adresse
+                  type: VARCHAR(255)
+            tableName: destinataire
+  - changeSet:
+      id: 1761742997874-5
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_expediteur
+                  name: id
+                  type: VARCHAR(36)
+              - column:
+                  name: nom
+                  type: VARCHAR(255)
+              - column:
+                  name: prenom
+                  type: VARCHAR(255)
+              - column:
+                  name: telephone
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: adresse
+                  type: VARCHAR(255)
+            tableName: expediteur
+  - changeSet:
+      id: 1761742997874-6
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_historiques_livraison
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: nom
+                  type: VARCHAR(255)
+              - column:
+                  name: colis_status
+                  type: SMALLINT
+              - column:
+                  name: date_changement
+                  type: DATE
+              - column:
+                  name: commentaire
+                  type: VARCHAR(255)
+              - column:
+                  name: colis_id
+                  type: BIGINT
+            tableName: historiques_livraison
+  - changeSet:
+      id: 1761742997874-7
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_livreurs
+                  name: id
+                  type: VARCHAR(36)
+              - column:
+                  name: nom
+                  type: VARCHAR(255)
+              - column:
+                  name: prenom
+                  type: VARCHAR(255)
+              - column:
+                  name: telephone
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: vehicule
+                  type: VARCHAR(255)
+              - column:
+                  name: zone_id
+                  type: BIGINT
+            tableName: livreurs
+  - changeSet:
+      id: 1761742997874-8
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_produit
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: prix
+                  type: FLOAT
+              - column:
+                  name: nom
+                  type: VARCHAR(255)
+              - column:
+                  name: categorie
+                  type: VARCHAR(255)
+              - column:
+                  name: poids
+                  type: FLOAT
+            tableName: produit
+  - changeSet:
+      id: 1761742997874-9
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_zones
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: code_postal
+                  type: VARCHAR(255)
+            tableName: zones
+  - changeSet:
+      id: 1761742997874-10
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: destinataire_id
+            baseTableName: colis
+            constraintName: FK_COLIS_ON_DESTINATAIRE
+            referencedColumnNames: id
+            referencedTableName: destinataire
+  - changeSet:
+      id: 1761742997874-11
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: expediteur_id
+            baseTableName: colis
+            constraintName: FK_COLIS_ON_EXPEDITEUR
+            referencedColumnNames: id
+            referencedTableName: expediteur
+  - changeSet:
+      id: 1761742997874-12
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: livreur_id
+            baseTableName: colis
+            constraintName: FK_COLIS_ON_LIVREUR
+            referencedColumnNames: id
+            referencedTableName: livreurs
+  - changeSet:
+      id: 1761742997874-13
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: zone_id
+            baseTableName: colis
+            constraintName: FK_COLIS_ON_ZONE
+            referencedColumnNames: id
+            referencedTableName: zones
+  - changeSet:
+      id: 1761742997874-14
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: colis_id
+            baseTableName: colis_produits
+            constraintName: FK_COLIS_PRODUITS_ON_COLIS
+            referencedColumnNames: id
+            referencedTableName: colis
+  - changeSet:
+      id: 1761742997874-15
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: produit_id
+            baseTableName: colis_produits
+            constraintName: FK_COLIS_PRODUITS_ON_PRODUIT
+            referencedColumnNames: id
+            referencedTableName: produit
+  - changeSet:
+      id: 1761742997874-16
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: colis_id
+            baseTableName: historiques_livraison
+            constraintName: FK_HISTORIQUES_LIVRAISON_ON_COLIS
+            referencedColumnNames: id
+            referencedTableName: colis
+  - changeSet:
+      id: 1761742997874-17
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: zone_id
+            baseTableName: livreurs
+            constraintName: FK_LIVREURS_ON_ZONE
+            referencedColumnNames: id
+            referencedTableName: zones
+

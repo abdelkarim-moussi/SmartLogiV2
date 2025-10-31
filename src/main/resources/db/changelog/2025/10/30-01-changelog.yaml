@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1761821326006-3
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: colis_produits
+            constraintName: fk_colis_produits_on_produit
+  - changeSet:
+      id: 1761821326006-1
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_produits
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: prix
+                  type: FLOAT
+              - column:
+                  name: nom
+                  type: VARCHAR(255)
+              - column:
+                  name: categorie
+                  type: VARCHAR(255)
+              - column:
+                  name: poids
+                  type: FLOAT
+            tableName: produits
+  - changeSet:
+      id: 1761821326006-2
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: produit_id
+            baseTableName: colis_produits
+            constraintName: FK_COLIS_PRODUITS_ON_PRODUIT
+            referencedColumnNames: id
+            referencedTableName: produits
+  - changeSet:
+      id: 1761821326006-4
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: produit
+

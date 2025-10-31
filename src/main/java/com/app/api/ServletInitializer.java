@@ -1,4 +1,4 @@
-package com.app.SmartLogiV2;
+package com.app.api;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
