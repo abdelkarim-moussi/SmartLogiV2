@@ -9,7 +9,7 @@ public class LivreurRequestDTO {
     private String prenom;
     @Email(message = "entrer un email valide")
     private String email;
-    @Pattern(regexp = "/\\+0[0-9]{9}",message = "telephone invalid (format : 0 + 9 nombre apré , ex : 0678954321")
+    @Pattern(regexp = "0+[0-9]{9}",message = "telephone invalid (format : 0 + 9 nombre apré , ex : 0678954321")
     private String telephone;
     @NotBlank(message = "entre une vehicule")
     private String vehicule;

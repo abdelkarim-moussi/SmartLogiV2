@@ -2,8 +2,11 @@ package com.app.api.controller;
 
 import com.app.api.dto.livreurDTO.LivreurRequestDTO;
 import com.app.api.dto.livreurDTO.LivreurResponseDTO;
-import com.app.api.exception.InvalidDataException;
 import com.app.api.service.LivreurService;
+import jakarta.validation.Valid;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,9 +32,9 @@ public class LivreurController {
         return livreurResponseDTO;
     }
 
-    @PostMapping
-    LivreurResponseDTO createLivreur(@RequestBody LivreurRequestDTO livreur){
-        LivreurResponseDTO livreurResponseDTO = livreurService.createLivreur(livreur);
+    @PostMapping("/create")
+    LivreurResponseDTO createLivreur(@RequestBody @Valid LivreurRequestDTO livreurRequestDTO){
+        LivreurResponseDTO livreurResponseDTO = livreurService.createLivreur(livreurRequestDTO);
         return livreurResponseDTO;
     }
 
