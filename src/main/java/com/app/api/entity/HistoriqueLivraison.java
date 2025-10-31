@@ -10,8 +10,8 @@ import java.time.LocalDate;
 public class HistoriqueLivraison {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private String nom;
     private ColisStatus colisStatus;
     private LocalDate dateChangement;
@@ -21,11 +21,11 @@ public class HistoriqueLivraison {
     @JoinColumn(name = "colis_id")
     private Colis colis;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -8,19 +8,19 @@ import java.util.List;
 @Table(name = "zones")
 public class Zone{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private String codePostal;
     @OneToMany(mappedBy = "zone")
     private List<Colis> colisList;
     @OneToMany(mappedBy = "zone")
     private List<Livreur> livreurList;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

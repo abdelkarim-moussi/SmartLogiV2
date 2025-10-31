@@ -9,23 +9,23 @@ import java.io.Serializable;
 public class ColisProduitKey implements Serializable {
 
     @Column(name = "produit_id")
-    private Long produitId;
+    private String produitId;
     @Column (name = "colis_id")
-    private Long colisId;
+    private String colisId;
 
-    public Long getProduitId() {
+    public String getProduitId() {
         return produitId;
     }
 
-    public void setProduitId(Long produitId) {
+    public void setProduitId(String produitId) {
         this.produitId = produitId;
     }
 
-    public Long getColisId() {
+    public String getColisId() {
         return colisId;
     }
 
-    public void setColisId(Long colisId) {
+    public void setColisId(String colisId) {
         this.colisId = colisId;
     }
 }

@@ -1,4 +1,5 @@
 package com.app.api.entity;
+import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
 import jakarta.persistence.*;
 import java.util.Set;
@@ -8,13 +9,13 @@ import java.util.Set;
 public class Colis {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private Float poids;
     private String description;
     private String adresse;
     private String villeDestination;
-    private short priorie;
+    private ColisPriority priority;
     @Enumerated(EnumType.STRING)
     private ColisStatus status;
     @ManyToOne
@@ -34,11 +35,11 @@ public class Colis {
     @JoinColumn(name = "zone_id")
     private Zone zone;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -98,12 +99,12 @@ public class Colis {
         this.colisProduits = colisProduits;
     }
 
-    public short getPriorie() {
-        return priorie;
+    public ColisPriority getPriority() {
+        return priority;
     }
 
-    public void setPriorie(short priorie) {
-        this.priorie = priorie;
+    public void setPriority(ColisPriority priority) {
+        this.priority = priority;
     }
 
     public void setHistoriqueLivraison(Set<HistoriqueLivraison> historiqueLivraison) {

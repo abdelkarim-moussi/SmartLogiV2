@@ -1,0 +1,234 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1761902703339-20
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: colis_produits
+            constraintName: fk_colis_produits_on_produit
+  - changeSet:
+      id: 1761902703339-17
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_produits
+                  name: id
+                  type: VARCHAR(255)
+              - column:
+                  name: prix
+                  type: FLOAT
+              - column:
+                  name: nom
+                  type: VARCHAR(255)
+              - column:
+                  name: categorie
+                  type: VARCHAR(255)
+              - column:
+                  name: poids
+                  type: FLOAT
+            tableName: produits
+  - changeSet:
+      id: 1761902703339-18
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: priority
+                  type: SMALLINT
+            tableName: colis
+  - changeSet:
+      id: 1761902703339-21
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: produit
+  - changeSet:
+      id: 1761902703339-22
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: priorie
+            tableName: colis
+        - dropColumn:
+            columnName: id
+            tableName: colis
+        - dropColumn:
+            columnName: zone_id
+            tableName: colis
+  - changeSet:
+      id: 1761902703339-1
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: colis_id
+            tableName: colis_produits
+        - dropColumn:
+            columnName: produit_id
+            tableName: colis_produits
+  - changeSet:
+      id: 1761902703339-2
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    foreignKeyName: FK_COLIS_PRODUITS_ON_COLIS
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_colis_produits
+                    references: colis(id)
+                    validateNullable: true
+                  name: colis_id
+                  type: VARCHAR(255)
+            tableName: colis_produits
+  - changeSet:
+      id: 1761902703339-3
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: colis_id
+            tableName: historiques_livraison
+        - dropColumn:
+            columnName: id
+            tableName: historiques_livraison
+  - changeSet:
+      id: 1761902703339-4
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    foreignKeyName: FK_HISTORIQUES_LIVRAISON_ON_COLIS
+                    references: colis(id)
+                  name: colis_id
+                  type: VARCHAR(255)
+            tableName: historiques_livraison
+  - changeSet:
+      id: 1761902703339-6
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_colis
+                    validateNullable: true
+                  name: id
+                  type: VARCHAR(255)
+            tableName: colis
+  - changeSet:
+      id: 1761902703339-8
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_historiques_livraison
+                    validateNullable: true
+                  name: id
+                  type: VARCHAR(255)
+            tableName: historiques_livraison
+  - changeSet:
+      id: 1761902703339-9
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: id
+            tableName: zones
+  - changeSet:
+      id: 1761902703339-10
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_zones
+                    validateNullable: true
+                  name: id
+                  type: VARCHAR(255)
+            tableName: zones
+  - changeSet:
+      id: 1761902703339-12
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    foreignKeyName: FK_COLIS_PRODUITS_ON_PRODUIT
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_colis_produits
+                    references: produits(id)
+                    validateNullable: true
+                  name: produit_id
+                  type: VARCHAR(255)
+            tableName: colis_produits
+  - changeSet:
+      id: 1761902703339-14
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    foreignKeyName: FK_COLIS_ON_ZONE
+                    references: zones(id)
+                  name: zone_id
+                  type: VARCHAR(255)
+            tableName: colis
+  - changeSet:
+      id: 1761902703339-15
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: zone_id
+            tableName: livreurs
+  - changeSet:
+      id: 1761902703339-16
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    foreignKeyName: FK_LIVREURS_ON_ZONE
+                    references: zones(id)
+                  name: zone_id
+                  type: VARCHAR(255)
+            tableName: livreurs
+

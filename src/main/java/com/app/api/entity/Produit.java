@@ -8,8 +8,8 @@ import java.util.Set;
 @Table(name = "produits")
 public class Produit {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private Float prix;
     private String nom;
     private String categorie;
@@ -18,11 +18,11 @@ public class Produit {
     @OneToMany(mappedBy = "produit")
     private Set<ColisProduit> colisProduits;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
