@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Table(name = "clients_expediteurs")
 public class ClientExpediteur extends Person{
 
     private String adresse;
