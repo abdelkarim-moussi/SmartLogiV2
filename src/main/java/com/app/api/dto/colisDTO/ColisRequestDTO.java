@@ -27,8 +27,8 @@ public class ColisRequestDTO {
     @NotNull
     @NotBlank(message = "choisir un livreur valide")
     private String livreurId;
-//    @NotNull
-//    @NotEmpty(message = "colis doit avoir au minimum un produit")
+    @NotNull
+    @NotEmpty(message = "colis doit avoir au minimum un produit")
     private List<ColisProduit> colisProduits;
     @NotNull
     @NotBlank(message = "entrer l'expediteur")
