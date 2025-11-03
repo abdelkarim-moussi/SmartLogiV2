@@ -95,8 +95,8 @@ public class ColisService {
         Colis colis = colisRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("aucune colis avec id = "+id)
         );
-
         colis.setStatus(colisStatus);
+        colisRepository.save(colis);
 
         return colisMapper.toDTO(colis);
     }
