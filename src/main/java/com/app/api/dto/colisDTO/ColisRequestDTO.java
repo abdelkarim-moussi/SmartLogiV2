@@ -5,6 +5,7 @@ import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
 import jakarta.validation.constraints.*;
 
+import java.util.List;
 import java.util.Set;
 
 public class ColisRequestDTO {
@@ -29,9 +30,7 @@ public class ColisRequestDTO {
     private String livreurId;
 //    @NotNull
 //    @NotEmpty(message = "colis doit avoir au minimum un produit")
-    private Set<ColisProduit> colisProduits;
-//    @NotNull
-    private Set<HistoriqueLivraison> historiqueLivraison;
+    private List<ColisProduit> colisProduits;
     @NotNull
     @NotBlank(message = "entrer l'expediteur")
     private String expediteurId;
@@ -98,20 +97,12 @@ public class ColisRequestDTO {
         this.livreurId = livreurId;
     }
 
-    public Set<ColisProduit> getColisProduits() {
+    public List<ColisProduit> getColisProduits() {
         return colisProduits;
     }
 
-    public void setColisProduits(Set<ColisProduit> colisProduits) {
+    public void setColisProduits(List<ColisProduit> colisProduits) {
         this.colisProduits = colisProduits;
-    }
-
-    public Set<HistoriqueLivraison> getHistoriqueLivraison() {
-        return historiqueLivraison;
-    }
-
-    public void setHistoriqueLivraison(Set<HistoriqueLivraison> historiqueLivraison) {
-        this.historiqueLivraison = historiqueLivraison;
     }
 
     public String getExpediteurId() {
