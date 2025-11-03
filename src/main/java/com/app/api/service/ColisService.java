@@ -10,6 +10,9 @@ import com.app.api.repository.ColisRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Transactional
 public class ColisService {
@@ -34,7 +37,7 @@ public class ColisService {
 
     }
 
-    public ColisResponseDTO update(String id,ColisRequestDTO colisRequestDTO){
+    public ColisResponseDTO updateColis(String id,ColisRequestDTO colisRequestDTO){
 
         if(id == null || id.trim().isEmpty()){
             throw new InvalidDataException("invalid id : "+id);
@@ -43,19 +46,32 @@ public class ColisService {
             throw new InvalidDataException("données invalide "+null);
         }
 
-        Colis existungolis = colisRepository.findById(id).orElseThrow(
+        Colis existingColis = colisRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("aucune colis trouver avec id : "+id)
         );
 
-        existungolis.setAdresse(colisRequestDTO.getAdresse());
-        existungolis.setPoids(colisRequestDTO.getPoids());
-        existungolis.setDescription(colisRequestDTO.getDescription());
-        existungolis.setPriority(colisRequestDTO.getPriority());
-        existungolis.setStatus(colisRequestDTO.getStatus());
-        existungolis.setVilleDestination(colisRequestDTO.getVilleDestination());
+        existingColis.setAdresse(colisRequestDTO.getAdresse());
+        existingColis.setPoids(colisRequestDTO.getPoids());
+        existingColis.setDescription(colisRequestDTO.getDescription());
+        existingColis.setPriority(colisRequestDTO.getPriority());
+        existingColis.setStatus(colisRequestDTO.getStatus());
+        existingColis.setVilleDestination(colisRequestDTO.getVilleDestination());
 
-        Colis updatedColis = colisRepository.save(existungolis);
+        Colis updatedColis = colisRepository.save(existingColis);
 
         return colisMapper.toDTO(updatedColis);
+    }
+
+    public List<ColisResponseDTO> getAllColis(){
+
+        List<Colis> colisList = colisRepository.findAll();
+        List<ColisResponseDTO> colisResponseDTOList = new ArrayList<>();
+
+        if(!colisList.isEmpty()){
+            colisList.forEach(colis ->
+                    colisResponseDTOList.add(colisMapper.toDTO(colis)));
+        }
+
+        return colisResponseDTOList;
     }
 }

@@ -3,7 +3,6 @@ package com.app.api.dto.colisDTO;
 import com.app.api.entity.*;
 import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
-import lombok.Data;
 
 import java.util.Set;
 public class ColisResponseDTO {
@@ -16,7 +15,7 @@ public class ColisResponseDTO {
     private Livreur livreur;
     private Set<ColisProduit> colisProduits;
     private Set<HistoriqueLivraison> historiqueLivraison;
-    private Expediteur expediteur;
+    private ClientExpediteur clientExpediteur;
     private Destinataire destinataire;
     private Zone zone;
 
@@ -92,12 +91,12 @@ public class ColisResponseDTO {
         this.historiqueLivraison = historiqueLivraison;
     }
 
-    public Expediteur getExpediteur() {
-        return expediteur;
+    public ClientExpediteur getExpediteur() {
+        return clientExpediteur;
     }
 
-    public void setExpediteur(Expediteur expediteur) {
-        this.expediteur = expediteur;
+    public void setExpediteur(ClientExpediteur clientExpediteur) {
+        this.clientExpediteur = clientExpediteur;
     }
 
     public Destinataire getDestinataire() {

@@ -4,10 +4,10 @@ import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.service.ColisService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.websocket.server.PathParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/colis")
@@ -19,9 +19,21 @@ public class ColisController {
         this.colisService = colisService;
     }
 
+    @GetMapping
+    List<ColisResponseDTO> getAllColis(){
+        List<ColisResponseDTO> colisList = colisService.getAllColis();
+        return colisList;
+    }
+
     @PostMapping("/create")
     ColisResponseDTO createColis(@RequestBody @Valid ColisRequestDTO colisRequestDTO){
         ColisResponseDTO createdColis = colisService.createColis(colisRequestDTO);
         return createdColis;
+    }
+
+    @PutMapping("/{id}/update")
+    ColisResponseDTO updateColis(@PathVariable("id") String id, @RequestBody @Valid ColisRequestDTO colisRequestDTO){
+        ColisResponseDTO updatedColis = colisService.updateColis(id,colisRequestDTO);
+        return updatedColis;
     }
 }

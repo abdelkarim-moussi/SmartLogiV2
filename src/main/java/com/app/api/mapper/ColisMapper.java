@@ -28,13 +28,13 @@ public interface ColisMapper {
         return livreur;
     }
 
-    default Expediteur mapExpediteur(String expediteurId){
+    default ClientExpediteur mapExpediteur(String expediteurId){
         if(expediteurId == null || expediteurId.trim().isEmpty()){
             return null;
         }
-        Expediteur expediteur = new Expediteur();
-        expediteur.setId(expediteurId);
-        return expediteur;
+        ClientExpediteur clientExpediteur = new ClientExpediteur();
+        clientExpediteur.setId(expediteurId);
+        return clientExpediteur;
     }
 
     default Destinataire mapDestinataire(String destinataireId){

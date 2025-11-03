@@ -2,9 +2,13 @@ package com.app.api.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
+@Setter
+@Getter
 @Embeddable
 public class ColisProduitKey implements Serializable {
 
@@ -13,19 +17,4 @@ public class ColisProduitKey implements Serializable {
     @Column (name = "colis_id")
     private String colisId;
 
-    public String getProduitId() {
-        return produitId;
-    }
-
-    public void setProduitId(String produitId) {
-        this.produitId = produitId;
-    }
-
-    public String getColisId() {
-        return colisId;
-    }
-
-    public void setColisId(String colisId) {
-        this.colisId = colisId;
-    }
 }

@@ -36,7 +36,7 @@ public class LivreurController {
     }
 
     @PutMapping("/{id}/update")
-    LivreurResponseDTO updateLivreur(@PathVariable("id") String id,@RequestBody LivreurRequestDTO livreurRequestDTO){
+    LivreurResponseDTO updateLivreur(@PathVariable("id") String id,@RequestBody @Valid LivreurRequestDTO livreurRequestDTO){
         LivreurResponseDTO livreurResponseDTO = livreurService.updateLivreur(id,livreurRequestDTO);
         return livreurResponseDTO;
     }
