@@ -1,4 +1,4 @@
-package com.app.api.dto.ClientExpediteurDTO;
+package com.app.api.dto.clientExpediteurDTO;
 
 public class ClientExpediteurResponseDTO {
 
