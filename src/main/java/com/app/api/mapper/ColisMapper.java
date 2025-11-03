@@ -4,17 +4,10 @@ import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.entity.*;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface ColisMapper {
-    @Mapping(source = "poids",target = "poids")
-    @Mapping(source = "description", target = "description")
-    @Mapping(source = "adresse",target = "adresse")
-    @Mapping(source = "livreurId" ,target ="livreur")
-    @Mapping(source = "expediteurId" ,target ="expediteur")
-    @Mapping(source = "destinataireId" ,target ="destinataire")
-    @Mapping(source = "zoneId" ,target ="zone")
+
     Colis toEntity(ColisRequestDTO colisRequestDTO);
 
     ColisResponseDTO toDTO(Colis colis);
@@ -28,12 +21,12 @@ public interface ColisMapper {
         return livreur;
     }
 
-    default ClientExpediteur mapExpediteur(String expediteurId){
-        if(expediteurId == null || expediteurId.trim().isEmpty()){
+    default ClientExpediteur mapExpediteur(String ClientExpediteurId){
+        if(ClientExpediteurId == null || ClientExpediteurId.trim().isEmpty()){
             return null;
         }
         ClientExpediteur clientExpediteur = new ClientExpediteur();
-        clientExpediteur.setId(expediteurId);
+        clientExpediteur.setId(ClientExpediteurId);
         return clientExpediteur;
     }
 

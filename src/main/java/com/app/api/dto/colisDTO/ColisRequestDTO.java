@@ -6,7 +6,6 @@ import com.app.api.enums.ColisStatus;
 import jakarta.validation.constraints.*;
 
 import java.util.List;
-import java.util.Set;
 
 public class ColisRequestDTO {
     @NotNull
@@ -33,7 +32,7 @@ public class ColisRequestDTO {
     private List<ColisProduit> colisProduits;
     @NotNull
     @NotBlank(message = "entrer l'expediteur")
-    private String expediteurId;
+    private String clientExpediteurId;
     @NotNull
     @NotBlank(message = "entrer le destinataire")
     private String destinataireId;
@@ -105,12 +104,12 @@ public class ColisRequestDTO {
         this.colisProduits = colisProduits;
     }
 
-    public String getExpediteurId() {
-        return expediteurId;
+    public String getClientExpediteurId() {
+        return clientExpediteurId;
     }
 
-    public void setExpediteurId(String expediteurId) {
-        this.expediteurId = expediteurId;
+    public void setClientExpediteurId(String clientExpediteurId) {
+        this.clientExpediteurId = clientExpediteurId;
     }
 
     public String getDestinataireId() {

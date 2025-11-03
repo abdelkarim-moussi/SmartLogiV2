@@ -3,8 +3,8 @@ package com.app.api.dto.colisDTO;
 import com.app.api.entity.*;
 import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
-
 import java.util.Set;
+
 public class ColisResponseDTO {
     private Float poids;
     private String description;
@@ -91,11 +91,11 @@ public class ColisResponseDTO {
         this.historiqueLivraison = historiqueLivraison;
     }
 
-    public ClientExpediteur getExpediteur() {
+    public ClientExpediteur getClientExpediteur() {
         return clientExpediteur;
     }
 
-    public void setExpediteur(ClientExpediteur clientExpediteur) {
+    public void setClientExpediteur(ClientExpediteur clientExpediteur) {
         this.clientExpediteur = clientExpediteur;
     }
 
