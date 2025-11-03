@@ -2,7 +2,7 @@ package com.app.api.dto.zoneDTO;
 
 import jakarta.validation.constraints.NotNull;
 
-public class zoneRequestDTO {
+public class ZoneRequestDTO {
     @NotNull(message = "entrer un code postal valide")
     private String codePostal;
 

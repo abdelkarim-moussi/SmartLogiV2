@@ -3,8 +3,10 @@ package com.app.api.mapper;
 import com.app.api.dto.destinataireDTO.DestinataireRequestDTO;
 import com.app.api.dto.destinataireDTO.DestinataireResponseDTO;
 import com.app.api.entity.Destinataire;
+import org.mapstruct.Mapper;
 
-public interface DestinateurMapper {
+@Mapper(componentModel = "spring")
+public interface DestinataireMapper {
 
     Destinataire toEntity(DestinataireRequestDTO destinataireRequestDTO);
 

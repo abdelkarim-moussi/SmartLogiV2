@@ -76,6 +76,19 @@ public class ColisService {
         return colisResponseDTOList;
     }
 
+    public ColisResponseDTO getOneColisById(String id){
+        if(id == null || id.trim().isEmpty()){
+            throw new InvalidDataException("invcalide id :"+id);
+        }
+
+        Colis colis = colisRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("aucune colis disponible avec cet id : "+id)
+        );
+
+        return colisMapper.toDTO(colis);
+
+    }
+
     public void deleteColis(String id){
         if(id == null || id.trim().isEmpty()){
             throw new InvalidDataException("invalide id = "+id);

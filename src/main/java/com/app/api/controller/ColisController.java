@@ -25,6 +25,11 @@ public class ColisController {
         List<ColisResponseDTO> colisList = colisService.getAllColis();
         return colisList;
     }
+    @GetMapping("/{id}")
+    ResponseEntity<ColisResponseDTO> getOneColis(@PathVariable("id") String id){
+        ColisResponseDTO colis = colisService.getOneColisById(id);
+        return ResponseEntity.ok(colis);
+    }
 
     @PostMapping("/create")
     ColisResponseDTO createColis(@RequestBody @Valid ColisRequestDTO colisRequestDTO){

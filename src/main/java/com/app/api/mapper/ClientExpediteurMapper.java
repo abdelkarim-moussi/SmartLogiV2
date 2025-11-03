@@ -9,6 +9,5 @@ import org.mapstruct.Mapper;
 public interface ClientExpediteurMapper {
 
     ClientExpediteur toEntity(ClientExpediteurRequestDTO clientExpediteurRequestDTO);
-
     ClientExpediteurResponseDTO toDTO(ClientExpediteur client);
 }
