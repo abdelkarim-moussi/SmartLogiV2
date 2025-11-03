@@ -95,9 +95,12 @@ public class ColisService {
         Colis colis = colisRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("aucune colis avec id = "+id)
         );
+
+        if(colis.getStatus().equals(colisStatus)){
+            throw new InvalidDataException("la colis est déja on status : "+colisStatus);
+        }
         colis.setStatus(colisStatus);
         colisRepository.save(colis);
-
         return colisMapper.toDTO(colis);
     }
 }

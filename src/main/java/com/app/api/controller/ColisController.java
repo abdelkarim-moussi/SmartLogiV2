@@ -2,6 +2,7 @@ package com.app.api.controller;
 
 import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
+import com.app.api.enums.ColisStatus;
 import com.app.api.service.ColisService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +42,11 @@ public class ColisController {
     ResponseEntity<Void> deleteColis(@PathVariable("id") String id){
         colisService.deleteColis(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}/status/{status}")
+    ColisResponseDTO updateColisStatus(@PathVariable("id") String id, @PathVariable("status") String status){
+        ColisResponseDTO updatedColis = colisService.updateColisStatus(id,ColisStatus.valueOf(status));
+        return updatedColis;
     }
 }
