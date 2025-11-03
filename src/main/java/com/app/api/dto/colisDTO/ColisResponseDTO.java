@@ -6,6 +6,7 @@ import com.app.api.enums.ColisStatus;
 import java.util.Set;
 
 public class ColisResponseDTO {
+    private String id;
     private Float poids;
     private String description;
     private String adresse;
@@ -18,6 +19,14 @@ public class ColisResponseDTO {
     private ClientExpediteur clientExpediteur;
     private Destinataire destinataire;
     private Zone zone;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Float getPoids() {
         return poids;

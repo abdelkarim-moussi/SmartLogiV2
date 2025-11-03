@@ -4,6 +4,7 @@ import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.service.ColisService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,5 +35,11 @@ public class ColisController {
     ColisResponseDTO updateColis(@PathVariable("id") String id, @RequestBody @Valid ColisRequestDTO colisRequestDTO){
         ColisResponseDTO updatedColis = colisService.updateColis(id,colisRequestDTO);
         return updatedColis;
+    }
+
+    @DeleteMapping("/{id}/delete")
+    ResponseEntity<Void> deleteColis(@PathVariable("id") String id){
+        colisService.deleteColis(id);
+        return ResponseEntity.noContent().build();
     }
 }

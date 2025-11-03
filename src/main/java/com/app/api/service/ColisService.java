@@ -3,6 +3,7 @@ package com.app.api.service;
 import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.entity.Colis;
+import com.app.api.enums.ColisStatus;
 import com.app.api.exception.InvalidDataException;
 import com.app.api.exception.ResourceNotFoundException;
 import com.app.api.mapper.ColisMapper;
@@ -73,5 +74,30 @@ public class ColisService {
         }
 
         return colisResponseDTOList;
+    }
+
+    public void deleteColis(String id){
+        if(id == null || id.trim().isEmpty()){
+            throw new InvalidDataException("invalide id = "+id);
+        }
+        Colis colis = colisRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("aucune colis avec id = "+id)
+        );
+
+        colisRepository.deleteById(id);
+    }
+
+    public ColisResponseDTO updateColisStatus(String id,ColisStatus colisStatus){
+        if(id == null || id.trim().isEmpty()){
+            throw new InvalidDataException("invalide id = "+id);
+        }
+
+        Colis colis = colisRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("aucune colis avec id = "+id)
+        );
+
+        colis.setStatus(colisStatus);
+
+        return colisMapper.toDTO(colis);
     }
 }
