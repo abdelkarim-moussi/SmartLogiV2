@@ -6,7 +6,7 @@ import com.app.api.entity.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = ProduitMapper.class)
 
 public interface ColisMapper {
 
