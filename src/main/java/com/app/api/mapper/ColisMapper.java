@@ -6,7 +6,7 @@ import com.app.api.entity.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = ProduitMapper.class)
+@Mapper(componentModel = "spring")
 
 public interface ColisMapper {
 
@@ -14,6 +14,7 @@ public interface ColisMapper {
     @Mapping(source = "clientExpediteurId",target = "clientExpediteur", ignore = true)
     @Mapping(source = "destinataireId",target = "destinataire", ignore = true)
     @Mapping(source = "zoneId",target = "zone" , ignore = true)
+    @Mapping(target = "colisProduits",ignore = true)
     Colis toEntity(ColisRequestDTO colisRequestDTO);
 
     ColisResponseDTO toDTO(Colis colis);

@@ -154,5 +154,10 @@ public class ColisService {
             );
             colis.setZone(zone);
         }
+
+        if(colisRequestDTO.getProduits() != null){
+//            Produit produit = produitRepository
+//            ColisProduit colisProduits =
+        }
     }
 }

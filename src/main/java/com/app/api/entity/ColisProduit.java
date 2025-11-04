@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Table(name = "colis_produits")
 public class ColisProduit {
     @EmbeddedId
-    ColisProduitKey id;
+    private ColisProduitKey id;
     @ManyToOne
     @MapsId("colisId")
     @JoinColumn(name = "colis_id")

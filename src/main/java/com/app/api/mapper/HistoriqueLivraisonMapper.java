@@ -5,9 +5,11 @@ import com.app.api.dto.historiqueLivraisonDTO.HistoriqueLivraisonResponseDTO;
 import com.app.api.entity.HistoriqueLivraison;
 import org.mapstruct.Mapper;
 
+import java.util.Set;
+
 @Mapper(componentModel= "spring")
 public interface HistoriqueLivraisonMapper {
     HistoriqueLivraison toEntity(HistoriqueLivraisonRequestDTO historiqueLivraisonRequestDTO);
 
-    HistoriqueLivraisonResponseDTO toDTO(HistoriqueLivraison historiqueLivraison);
+    Set<HistoriqueLivraisonResponseDTO> toDTO(Set<HistoriqueLivraison> historiqueLivraisonSet);
 }
