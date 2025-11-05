@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class ProduitDTO {
     private String id;
-    private Float prix;
     private String nom;
+    private Float prix;
     private String categorie;
     private Float poids;
 }

@@ -8,11 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ColisProduitRequestDTO {
-    @NotNull
-    private String produitId;
+    private String nom;
     private Float prix;
     private String categorie;
     private Float poids;
     @Min(1)
-    private int Quantite;
+    private int quantite;
 }

@@ -1,7 +1,9 @@
 package com.app.api.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "zones")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Zone{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -19,5 +23,9 @@ public class Zone{
     private List<Colis> colisList;
     @OneToMany(mappedBy = "zone")
     private List<Livreur> livreurList;
+
+    public Zone(String codePostal){
+        this.codePostal = codePostal;
+    }
 
 }
