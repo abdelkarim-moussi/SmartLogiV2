@@ -2,16 +2,19 @@ package com.app.api.entity;
 
 import com.app.api.enums.ColisStatus;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-
+@Setter
+@Getter
 @Entity
 @Table(name = "historiques_livraison")
 public class HistoriqueLivraison {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private String nom;
     private ColisStatus colisStatus;
     private LocalDate dateChangement;
@@ -21,51 +24,4 @@ public class HistoriqueLivraison {
     @JoinColumn(name = "colis_id")
     private Colis colis;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public ColisStatus getColisStatus() {
-        return colisStatus;
-    }
-
-    public void setColisStatus(ColisStatus colisStatus) {
-        this.colisStatus = colisStatus;
-    }
-
-    public LocalDate getDateChangement() {
-        return dateChangement;
-    }
-
-    public void setDateChangement(LocalDate dateChangement) {
-        this.dateChangement = dateChangement;
-    }
-
-    public Colis getColis() {
-        return colis;
-    }
-
-    public void setColis(Colis colis) {
-        this.colis = colis;
-    }
-
-    public String getCommentaire() {
-        return commentaire;
-    }
-
-    public void setCommentaire(String commentaire) {
-        this.commentaire = commentaire;
-    }
 }

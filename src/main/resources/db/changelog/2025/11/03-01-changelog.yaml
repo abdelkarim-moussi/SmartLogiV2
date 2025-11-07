@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1761742997874-1
+      id: 1762206504643-1
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -10,7 +10,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: pk_clients
+                    primaryKeyName: pk_clients_expediteurs
                   name: id
                   type: VARCHAR(36)
               - column:
@@ -28,22 +28,21 @@ databaseChangeLog:
               - column:
                   name: adresse
                   type: VARCHAR(255)
-            tableName: clients
+            tableName: clients_expediteurs
   - changeSet:
-      id: 1761742997874-2
+      id: 1762206504643-2
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - createTable:
             columns:
               - column:
-                  autoIncrement: true
                   constraints:
                     nullable: false
                     primaryKey: true
                     primaryKeyName: pk_colis
                   name: id
-                  type: BIGINT
+                  type: VARCHAR(255)
               - column:
                   name: poids
                   type: FLOAT
@@ -57,10 +56,8 @@ databaseChangeLog:
                   name: ville_destination
                   type: VARCHAR(255)
               - column:
-                  constraints:
-                    nullable: false
-                  name: priorie
-                  type: SMALLINT
+                  name: priority
+                  type: VARCHAR(255)
               - column:
                   name: status
                   type: VARCHAR(255)
@@ -75,10 +72,10 @@ databaseChangeLog:
                   type: VARCHAR(36)
               - column:
                   name: zone_id
-                  type: BIGINT
+                  type: VARCHAR(255)
             tableName: colis
   - changeSet:
-      id: 1761742997874-3
+      id: 1762206504643-3
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -103,17 +100,17 @@ databaseChangeLog:
                     primaryKey: true
                     primaryKeyName: pk_colis_produits
                   name: produit_id
-                  type: BIGINT
+                  type: VARCHAR(255)
               - column:
                   constraints:
                     nullable: false
                     primaryKey: true
                     primaryKeyName: pk_colis_produits
                   name: colis_id
-                  type: BIGINT
+                  type: VARCHAR(255)
             tableName: colis_produits
   - changeSet:
-      id: 1761742997874-4
+      id: 1762206504643-4
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -123,7 +120,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: pk_destinataire
+                    primaryKeyName: pk_destinataires
                   name: id
                   type: VARCHAR(36)
               - column:
@@ -141,52 +138,21 @@ databaseChangeLog:
               - column:
                   name: adresse
                   type: VARCHAR(255)
-            tableName: destinataire
+            tableName: destinataires
   - changeSet:
-      id: 1761742997874-5
+      id: 1762206504643-5
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - createTable:
             columns:
               - column:
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: pk_expediteur
-                  name: id
-                  type: VARCHAR(36)
-              - column:
-                  name: nom
-                  type: VARCHAR(255)
-              - column:
-                  name: prenom
-                  type: VARCHAR(255)
-              - column:
-                  name: telephone
-                  type: VARCHAR(255)
-              - column:
-                  name: email
-                  type: VARCHAR(255)
-              - column:
-                  name: adresse
-                  type: VARCHAR(255)
-            tableName: expediteur
-  - changeSet:
-      id: 1761742997874-6
-      author: ycode
-      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
-      changes:
-        - createTable:
-            columns:
-              - column:
-                  autoIncrement: true
                   constraints:
                     nullable: false
                     primaryKey: true
                     primaryKeyName: pk_historiques_livraison
                   name: id
-                  type: BIGINT
+                  type: VARCHAR(255)
               - column:
                   name: nom
                   type: VARCHAR(255)
@@ -201,10 +167,10 @@ databaseChangeLog:
                   type: VARCHAR(255)
               - column:
                   name: colis_id
-                  type: BIGINT
+                  type: VARCHAR(255)
             tableName: historiques_livraison
   - changeSet:
-      id: 1761742997874-7
+      id: 1762206504643-6
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -234,23 +200,22 @@ databaseChangeLog:
                   type: VARCHAR(255)
               - column:
                   name: zone_id
-                  type: BIGINT
+                  type: VARCHAR(255)
             tableName: livreurs
   - changeSet:
-      id: 1761742997874-8
+      id: 1762206504643-7
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - createTable:
             columns:
               - column:
-                  autoIncrement: true
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: pk_produit
+                    primaryKeyName: pk_produits
                   name: id
-                  type: BIGINT
+                  type: VARCHAR(255)
               - column:
                   name: prix
                   type: FLOAT
@@ -263,28 +228,27 @@ databaseChangeLog:
               - column:
                   name: poids
                   type: FLOAT
-            tableName: produit
+            tableName: produits
   - changeSet:
-      id: 1761742997874-9
+      id: 1762206504643-8
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - createTable:
             columns:
               - column:
-                  autoIncrement: true
                   constraints:
                     nullable: false
                     primaryKey: true
                     primaryKeyName: pk_zones
                   name: id
-                  type: BIGINT
+                  type: VARCHAR(255)
               - column:
                   name: code_postal
                   type: VARCHAR(255)
             tableName: zones
   - changeSet:
-      id: 1761742997874-10
+      id: 1762206504643-9
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -293,9 +257,9 @@ databaseChangeLog:
             baseTableName: colis
             constraintName: FK_COLIS_ON_DESTINATAIRE
             referencedColumnNames: id
-            referencedTableName: destinataire
+            referencedTableName: destinataires
   - changeSet:
-      id: 1761742997874-11
+      id: 1762206504643-10
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -304,9 +268,9 @@ databaseChangeLog:
             baseTableName: colis
             constraintName: FK_COLIS_ON_EXPEDITEUR
             referencedColumnNames: id
-            referencedTableName: expediteur
+            referencedTableName: clients_expediteurs
   - changeSet:
-      id: 1761742997874-12
+      id: 1762206504643-11
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -317,7 +281,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: livreurs
   - changeSet:
-      id: 1761742997874-13
+      id: 1762206504643-12
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -328,7 +292,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: zones
   - changeSet:
-      id: 1761742997874-14
+      id: 1762206504643-13
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -339,7 +303,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: colis
   - changeSet:
-      id: 1761742997874-15
+      id: 1762206504643-14
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -348,9 +312,9 @@ databaseChangeLog:
             baseTableName: colis_produits
             constraintName: FK_COLIS_PRODUITS_ON_PRODUIT
             referencedColumnNames: id
-            referencedTableName: produit
+            referencedTableName: produits
   - changeSet:
-      id: 1761742997874-16
+      id: 1762206504643-15
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -361,7 +325,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: colis
   - changeSet:
-      id: 1761742997874-17
+      id: 1762206504643-16
       author: ycode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:

@@ -1,0 +1,29 @@
+package com.app.api.mapper;
+
+import com.app.api.dto.colisDTO.ColisRequestDTO;
+import com.app.api.dto.colisDTO.ColisResponseDTO;
+import com.app.api.entity.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+@Mapper(componentModel = "spring",
+uses = {
+        LivreurMapper.class,
+        ClientExpediteurMapper.class,
+        DestinataireMapper.class,
+        ZoneMapper.class,
+        ColisProduitMapper.class
+})
+
+public interface ColisMapper {
+
+    @Mapping(target = "livreur", ignore = true)
+    @Mapping(source = "clientExpediteurId",target = "clientExpediteur", ignore = true)
+    @Mapping(source = "destinataire",target = "destinataire", ignore = true)
+    @Mapping(source = "codePostal", target = "zone" , ignore = true)
+    @Mapping(target = "colisProduits",ignore = true)
+    Colis toEntity(ColisRequestDTO colisRequestDTO);
+
+    ColisResponseDTO toDTO(Colis colis);
+
+}

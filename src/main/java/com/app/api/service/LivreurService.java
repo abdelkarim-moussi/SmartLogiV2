@@ -53,10 +53,9 @@ public class LivreurService {
             throw new InvalidDataException("données invalid = "+livreurRequestDTO);
         }
 
-        Livreur existingLivreur = livreurRepository.findById(id).orElse(null);
-        if(existingLivreur == null) {
-            throw new ResourceNotFoundException("aucun livreur trouver avec id = "+id);
-        }
+        Livreur existingLivreur = livreurRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("aucun livreur trouver avec id = "+id)
+        );
 
         existingLivreur.setNom(livreurRequestDTO.getNom());
         existingLivreur.setPrenom(livreurRequestDTO.getPrenom());

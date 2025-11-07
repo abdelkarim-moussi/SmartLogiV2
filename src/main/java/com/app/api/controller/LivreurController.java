@@ -4,9 +4,6 @@ import com.app.api.dto.livreurDTO.LivreurRequestDTO;
 import com.app.api.dto.livreurDTO.LivreurResponseDTO;
 import com.app.api.service.LivreurService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,7 +36,7 @@ public class LivreurController {
     }
 
     @PutMapping("/{id}/update")
-    LivreurResponseDTO updateLivreur(@PathVariable("id") String id,@RequestBody LivreurRequestDTO livreurRequestDTO){
+    LivreurResponseDTO updateLivreur(@PathVariable("id") String id,@RequestBody @Valid LivreurRequestDTO livreurRequestDTO){
         LivreurResponseDTO livreurResponseDTO = livreurService.updateLivreur(id,livreurRequestDTO);
         return livreurResponseDTO;
     }

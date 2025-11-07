@@ -1,50 +1,31 @@
 package com.app.api.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "zones")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Zone{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private String codePostal;
     @OneToMany(mappedBy = "zone")
     private List<Colis> colisList;
     @OneToMany(mappedBy = "zone")
     private List<Livreur> livreurList;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCodePostal() {
-        return codePostal;
-    }
-
-    public void setCodePostal(String codePostal) {
+    public Zone(String codePostal){
         this.codePostal = codePostal;
     }
 
-    public List<Colis> getColisList() {
-        return colisList;
-    }
-
-    public void setColisList(List<Colis> colisList) {
-        this.colisList = colisList;
-    }
-
-    public List<Livreur> getLivreurList() {
-        return livreurList;
-    }
-
-    public void setLivreurList(List<Livreur> livreurList) {
-        this.livreurList = livreurList;
-    }
 }
