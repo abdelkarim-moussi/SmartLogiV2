@@ -1,0 +1,18 @@
+package com.app.api.dto.zoneDTO;
+
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class ZoneRequestDTO {
+    @NotNull(message = "entrer un code postal valide")
+    private String codePostal;
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+}

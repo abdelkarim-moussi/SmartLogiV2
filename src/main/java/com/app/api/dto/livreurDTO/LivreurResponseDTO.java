@@ -3,12 +3,21 @@ package com.app.api.dto.livreurDTO;
 import com.app.api.entity.Zone;
 
 public class LivreurResponseDTO {
+    private String id;
     private String nom;
     private String prenom;
     private String email;
     private String telephone;
     private String vehicule;
     private Zone zone;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNom() {
         return nom;
