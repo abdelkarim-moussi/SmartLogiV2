@@ -1,11 +1,10 @@
 package com.app.api.service;
 
+import com.app.api.dto.colisDTO.ColisFiltersRequestDTO;
 import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
-import com.app.api.dto.colisProduitDTO.ColisProduitRequestDTO;
-import com.app.api.dto.produitDTO.ProduitDTO;
-import com.app.api.dto.zoneDTO.ZoneRequestDTO;
 import com.app.api.entity.*;
+import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
 import com.app.api.exception.InvalidDataException;
 import com.app.api.exception.ResourceNotFoundException;
@@ -15,11 +14,14 @@ import com.app.api.mapper.ProduitMapper;
 import com.app.api.mapper.ZoneMapper;
 import com.app.api.repository.*;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 @Service
 @Transactional
@@ -93,7 +95,9 @@ public class ColisService {
         return colisMapper.toDTO(updatedColis);
     }
 
-    public List<ColisResponseDTO> getAllColis(){
+    public Page<ColisResponseDTO> getAllColis(ColisFiltersRequestDTO colisFiltersRequestDTO){
+
+        Specification<Colis> specification;
 
         List<Colis> colisList = colisRepository.findAll();
         List<ColisResponseDTO> colisResponseDTOList = new ArrayList<>();
