@@ -17,7 +17,6 @@ public class Colis {
     private String id;
     private Float poids;
     private String description;
-    private String adresse;
     private String villeDestination;
     @Enumerated(EnumType.STRING)
     private ColisPriority priority;

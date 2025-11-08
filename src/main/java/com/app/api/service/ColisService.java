@@ -1,10 +1,9 @@
 package com.app.api.service;
 
-import com.app.api.dto.colisDTO.ColisFiltersRequestDTO;
+import com.app.api.dto.colisDTO.ColisFilterDTO;
 import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.entity.*;
-import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
 import com.app.api.exception.InvalidDataException;
 import com.app.api.exception.ResourceNotFoundException;
@@ -13,15 +12,19 @@ import com.app.api.mapper.DestinataireMapper;
 import com.app.api.mapper.ProduitMapper;
 import com.app.api.mapper.ZoneMapper;
 import com.app.api.repository.*;
+import com.app.api.specification.ColisSpecification;
 import jakarta.transaction.Transactional;
+import org.hibernate.query.SortDirection;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 
 @Service
 @Transactional
@@ -37,6 +40,8 @@ public class ColisService {
     private final ColisProduitRepository colisProduitRepository;
     private ColisRepository colisRepository;
     private ColisMapper colisMapper;
+
+    private static final Set<String> ALLOWED_SORT_FIELDS = Set.of("status","priority");
 
     public ColisService(ColisRepository colisRepository, ColisMapper colisMapper, LivreurRepository livreurRepository, ClientExpediteurRepository clientExpediteurRepository, DestinataireRepository destinataireRepository, ZoneRepository zoneRepository, ProduitRepository produitRepository, ProduitMapper produitMapper, DestinataireMapper destinataireMapper, ZoneMapper zoneMapper, ColisProduitRepository colisProduitRepository){
         this.colisRepository = colisRepository;
@@ -81,7 +86,6 @@ public class ColisService {
                 () -> new ResourceNotFoundException("aucune colis trouver avec id : "+id)
         );
 
-        existingColis.setAdresse(colisRequestDTO.getAdresse());
         existingColis.setPoids(colisRequestDTO.getPoids());
         existingColis.setDescription(colisRequestDTO.getDescription());
         existingColis.setPriority(colisRequestDTO.getPriority());
@@ -95,19 +99,25 @@ public class ColisService {
         return colisMapper.toDTO(updatedColis);
     }
 
-    public Page<ColisResponseDTO> getAllColis(ColisFiltersRequestDTO colisFiltersRequestDTO){
-
-        Specification<Colis> specification;
-
-        List<Colis> colisList = colisRepository.findAll();
-        List<ColisResponseDTO> colisResponseDTOList = new ArrayList<>();
-
-        if(!colisList.isEmpty()){
-            colisList.forEach(colis ->
-                    colisResponseDTOList.add(colisMapper.toDTO(colis)));
+    public Page<ColisResponseDTO> getAllColis(ColisFilterDTO filters ,
+                                              Integer page,
+                                              Integer size,
+                                              String sortBy,
+                                              String sortDir){
+        if(!ALLOWED_SORT_FIELDS.contains(sortBy)){
+            sortBy = "status";
         }
 
-        return colisResponseDTOList;
+        Sort sort = sortDir.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page,size,sort);
+
+        Specification<Colis> specification = ColisSpecification.buildColisSpecification(filters);
+
+        return colisRepository.findAll(specification,pageable)
+                .map(colisMapper::toDTO);
     }
 
     public ColisResponseDTO getOneColisById(String id){

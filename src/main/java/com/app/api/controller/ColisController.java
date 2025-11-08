@@ -1,14 +1,15 @@
 package com.app.api.controller;
 
+import com.app.api.dto.colisDTO.ColisFilterDTO;
 import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.enums.ColisStatus;
 import com.app.api.service.ColisService;
 import jakarta.validation.Valid;
+import org.hibernate.query.SortDirection;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/colis")
@@ -21,9 +22,33 @@ public class ColisController {
     }
 
     @GetMapping
-    List<ColisResponseDTO> getAllColis(){
-        List<ColisResponseDTO> colisList = colisService.getAllColis();
-        return colisList;
+    ResponseEntity<Page<ColisResponseDTO>> getAllColis(
+            @RequestParam(name = "page",defaultValue = "0") Integer page,
+            @RequestParam(name = "size", defaultValue = "5") Integer size,
+            @RequestParam(name = "sortBy",defaultValue = "status") String sortBy,
+            @RequestParam(name = "sortDir",defaultValue = "DESC") String sortDir,
+            @RequestParam(name = "status", required = false ) String status,
+            @RequestParam(name = "priority", required = false) String priority,
+            @RequestParam(name = "ville" , required = false) String ville,
+            @RequestParam(name = "zone", required = false) String zone,
+            @RequestParam(name = "search", required = false) String search
+    ){
+        ColisFilterDTO filters = ColisFilterDTO.builder()
+                .status(status)
+                .priority(priority)
+                .ville(ville)
+                .zone(zone)
+                .search(search)
+                .build();
+
+        Page<ColisResponseDTO> colisList = colisService.getAllColis(
+                filters,
+                page,
+                size,
+                sortBy,
+                sortDir
+        );
+        return ResponseEntity.ok(colisList);
     }
     @GetMapping("/{id}")
     ResponseEntity<ColisResponseDTO> getOneColis(@PathVariable("id") String id){
