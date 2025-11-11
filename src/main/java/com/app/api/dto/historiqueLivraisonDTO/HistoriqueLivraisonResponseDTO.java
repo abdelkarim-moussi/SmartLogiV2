@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Setter
 public class HistoriqueLivraisonResponseDTO {
     private String id;
-    private String nom;
+    private String colidId;
     private ColisStatus colisStatus;
     private LocalDate dateChangement;
     private String commentaire;

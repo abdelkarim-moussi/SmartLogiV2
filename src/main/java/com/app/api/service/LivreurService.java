@@ -8,11 +8,13 @@ import com.app.api.mapper.LivreurMapper;
 import com.app.api.entity.Livreur;
 import com.app.api.repository.LivreurRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional
 public class LivreurService {

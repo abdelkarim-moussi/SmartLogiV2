@@ -6,11 +6,13 @@ import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.enums.ColisStatus;
 import com.app.api.service.ColisService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.SortDirection;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/colis")
 public class ColisController {

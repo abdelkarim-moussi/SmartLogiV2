@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1762819938120-1
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: adresse
+            tableName: colis
+  - changeSet:
+      id: 1762819938120-2
+      author: ycode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: nom
+            tableName: historiques_livraison
+

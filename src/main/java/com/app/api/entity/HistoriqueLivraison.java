@@ -15,7 +15,6 @@ public class HistoriqueLivraison {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String nom;
     private ColisStatus colisStatus;
     private LocalDate dateChangement;
     private String commentaire;

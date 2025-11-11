@@ -1,5 +1,7 @@
 package com.app.api.exception;
 
+import jakarta.persistence.EntityNotFoundException;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -30,5 +32,15 @@ public class GlobalExceptionHandler {
             errorsMap.put(error.getField(),error.getDefaultMessage());
         });
         return new ResponseEntity<>(errorsMap,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<String> handleEntityNotFoundException(EntityNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<String> handleIllegaleStateException(IllegalStateException ex){
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
     }
 }

@@ -3,17 +3,16 @@ package com.app.api.service;
 import com.app.api.dto.colisDTO.ColisFilterDTO;
 import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
+import com.app.api.dto.historiqueLivraisonDTO.HistoriqueLivraisonRequestDTO;
 import com.app.api.entity.*;
 import com.app.api.enums.ColisStatus;
 import com.app.api.exception.InvalidDataException;
 import com.app.api.exception.ResourceNotFoundException;
-import com.app.api.mapper.ColisMapper;
-import com.app.api.mapper.DestinataireMapper;
-import com.app.api.mapper.ProduitMapper;
-import com.app.api.mapper.ZoneMapper;
+import com.app.api.mapper.*;
 import com.app.api.repository.*;
 import com.app.api.specification.ColisSpecification;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.SortDirection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,11 +20,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @Service
 @Transactional
 public class ColisService {
@@ -40,10 +42,26 @@ public class ColisService {
     private final ColisProduitRepository colisProduitRepository;
     private ColisRepository colisRepository;
     private ColisMapper colisMapper;
+    private HistoriqueLivraisonRepository historiqueLivraisonRepository;
+    private HistoriqueLivraisonMapper historiqueLivraisonMapper;
 
     private static final Set<String> ALLOWED_SORT_FIELDS = Set.of("status","priority");
 
-    public ColisService(ColisRepository colisRepository, ColisMapper colisMapper, LivreurRepository livreurRepository, ClientExpediteurRepository clientExpediteurRepository, DestinataireRepository destinataireRepository, ZoneRepository zoneRepository, ProduitRepository produitRepository, ProduitMapper produitMapper, DestinataireMapper destinataireMapper, ZoneMapper zoneMapper, ColisProduitRepository colisProduitRepository){
+    public ColisService(ColisRepository colisRepository,
+                        ColisMapper colisMapper,
+                        LivreurRepository livreurRepository,
+                        ClientExpediteurRepository clientExpediteurRepository,
+                        DestinataireRepository destinataireRepository,
+                        ZoneRepository zoneRepository,
+                        ProduitRepository produitRepository,
+                        ProduitMapper produitMapper,
+                        DestinataireMapper destinataireMapper,
+                        ZoneMapper zoneMapper,
+                        ColisProduitRepository colisProduitRepository,
+                        HistoriqueLivraisonRepository historiqueLivraisonRepository,
+                        HistoriqueLivraisonMapper historiqueLivraisonMapper
+    ){
+
         this.colisRepository = colisRepository;
         this.colisMapper = colisMapper;
         this.livreurRepository = livreurRepository;
@@ -55,6 +73,8 @@ public class ColisService {
         this.destinataireMapper = destinataireMapper;
         this.zoneMapper = zoneMapper;
         this.colisProduitRepository = colisProduitRepository;
+        this.historiqueLivraisonRepository = historiqueLivraisonRepository;
+        this.historiqueLivraisonMapper = historiqueLivraisonMapper;
     }
 
     public ColisResponseDTO createColis(ColisRequestDTO colisRequestDTO){
@@ -154,10 +174,21 @@ public class ColisService {
         );
 
         if(colis.getStatus().equals(colisStatus)){
+            log.error("la colis est déja on status : {}", colisStatus);
                 throw new InvalidDataException("la colis est déja on status : "+colisStatus);
         }
         colis.setStatus(colisStatus);
         colisRepository.save(colis);
+
+        HistoriqueLivraisonRequestDTO historiqueLivraisonRequestDTO = HistoriqueLivraisonRequestDTO.builder()
+                .colisId(colis.getId())
+                .colisStatus(colisStatus)
+                .dateChangement(LocalDate.now())
+                .commentaire("le status de la colis est changer ver "+colisStatus)
+                .build();
+
+        HistoriqueLivraison historiqueLivraison = historiqueLivraisonRepository.save(historiqueLivraisonMapper.toEntity(historiqueLivraisonRequestDTO));
+        colis.getHistoriqueLivraison().add(historiqueLivraison);
         return colisMapper.toDTO(colis);
     }
 

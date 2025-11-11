@@ -4,10 +4,12 @@ import com.app.api.dto.livreurDTO.LivreurRequestDTO;
 import com.app.api.dto.livreurDTO.LivreurResponseDTO;
 import com.app.api.service.LivreurService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/livreurs")
 public class LivreurController {
