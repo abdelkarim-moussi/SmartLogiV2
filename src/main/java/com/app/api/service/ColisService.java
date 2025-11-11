@@ -97,7 +97,7 @@ public class ColisService {
     public ColisResponseDTO updateColis(String id,ColisRequestDTO colisRequestDTO){
 
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("invalid id : "+id);
+            throw new InvalidDataException("invalid id");
         }
         if(colisRequestDTO == null){
             throw new InvalidDataException("données invalide");

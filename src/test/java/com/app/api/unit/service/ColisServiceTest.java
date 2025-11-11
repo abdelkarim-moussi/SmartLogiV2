@@ -178,11 +178,19 @@ class ColisServiceTest {
     }
 
     @Test
-    void updateColis_WithNullData_ShouldReturnException(){
+    void  updateColis_WithNullId_ShouldThrowException(){
+        InvalidDataException exception = assertThrows(InvalidDataException.class,() -> colisService.updateColis(null,colisRequestDTO));
+
+        assertEquals("invalid id",exception.getMessage());
+    }
+
+    @Test
+    void updateColis_WithNullData_ShouldThrowException(){
 
         InvalidDataException exception = assertThrows(InvalidDataException.class,() -> colisService.updateColis(colisId,null));
         assertEquals("données invalide",exception.getMessage());
 
     }
+
 
 }
