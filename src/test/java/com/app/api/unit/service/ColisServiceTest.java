@@ -146,10 +146,34 @@ class ColisServiceTest {
     }
 
     @Test
-    void createColis_WithNullRequest_Throws_InvalidDataException(){
+    void createColis_WithNullRequest_ThrowsInvalidDataException(){
 
         InvalidDataException exception = assertThrows(InvalidDataException.class,()->colisService.createColis(null));
         assertEquals("données invalide",exception.getMessage());
+
+    }
+
+    @Test
+    void updateColis_WthValidData_ShouldReturnUpdatedColis(){
+        when(colisRepository.findById(colisId)).thenReturn(Optional.of(colis));
+        when(colisRepository.save(colis)).thenReturn(colis);
+        when(colisMapper.toDTO(colis)).thenReturn(colisResponseDTO);
+
+        ClientExpediteur expediteur = new ClientExpediteur();
+        expediteur.setId("EXP123");
+        when(clientExpediteurRepository.findById("EXP123")).thenReturn(Optional.of(expediteur));
+
+        Zone zone = new Zone();
+        zone.setId("zone1");
+        zone.setCodePostal("45000");
+        when(zoneRepository.findByCodePostal(zone.getCodePostal())).thenReturn(Optional.of(zone));
+
+        ColisResponseDTO result = colisService.updateColis(colisId,colisRequestDTO);
+
+        assertNotNull(result);
+        verify(colisRepository).findById(colisId);
+        verify(colisRepository).save(colis);
+        verify(colisMapper).toDTO(colis);
 
     }
 

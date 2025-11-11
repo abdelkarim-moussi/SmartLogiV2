@@ -21,6 +21,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -96,7 +97,7 @@ public class ColisService {
     public ColisResponseDTO updateColis(String id,ColisRequestDTO colisRequestDTO){
 
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("invalid id : "+id);
+            throw new InvalidParameterException("invalid id : "+id);
         }
         if(colisRequestDTO == null){
             throw new InvalidDataException("données invalide "+null);
@@ -114,6 +115,7 @@ public class ColisService {
 
         setRelations(colisRequestDTO,existingColis);
         setProduits(colisRequestDTO,existingColis);
+
         Colis updatedColis = colisRepository.save(existingColis);
 
         return colisMapper.toDTO(updatedColis);
