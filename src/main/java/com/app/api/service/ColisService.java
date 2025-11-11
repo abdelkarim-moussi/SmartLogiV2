@@ -80,7 +80,7 @@ public class ColisService {
     public ColisResponseDTO createColis(ColisRequestDTO colisRequestDTO){
 
         if(colisRequestDTO == null){
-            throw new InvalidDataException("données invalide "+null);
+            throw new InvalidDataException("données invalide");
         }
 
         Colis colis = colisMapper.toEntity(colisRequestDTO);

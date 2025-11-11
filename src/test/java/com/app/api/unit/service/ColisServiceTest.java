@@ -145,4 +145,12 @@ class ColisServiceTest {
 
     }
 
+    @Test
+    void createColis_WithNullRequest_Throws_InvalidDataException(){
+
+        InvalidDataException exception = assertThrows(InvalidDataException.class,()->colisService.createColis(null));
+        assertEquals("données invalide",exception.getMessage());
+
+    }
+
 }
