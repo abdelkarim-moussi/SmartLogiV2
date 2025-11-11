@@ -8,18 +8,19 @@ import com.app.api.dto.zoneDTO.ZoneResponseDTO;
 import com.app.api.entity.*;
 import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ColisResponseDTO {
     private String id;
     private Float poids;
     private String description;
-    private String adresse;
     private String villeDestination;
     private ColisPriority priority;
     private ColisStatus status;
