@@ -97,10 +97,10 @@ public class ColisService {
     public ColisResponseDTO updateColis(String id,ColisRequestDTO colisRequestDTO){
 
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidParameterException("invalid id : "+id);
+            throw new InvalidDataException("invalid id : "+id);
         }
         if(colisRequestDTO == null){
-            throw new InvalidDataException("données invalide "+null);
+            throw new InvalidDataException("données invalide");
         }
 
         Colis existingColis = colisRepository.findById(id).orElseThrow(

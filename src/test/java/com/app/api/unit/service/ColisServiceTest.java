@@ -154,7 +154,7 @@ class ColisServiceTest {
     }
 
     @Test
-    void updateColis_WthValidData_ShouldReturnUpdatedColis(){
+    void updateColis_WithValidData_ShouldReturnUpdatedColis(){
         when(colisRepository.findById(colisId)).thenReturn(Optional.of(colis));
         when(colisRepository.save(colis)).thenReturn(colis);
         when(colisMapper.toDTO(colis)).thenReturn(colisResponseDTO);
@@ -174,6 +174,14 @@ class ColisServiceTest {
         verify(colisRepository).findById(colisId);
         verify(colisRepository).save(colis);
         verify(colisMapper).toDTO(colis);
+
+    }
+
+    @Test
+    void updateColis_WithNullData_ShouldReturnException(){
+
+        InvalidDataException exception = assertThrows(InvalidDataException.class,() -> colisService.updateColis(colisId,null));
+        assertEquals("données invalide",exception.getMessage());
 
     }
 
