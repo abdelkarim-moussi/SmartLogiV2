@@ -28,7 +28,7 @@ public class ColisRequestDTO {
     @NotNull(message = "definir le status (créer,colécté,en_stock,en_transite,livré)")
     private ColisStatus status;
     @NotNull
-    @NotEmpty(message = "colis doit avoir au minimum un produit")
+//    @NotEmpty(message = "colis doit avoir au minimum un produit")
     private Set<ColisProduitRequestDTO> produits;
     @NotNull(message = "entrer l'expediteur")
     private String clientExpediteurId;

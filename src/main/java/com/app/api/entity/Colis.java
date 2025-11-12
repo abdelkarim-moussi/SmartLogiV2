@@ -2,7 +2,9 @@ package com.app.api.entity;
 import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
@@ -11,6 +13,8 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "colis")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Colis {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

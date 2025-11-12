@@ -258,6 +258,25 @@ public class ColisService {
             });
 
         }
-            colis.setColisProduits(colisProduits);
+        colis.setColisProduits(colisProduits);
+    }
+
+
+    public List<ColisResponseDTO> changeAllColisStatus(String livreurId,String status){
+
+        Livreur livreur = livreurRepository.findById(livreurId).orElse(new Livreur());
+        List<Colis> colisList= colisRepository.getAllByLivreur(livreur);
+
+        if(!colisList.isEmpty()){
+            colisList.forEach(colis ->
+                    colis.setStatus(ColisStatus.valueOf(status))
+                    );
+            colisRepository.saveAll(colisList);
+        }
+        List<ColisResponseDTO> colisResponseDTOList = colisList.stream().map(
+                colis -> colisMapper.toDTO(colis))
+                .toList();
+
+        return colisResponseDTOList;
     }
 }

@@ -4,7 +4,6 @@ import com.app.api.dto.colisDTO.ColisFilterDTO;
 import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.dto.destinataireDTO.DestinataireRequestDTO;
-import com.app.api.dto.historiqueLivraisonDTO.HistoriqueLivraisonRequestDTO;
 import com.app.api.entity.*;
 import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
@@ -13,7 +12,6 @@ import com.app.api.exception.ResourceNotFoundException;
 import com.app.api.mapper.*;
 import com.app.api.repository.*;
 import com.app.api.service.ColisService;
-import com.app.api.specification.ColisSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,17 +21,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.swing.*;
-import java.time.LocalDate;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class ColisServiceTest {
+class ColisServiceUnitTest {
 
     @Mock
     private ColisRepository colisRepository;
@@ -81,6 +76,8 @@ class ColisServiceTest {
     private Colis colis;
     private ColisResponseDTO colisResponseDTO;
     private String colisId;
+    private DestinataireRequestDTO destinataireRequestDTO;
+    private Destinataire destinataire;
 
     @BeforeEach
     void setUp() {
@@ -112,8 +109,21 @@ class ColisServiceTest {
                 .status(ColisStatus.creer)
                 .villeDestination("Casablanca")
                 .build();
-    }
 
+        destinataireRequestDTO = DestinataireRequestDTO.builder()
+                        .nom("moussi")
+                        .prenom("abdelkarim")
+                                .build();
+
+        Destinataire destinataire = new Destinataire();
+        destinataire.setNom("moussi");
+        destinataire.setPrenom("abdelkarim");
+
+        when(colisMapper.toEntity(any(ColisRequestDTO.class))).thenReturn(colis);
+        when(colisMapper.toDTO(any(Colis.class))).thenReturn(new ColisResponseDTO());
+        when(destinataireMapper.toEntity(destinataireRequestDTO)).thenReturn(destinataire);
+
+    }
 
     @Test
     void createColis_WithValidData_ShouldReturnColisResponseDTO() {
@@ -134,11 +144,9 @@ class ColisServiceTest {
         when(zoneRepository.findByCodePostal(zone.getCodePostal())).thenReturn(Optional.of(zone));
 
         //Act
-
         ColisResponseDTO result = colisService.createColis(colisRequestDTO);
 
         //Assert
-
         assertNotNull(result);
         assertEquals(result.getId(),colisId);
         verify(colisRepository,times(2)).save(any(Colis.class));
@@ -192,6 +200,52 @@ class ColisServiceTest {
 
     }
 
+    @Test
+    void updateColis_WithNullData_ShouldThrowResourceNotFoundException(){
 
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,() -> colisService.updateColis(colisId,colisRequestDTO));
+        assertEquals("aucune colis trouver avec id : "+colisId,exception.getMessage());
 
+    }
+
+    @Test
+    void getAllColis_WithPagination_ShouldReturn_CorrectPage(){
+        ColisFilterDTO filters = new ColisFilterDTO();
+        Pageable pageable = PageRequest.of(0, 5, Sort.by("status").ascending());
+
+        ClientExpediteur expediteur = new ClientExpediteur();
+        expediteur.setId("EXP123");
+        when(clientExpediteurRepository.findById("EXP123")).thenReturn(Optional.of(expediteur));
+
+        List<ColisRequestDTO> colisList = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++){
+            ColisRequestDTO colisRequestDTO1 = ColisRequestDTO.builder()
+                    .poids(10F)
+                    .codePostal("45000")
+                    .description("noveau colis")
+                    .villeDestination("tanger")
+                    .clientExpediteurId(expediteur.getId())
+                    .priority(ColisPriority.standard)
+                    .destinataire(destinataireRequestDTO)
+                    .status(ColisStatus.creer)
+                    .build();
+            colisList.add(colisRequestDTO1);
+            when(colisRepository.save(colis)).thenReturn(colis);
+            colisService.createColis(colisRequestDTO1);
+        }
+
+        Page<Colis> mockPage = new PageImpl<>(colisList.stream().map(colis -> colisMapper.toEntity(colis)).toList());
+
+        when(colisRepository.findAll(any(Specification.class), eq(pageable)))
+                .thenReturn(mockPage);
+
+        Page<ColisResponseDTO> page = colisService.getAllColis(filters,0,5,"villeDestination","ASC");
+
+        assertNotNull(page);
+        assertNotNull(page.getPageable());
+        assertEquals(3,page.getTotalElements());
+        assertEquals(3,page.getSize());
+        assertEquals(0,page.getNumber());
+    }
 }
