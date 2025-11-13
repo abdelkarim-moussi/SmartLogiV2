@@ -21,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -73,11 +74,10 @@ class ColisServiceUnitTest {
     private ColisService colisService;
 
     private ColisRequestDTO colisRequestDTO;
-    private Colis colis;
+    private Colis colisEntity;
     private ColisResponseDTO colisResponseDTO;
     private String colisId;
-    private DestinataireRequestDTO destinataireRequestDTO;
-    private Destinataire destinataire;
+    private Pageable pageable;
 
     @BeforeEach
     void setUp() {
@@ -93,13 +93,13 @@ class ColisServiceUnitTest {
                 .codePostal("45000")
                 .build();
 
-        colis = new Colis();
-        colis.setId(colisId);
-        colis.setPoids(2.5F);
-        colis.setDescription("Package contenant des documents");
-        colis.setPriority(ColisPriority.express);
-        colis.setStatus(ColisStatus.creer);
-        colis.setVilleDestination("Casablanca");
+        colisEntity = new Colis();
+        colisEntity.setId(colisId);
+        colisEntity.setPoids(2.5F);
+        colisEntity.setDescription("Package contenant des documents");
+        colisEntity.setPriority(ColisPriority.express);
+        colisEntity.setStatus(ColisStatus.creer);
+        colisEntity.setVilleDestination("Casablanca");
 
         colisResponseDTO = ColisResponseDTO.builder()
                 .id(colisId)
@@ -110,18 +110,7 @@ class ColisServiceUnitTest {
                 .villeDestination("Casablanca")
                 .build();
 
-        destinataireRequestDTO = DestinataireRequestDTO.builder()
-                        .nom("moussi")
-                        .prenom("abdelkarim")
-                                .build();
-
-        Destinataire destinataire = new Destinataire();
-        destinataire.setNom("moussi");
-        destinataire.setPrenom("abdelkarim");
-
-        when(colisMapper.toEntity(any(ColisRequestDTO.class))).thenReturn(colis);
-        when(colisMapper.toDTO(any(Colis.class))).thenReturn(new ColisResponseDTO());
-        when(destinataireMapper.toEntity(destinataireRequestDTO)).thenReturn(destinataire);
+        pageable = PageRequest.of(0,5,Sort.by("status").ascending());
 
     }
 
@@ -129,9 +118,9 @@ class ColisServiceUnitTest {
     void createColis_WithValidData_ShouldReturnColisResponseDTO() {
 
         //Arrange
-        when(colisMapper.toEntity(colisRequestDTO)).thenReturn(colis);
-        when(colisRepository.save(any(Colis.class))).thenReturn(colis);
-        when(colisMapper.toDTO(colis)).thenReturn(colisResponseDTO);
+        when(colisMapper.toEntity(colisRequestDTO)).thenReturn(colisEntity);
+        when(colisRepository.save(any(Colis.class))).thenReturn(colisEntity);
+        when(colisMapper.toDTO(colisEntity)).thenReturn(colisResponseDTO);
 
         //Mock Relations
         ClientExpediteur expediteur = new ClientExpediteur();
@@ -163,9 +152,9 @@ class ColisServiceUnitTest {
 
     @Test
     void updateColis_WithValidData_ShouldReturnUpdatedColis(){
-        when(colisRepository.findById(colisId)).thenReturn(Optional.of(colis));
-        when(colisRepository.save(colis)).thenReturn(colis);
-        when(colisMapper.toDTO(colis)).thenReturn(colisResponseDTO);
+        when(colisRepository.findById(colisId)).thenReturn(Optional.of(colisEntity));
+        when(colisRepository.save(colisEntity)).thenReturn(colisEntity);
+        when(colisMapper.toDTO(colisEntity)).thenReturn(colisResponseDTO);
 
         ClientExpediteur expediteur = new ClientExpediteur();
         expediteur.setId("EXP123");
@@ -180,8 +169,8 @@ class ColisServiceUnitTest {
 
         assertNotNull(result);
         verify(colisRepository).findById(colisId);
-        verify(colisRepository).save(colis);
-        verify(colisMapper).toDTO(colis);
+        verify(colisRepository).save(colisEntity);
+        verify(colisMapper).toDTO(colisEntity);
 
     }
 
@@ -209,43 +198,55 @@ class ColisServiceUnitTest {
     }
 
     @Test
-    void getAllColis_WithPagination_ShouldReturn_CorrectPage(){
-        ColisFilterDTO filters = new ColisFilterDTO();
-        Pageable pageable = PageRequest.of(0, 5, Sort.by("status").ascending());
-
-        ClientExpediteur expediteur = new ClientExpediteur();
-        expediteur.setId("EXP123");
-        when(clientExpediteurRepository.findById("EXP123")).thenReturn(Optional.of(expediteur));
-
-        List<ColisRequestDTO> colisList = new ArrayList<>();
-
-        for (int i = 0; i < 3; i++){
-            ColisRequestDTO colisRequestDTO1 = ColisRequestDTO.builder()
-                    .poids(10F)
-                    .codePostal("45000")
-                    .description("noveau colis")
-                    .villeDestination("tanger")
-                    .clientExpediteurId(expediteur.getId())
-                    .priority(ColisPriority.standard)
-                    .destinataire(destinataireRequestDTO)
-                    .status(ColisStatus.creer)
-                    .build();
-            colisList.add(colisRequestDTO1);
-            when(colisRepository.save(colis)).thenReturn(colis);
-            colisService.createColis(colisRequestDTO1);
-        }
-
-        Page<Colis> mockPage = new PageImpl<>(colisList.stream().map(colis -> colisMapper.toEntity(colis)).toList());
-
+    void getAllColis_WithPagination_ShouldReturn_CorrectPageWith(){
+        //Arrange
+        List<Colis> colisEntities = List.of(new Colis(),new Colis(),new Colis());
+        Page<Colis> mockPage = new PageImpl<>(colisEntities,pageable,colisEntities.size());
         when(colisRepository.findAll(any(Specification.class), eq(pageable)))
                 .thenReturn(mockPage);
+        when(colisMapper.toDTO(any(Colis.class))).thenReturn(colisResponseDTO);
 
-        Page<ColisResponseDTO> page = colisService.getAllColis(filters,0,5,"villeDestination","ASC");
+        //Act
 
+        Page<ColisResponseDTO> page = colisService.getAllColis(
+                new ColisFilterDTO(),0,5,"status","ASC"
+        );
+
+        //Assert
         assertNotNull(page);
         assertNotNull(page.getPageable());
         assertEquals(3,page.getTotalElements());
-        assertEquals(3,page.getSize());
+        assertEquals(5,page.getSize());
         assertEquals(0,page.getNumber());
     }
+
+    @Test
+    void getAllColis_WithInvalidSort_ShouldReturn_CorrectPageWithByDefaultSort(){
+        List<Colis> colisEntities = List.of(new Colis(),new Colis(),new Colis());
+        String invalidSort = "invalidSort";
+        Pageable pageable1 = PageRequest.of(0,5,Sort.by(invalidSort).ascending());
+
+        Page<Colis> mockPage = new PageImpl<>(colisEntities,pageable1,colisEntities.size());
+
+        when(colisRepository.findAll(any(Specification.class), any(Pageable.class)))
+                .thenAnswer(invocation -> {
+                        Pageable pageable = invocation.getArgument(1);
+                        assertTrue(pageable.getSort().getOrderFor("status") != null);
+                        return mockPage;
+                        }
+                        )
+                .thenReturn(mockPage);
+        when(colisMapper.toDTO(any(Colis.class))).thenReturn(colisResponseDTO);
+
+        //Act
+
+        Page<ColisResponseDTO> page = colisService.getAllColis(
+                new ColisFilterDTO(),0,5,invalidSort,"ASC"
+        );
+
+        //Assert
+        assertNotNull(page);
+        verify(colisRepository).findAll(any(Specification.class),any(Pageable.class));
+    }
+
 }
