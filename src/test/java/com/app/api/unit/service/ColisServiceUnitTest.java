@@ -27,6 +27,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.swing.text.html.Option;
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -329,6 +330,42 @@ class ColisServiceUnitTest {
     void deleteColis_WithInvalid_ShouldThrowException(){
         ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,()-> colisService.deleteColis("COLIS_ID"));
         assertEquals("aucune colis avec id : COLIS_ID",exception.getMessage());
+    }
+
+    @Test
+    void updateColisStatus_shouldSucceed_andCreateHistoriqueEntry() {
+        ColisStatus newStatus = ColisStatus.livrer;
+        colisEntity.setId(colisId);
+        colisEntity.setStatus(ColisStatus.creer);
+
+        HistoriqueLivraison mockHistorique = new HistoriqueLivraison();
+        mockHistorique.setId("h-id");
+        ArgumentCaptor<HistoriqueLivraisonRequestDTO> captor = ArgumentCaptor.forClass(HistoriqueLivraisonRequestDTO.class);
+
+        when(colisRepository.findById(eq(colisId))).thenReturn(Optional.of(colisEntity));
+        when(colisRepository.save(any(Colis.class))).thenReturn(colisEntity);
+        when(historiqueLivraisonMapper.toEntity(captor.capture())).thenReturn(mockHistorique);
+        when(historiqueLivraisonRepository.save(eq(mockHistorique))).thenReturn(mockHistorique);
+        when(colisMapper.toDTO(eq(colisEntity))).thenReturn(colisResponseDTO);
+
+        // Execute
+        ColisResponseDTO result = colisService.updateColisStatus(colisId, newStatus);
+
+        // Verify Colis status updated and saved
+        assertNotNull(result);
+        assertEquals(newStatus, colisEntity.getStatus());
+        verify(colisRepository, times(1)).save(colisEntity);
+
+        // Verify Historique Request DTO content (Historique setup)
+        HistoriqueLivraisonRequestDTO capturedDTO = captor.getValue();
+        assertEquals(colisId, capturedDTO.getColisId());
+        assertEquals(newStatus, capturedDTO.getColisStatus());
+        assertTrue(capturedDTO.getCommentaire().contains("livrer"));
+        assertEquals(LocalDate.now(), capturedDTO.getDateChangement());
+
+        // Verify Historique saved and added to Colis history
+        verify(historiqueLivraisonRepository, times(1)).save(mockHistorique);
+        assertTrue(colisEntity.getHistoriqueLivraison().contains(mockHistorique));
     }
 
     @Test
