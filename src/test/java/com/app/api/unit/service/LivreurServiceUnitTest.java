@@ -95,6 +95,7 @@ class LivreurServiceUnitTest {
     @Test
     void deleteLivreur_shouldSucceed() {
         // Arrange
+        when(livreurRepository.findById(LIVREUR_ID)).thenReturn(Optional.of(new Livreur()));
         doNothing().when(livreurRepository).deleteById(LIVREUR_ID);
 
         // Act
