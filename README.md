@@ -145,3 +145,67 @@ Notifications SMS.
 Application mobile (livreurs et clients).
 
 Gestion des retours / annulations.
+
+### 🧪 Qualité & Stratégie de Test
+
+Afin de garantir la fiabilité, la stabilité et la performance du Smart Delivery Management System (SDMS), une stratégie de test complète a été mise en place couvrant l’ensemble des couches de l’application.
+
+✔️ Stratégie de test
+
+La stratégie adoptée repose sur plusieurs niveaux de validation :
+
+1. Tests unitaires
+
+Portent sur les services, utils et composants métier.
+
+Vérifient la logique métier isolée.
+
+Ciblent principalement les couches Service et Utils.
+
+Réalisés avec : JUnit 5, Mockito.
+
+2. Tests d’intégration
+
+Portent sur l’interaction entre :
+
+Controller ↔ Service
+
+Service ↔ Repository
+
+Repository ↔ Base de données
+
+Tests exécutés avec une base embarquée ou un container (ex : Testcontainers PostgreSQL).
+
+Vérifient la cohérence globale de l’application.
+
+3. Tests API / End-to-End
+
+Vérifient l’ensemble de la chaîne HTTP, de l’appel REST à la réponse.
+
+Réalisés avec : Spring MockMvc, Postman, ou RestAssured.
+
+Couvrent : création, mise à jour, recherche, pagination, filtrage.
+
+
+🔧 Outils utilisés
+
+JUnit 5 : framework de tests unitaires.
+
+Mockito : création de mocks pour isoler la logique métier.
+
+Spring Boot Test : tests d’intégration et API.
+
+Testcontainers (H2) : tests d’intégration réalistes avec base isolée.
+
+Jacoco : mesure de couverture du code.
+
+sonarQube : mesure de couverture et analyse du code
+
+Postman : collections de tests API.
+
+📊 Indicateurs obtenus
+Indicateur	Résultat
+Couverture de tests (branches & lignes)	71.9% selon les modules
+Maintainability A 76
+Duplication 0.0%
+Reliability A
