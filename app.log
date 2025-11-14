@@ -1,37 +1,958 @@
-2025-11-11T01:04:48.898+01:00  WARN 21956 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:04:48.900+01:00  WARN 21956 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:04:50.490+01:00  WARN 21956 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-11T01:04:51.403+01:00  WARN 21956 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2025-11-11T01:04:51.404+01:00  WARN 21956 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2025-11-11T01:05:36.066+01:00  WARN 21956 --- [SmartLogiV2] [http-nio-8080-exec-3] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+2025-11-14T09:08:08.788+01:00  WARN 26776 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T09:08:09.474+01:00  WARN 26776 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T09:08:09.475+01:00  WARN 26776 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T09:08:11.835+01:00  WARN 26776 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T09:08:13.116+01:00  WARN 26776 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T09:08:13.116+01:00  WARN 26776 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T09:08:15.256+01:00  WARN 26776 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T09:08:15.257+01:00  WARN 26776 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T09:08:15.642+01:00  WARN 26776 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T09:08:15.883+01:00  WARN 26776 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T09:08:15.884+01:00  WARN 26776 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T09:08:38.782+01:00  WARN 27728 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T09:08:39.472+01:00  WARN 27728 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T09:08:39.472+01:00  WARN 27728 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T09:08:41.845+01:00  WARN 27728 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T09:08:43.107+01:00  WARN 27728 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T09:08:43.107+01:00  WARN 27728 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T09:08:45.252+01:00  WARN 27728 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T09:08:45.252+01:00  WARN 27728 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T09:08:45.642+01:00  WARN 27728 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T09:08:45.897+01:00  WARN 27728 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T09:08:45.897+01:00  WARN 27728 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:02:30.225+01:00  WARN 19972 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T11:02:30.942+01:00  WARN 19972 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:02:30.944+01:00  WARN 19972 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:02:32.992+01:00  WARN 19972 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:02:34.155+01:00  WARN 19972 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:02:34.156+01:00  WARN 19972 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:02:36.228+01:00  WARN 19972 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:02:36.228+01:00  WARN 19972 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:02:36.529+01:00  WARN 19972 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:02:36.754+01:00  WARN 19972 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:02:36.754+01:00  WARN 19972 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:02:54.843+01:00  WARN 6256 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T11:02:55.543+01:00  WARN 6256 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:02:55.543+01:00  WARN 6256 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:02:57.790+01:00  WARN 6256 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:02:59.027+01:00  WARN 6256 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:02:59.027+01:00  WARN 6256 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:03:01.085+01:00  WARN 6256 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:03:01.086+01:00  WARN 6256 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:03:01.462+01:00  WARN 6256 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:03:01.745+01:00  WARN 6256 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:03:01.746+01:00  WARN 6256 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:03:15.084+01:00  WARN 24912 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:03:15.086+01:00  WARN 24912 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:03:16.227+01:00  WARN 24912 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:03:16.988+01:00  WARN 24912 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:03:16.989+01:00  WARN 24912 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:11:20.764+01:00  WARN 28504 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T11:11:21.685+01:00  WARN 28504 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:11:21.685+01:00  WARN 28504 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:11:23.884+01:00  WARN 28504 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:11:25.253+01:00  WARN 28504 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:11:25.254+01:00  WARN 28504 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:11:28.395+01:00  WARN 28504 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:11:28.395+01:00  WARN 28504 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:11:28.899+01:00  WARN 28504 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:11:29.183+01:00  WARN 28504 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:11:29.184+01:00  WARN 28504 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:16:54.394+01:00  WARN 8976 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T11:16:55.169+01:00  WARN 8976 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:16:55.169+01:00  WARN 8976 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:16:58.196+01:00  WARN 8976 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:17:00.161+01:00  WARN 8976 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:17:00.161+01:00  WARN 8976 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:17:01.879+01:00  WARN 8976 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:17:01.880+01:00  WARN 8976 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:17:02.189+01:00  WARN 8976 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:17:02.426+01:00  WARN 8976 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:17:02.426+01:00  WARN 8976 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:17:22.359+01:00  WARN 27368 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T11:17:23.074+01:00  WARN 27368 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:17:23.074+01:00  WARN 27368 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:17:25.408+01:00  WARN 27368 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:17:26.707+01:00  WARN 27368 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:17:26.707+01:00  WARN 27368 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:17:28.725+01:00  WARN 27368 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:17:28.726+01:00  WARN 27368 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:17:29.106+01:00  WARN 27368 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:17:29.395+01:00  WARN 27368 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:17:29.395+01:00  WARN 27368 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T11:17:44.777+01:00  WARN 26644 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:17:44.779+01:00  WARN 26644 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T11:17:45.984+01:00  WARN 26644 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T11:17:46.670+01:00  WARN 26644 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T11:17:46.671+01:00  WARN 26644 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T12:09:19.036+01:00  WARN 27396 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T12:09:19.745+01:00  WARN 27396 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:09:19.745+01:00  WARN 27396 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:09:21.748+01:00  WARN 27396 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T12:09:22.955+01:00  WARN 27396 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T12:09:22.956+01:00  WARN 27396 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T12:09:25.123+01:00  WARN 27396 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:09:25.123+01:00  WARN 27396 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:09:25.466+01:00  WARN 27396 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T12:09:25.692+01:00  WARN 27396 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T12:09:25.692+01:00  WARN 27396 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T12:09:27.216+01:00 ERROR 27396 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T12:09:46.997+01:00  WARN 26328 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T12:09:47.691+01:00  WARN 26328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:09:47.691+01:00  WARN 26328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:09:49.581+01:00  WARN 26328 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T12:09:50.797+01:00  WARN 26328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T12:09:50.798+01:00  WARN 26328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T12:09:52.909+01:00  WARN 26328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:09:52.909+01:00  WARN 26328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:09:53.400+01:00  WARN 26328 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T12:09:53.768+01:00  WARN 26328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T12:09:53.769+01:00  WARN 26328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T12:09:55.581+01:00 ERROR 26328 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T12:10:12.024+01:00  WARN 11628 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:10:12.026+01:00  WARN 11628 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T12:10:13.352+01:00  WARN 11628 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T12:10:14.007+01:00  WARN 11628 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T12:10:14.007+01:00  WARN 11628 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T14:10:50.360+01:00  WARN 11628 --- [SmartLogiV2] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h33m40s693ms92µs100ns).
+2025-11-14T14:27:46.132+01:00  WARN 11628 --- [SmartLogiV2] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m55s776ms353µs400ns).
+2025-11-14T14:37:03.173+01:00  WARN 4512 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:37:03.176+01:00  WARN 4512 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:37:04.393+01:00  WARN 4512 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T14:37:05.105+01:00  WARN 4512 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T14:37:05.106+01:00  WARN 4512 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T14:37:22.706+01:00  WARN 4512 --- [SmartLogiV2] [http-nio-8080-exec-1] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
 	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
 	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
 
-2025-11-11T01:06:02.658+01:00 ERROR 21956 --- [SmartLogiV2] [http-nio-8080-exec-2] com.app.api.service.ColisService         : la colis est déja on status : creer
-2025-11-11T01:06:25.403+01:00 ERROR 21956 --- [SmartLogiV2] [http-nio-8080-exec-4] com.app.api.service.ColisService         : la colis est déja on status : creer
-2025-11-11T01:09:10.651+01:00 ERROR 21956 --- [SmartLogiV2] [http-nio-8080-exec-8] com.app.api.service.ColisService         : la colis est déja on status : creer
-2025-11-11T01:09:59.954+01:00  WARN 24224 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:09:59.956+01:00  WARN 24224 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:10:01.281+01:00  WARN 24224 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-11T01:10:02.089+01:00  WARN 24224 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2025-11-11T01:10:02.089+01:00  WARN 24224 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2025-11-11T01:10:25.301+01:00  WARN 20580 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:10:25.303+01:00  WARN 20580 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:10:26.546+01:00  WARN 20580 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-11T01:10:27.302+01:00  WARN 20580 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2025-11-11T01:10:27.302+01:00  WARN 20580 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2025-11-11T01:11:09.148+01:00  WARN 5220 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:11:09.150+01:00  WARN 5220 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:11:10.473+01:00  WARN 5220 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-11T01:11:11.246+01:00  WARN 5220 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2025-11-11T01:11:11.246+01:00  WARN 5220 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2025-11-11T01:11:40.483+01:00  WARN 28720 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:11:40.485+01:00  WARN 28720 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:11:41.577+01:00  WARN 28720 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-11T01:11:42.244+01:00  WARN 28720 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2025-11-11T01:11:42.244+01:00  WARN 28720 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2025-11-11T01:12:38.712+01:00  WARN 5936 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:12:38.714+01:00  WARN 5936 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
-2025-11-11T01:12:39.942+01:00  WARN 5936 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-11T01:12:40.704+01:00  WARN 5936 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2025-11-11T01:12:40.705+01:00  WARN 5936 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T14:41:53.675+01:00  WARN 25060 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:41:53.677+01:00  WARN 25060 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:41:55.264+01:00  WARN 25060 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T14:41:55.959+01:00  WARN 25060 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T14:41:55.959+01:00  WARN 25060 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T14:42:49.821+01:00  WARN 24824 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:42:49.823+01:00  WARN 24824 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:42:51.976+01:00  WARN 24824 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T14:42:52.649+01:00  WARN 24824 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T14:42:52.649+01:00  WARN 24824 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T14:50:10.150+01:00  WARN 24952 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:50:10.152+01:00  WARN 24952 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:50:11.642+01:00  WARN 24952 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T14:50:12.340+01:00  WARN 24952 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T14:50:12.340+01:00  WARN 24952 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T14:50:46.242+01:00  WARN 9464 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:50:46.246+01:00  WARN 9464 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:50:48.601+01:00  WARN 9464 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T14:50:49.459+01:00  WARN 9464 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T14:50:49.459+01:00  WARN 9464 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T14:51:31.851+01:00  WARN 22660 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:51:31.853+01:00  WARN 22660 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T14:51:33.338+01:00  WARN 22660 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T14:51:33.999+01:00  WARN 22660 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T14:51:33.999+01:00  WARN 22660 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:00:38.447+01:00  WARN 27972 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:00:38.452+01:00  WARN 27972 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:00:40.303+01:00  WARN 27972 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:00:41.194+01:00  WARN 27972 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:00:41.194+01:00  WARN 27972 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:03:23.428+01:00  WARN 27424 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:03:23.431+01:00  WARN 27424 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:03:24.874+01:00  WARN 27424 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:03:25.527+01:00  WARN 27424 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:03:25.527+01:00  WARN 27424 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:04:33.796+01:00 ERROR 24728 --- [SmartLogiV2] [main] liquibase.changelog                      : ChangeSet db/changelog/2025/11/14-01-changelog.yaml::1763129039480-1::ycode encountered an exception.
+
+liquibase.exception.DatabaseException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas [Failed SQL: (0) ALTER TABLE public.colis DROP COLUMN adresse]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:520) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:85) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:188) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:148) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1198) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:860) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:127) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:71) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:280) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:284) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$1(AbstractUpdateCommandStep.java:117) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:115) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:263) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:199) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:251) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1366) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:327) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:279) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272) ~[liquibase-core-5.0.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.app.api.SmartLogiV2Application.main(SmartLogiV2Application.java:10) ~[classes/:na]
+Caused by: org.postgresql.util.PSQLException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312) ~[postgresql-42.7.4.jar:42.7.4]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:512) ~[liquibase-core-5.0.1.jar:na]
+	... 65 common frames omitted
+
+2025-11-14T15:04:37.555+01:00  WARN 24728 --- [SmartLogiV2] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-1::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas [Failed SQL: (0) ALTER TABLE public.colis DROP COLUMN adresse]
+2025-11-14T15:04:37.618+01:00 ERROR 24728 --- [SmartLogiV2] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-1::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas [Failed SQL: (0) ALTER TABLE public.colis DROP COLUMN adresse]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:328) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.app.api.SmartLogiV2Application.main(SmartLogiV2Application.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-1::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas [Failed SQL: (0) ALTER TABLE public.colis DROP COLUMN adresse]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 10 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-1::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas [Failed SQL: (0) ALTER TABLE public.colis DROP COLUMN adresse]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:289) ~[liquibase-core-5.0.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 17 common frames omitted
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-1::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas [Failed SQL: (0) ALTER TABLE public.colis DROP COLUMN adresse]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:310) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:199) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:251) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1366) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:327) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:279) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272) ~[liquibase-core-5.0.1.jar:na]
+	... 19 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-1::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas [Failed SQL: (0) ALTER TABLE public.colis DROP COLUMN adresse]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:155) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$1(AbstractUpdateCommandStep.java:117) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:115) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:263) ~[liquibase-core-5.0.1.jar:na]
+	... 37 common frames omitted
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-1::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas [Failed SQL: (0) ALTER TABLE public.colis DROP COLUMN adresse]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:918) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:127) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:71) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:280) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:284) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91) ~[liquibase-core-5.0.1.jar:na]
+	... 45 common frames omitted
+Caused by: liquibase.exception.DatabaseException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas [Failed SQL: (0) ALTER TABLE public.colis DROP COLUMN adresse]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:520) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:85) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:188) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:148) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1198) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:860) ~[liquibase-core-5.0.1.jar:na]
+	... 60 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERREUR: la colonne « adresse » de la relation « colis » n'existe pas
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312) ~[postgresql-42.7.4.jar:42.7.4]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:512) ~[liquibase-core-5.0.1.jar:na]
+	... 65 common frames omitted
+
+2025-11-14T15:06:08.653+01:00 ERROR 8828 --- [SmartLogiV2] [main] liquibase.changelog                      : ChangeSet db/changelog/2025/11/14-01-changelog.yaml::1763129039480-2::ycode encountered an exception.
+
+liquibase.exception.DatabaseException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas [Failed SQL: (0) ALTER TABLE public.historiques_livraison DROP COLUMN nom]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:520) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:85) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:188) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:148) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1198) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:860) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:127) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:71) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:280) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:284) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$1(AbstractUpdateCommandStep.java:117) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:115) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:263) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:199) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:251) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1366) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:327) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:279) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272) ~[liquibase-core-5.0.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.app.api.SmartLogiV2Application.main(SmartLogiV2Application.java:10) ~[classes/:na]
+Caused by: org.postgresql.util.PSQLException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312) ~[postgresql-42.7.4.jar:42.7.4]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:512) ~[liquibase-core-5.0.1.jar:na]
+	... 65 common frames omitted
+
+2025-11-14T15:06:09.247+01:00  WARN 8828 --- [SmartLogiV2] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-2::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas [Failed SQL: (0) ALTER TABLE public.historiques_livraison DROP COLUMN nom]
+2025-11-14T15:06:09.293+01:00 ERROR 8828 --- [SmartLogiV2] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-2::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas [Failed SQL: (0) ALTER TABLE public.historiques_livraison DROP COLUMN nom]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:328) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.app.api.SmartLogiV2Application.main(SmartLogiV2Application.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-2::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas [Failed SQL: (0) ALTER TABLE public.historiques_livraison DROP COLUMN nom]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 10 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-2::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas [Failed SQL: (0) ALTER TABLE public.historiques_livraison DROP COLUMN nom]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:289) ~[liquibase-core-5.0.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 17 common frames omitted
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-2::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas [Failed SQL: (0) ALTER TABLE public.historiques_livraison DROP COLUMN nom]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:310) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:199) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:251) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1366) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:327) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:279) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272) ~[liquibase-core-5.0.1.jar:na]
+	... 19 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-2::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas [Failed SQL: (0) ALTER TABLE public.historiques_livraison DROP COLUMN nom]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:155) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$1(AbstractUpdateCommandStep.java:117) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:115) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:263) ~[liquibase-core-5.0.1.jar:na]
+	... 37 common frames omitted
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2025/11/14-01-changelog.yaml::1763129039480-2::ycode:
+     Reason: liquibase.exception.DatabaseException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas [Failed SQL: (0) ALTER TABLE public.historiques_livraison DROP COLUMN nom]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:918) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:127) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:71) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:280) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:284) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91) ~[liquibase-core-5.0.1.jar:na]
+	... 45 common frames omitted
+Caused by: liquibase.exception.DatabaseException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas [Failed SQL: (0) ALTER TABLE public.historiques_livraison DROP COLUMN nom]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:520) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:85) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:188) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:148) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1198) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:860) ~[liquibase-core-5.0.1.jar:na]
+	... 60 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERREUR: la colonne « nom » de la relation « historiques_livraison » n'existe pas
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317) ~[postgresql-42.7.4.jar:42.7.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312) ~[postgresql-42.7.4.jar:42.7.4]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:512) ~[liquibase-core-5.0.1.jar:na]
+	... 65 common frames omitted
+
+2025-11-14T15:06:50.296+01:00  WARN 24420 --- [SmartLogiV2] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: Error parsing classpath:/db/changelog/db.changelog-master.yaml : The file db/changelog/2025/11/14-01-changelog.yaml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+2025-11-14T15:06:50.336+01:00 ERROR 24420 --- [SmartLogiV2] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: Error parsing classpath:/db/changelog/db.changelog-master.yaml : The file db/changelog/2025/11/14-01-changelog.yaml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:328) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.app.api.SmartLogiV2Application.main(SmartLogiV2Application.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: Error parsing classpath:/db/changelog/db.changelog-master.yaml : The file db/changelog/2025/11/14-01-changelog.yaml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 10 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: Error parsing classpath:/db/changelog/db.changelog-master.yaml : The file db/changelog/2025/11/14-01-changelog.yaml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:289) ~[liquibase-core-5.0.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 17 common frames omitted
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: Error parsing classpath:/db/changelog/db.changelog-master.yaml : The file db/changelog/2025/11/14-01-changelog.yaml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:310) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:199) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:251) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1366) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:327) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:279) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272) ~[liquibase-core-5.0.1.jar:na]
+	... 19 common frames omitted
+Caused by: liquibase.exception.ChangeLogParseException: Error parsing classpath:/db/changelog/db.changelog-master.yaml : The file db/changelog/2025/11/14-01-changelog.yaml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.parser.core.yaml.YamlChangeLogParser.parse(YamlChangeLogParser.java:97) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.lambda$getDatabaseChangeLog$0(DatabaseChangelogCommandStep.java:143) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:214) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:223) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:213) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:192) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:280) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.Scope.child(Scope.java:284) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.getDatabaseChangeLog(DatabaseChangelogCommandStep.java:138) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.run(DatabaseChangelogCommandStep.java:84) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:263) ~[liquibase-core-5.0.1.jar:na]
+	... 37 common frames omitted
+Caused by: liquibase.exception.SetupException: The file db/changelog/2025/11/14-01-changelog.yaml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.changelog.DatabaseChangeLog.handleInclude(DatabaseChangeLog.java:663) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.handleChildNodeHelper(DatabaseChangeLog.java:485) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:470) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.load(DatabaseChangeLog.java:437) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.parser.core.yaml.YamlChangeLogParser.parse(YamlChangeLogParser.java:91) ~[liquibase-core-5.0.1.jar:na]
+	... 47 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: The file db/changelog/2025/11/14-01-changelog.yaml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.changelog.DatabaseChangeLog.include(DatabaseChangeLog.java:1137) ~[liquibase-core-5.0.1.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.handleInclude(DatabaseChangeLog.java:652) ~[liquibase-core-5.0.1.jar:na]
+	... 51 common frames omitted
+Caused by: liquibase.exception.ChangeLogParseException: The file db/changelog/2025/11/14-01-changelog.yaml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.changelog.DatabaseChangeLog.include(DatabaseChangeLog.java:1098) ~[liquibase-core-5.0.1.jar:na]
+	... 52 common frames omitted
+
+2025-11-14T15:07:17.581+01:00  WARN 25244 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:07:17.583+01:00  WARN 25244 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:07:19.055+01:00  WARN 25244 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:07:19.724+01:00  WARN 25244 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:07:19.724+01:00  WARN 25244 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:08:02.822+01:00  WARN 21512 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:08:02.824+01:00  WARN 21512 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:08:04.352+01:00  WARN 21512 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:08:05.087+01:00  WARN 21512 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:08:05.087+01:00  WARN 21512 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:10:03.222+01:00  WARN 23724 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:10:03.224+01:00  WARN 23724 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:10:04.636+01:00  WARN 23724 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:10:05.267+01:00  WARN 23724 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:10:05.267+01:00  WARN 23724 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:11:36.581+01:00  WARN 28248 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:11:37.452+01:00  WARN 28248 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:11:37.452+01:00  WARN 28248 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:11:40.427+01:00  WARN 28248 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:11:41.675+01:00  WARN 28248 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:11:41.675+01:00  WARN 28248 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:11:44.035+01:00  WARN 28248 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:11:44.036+01:00  WARN 28248 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:11:44.427+01:00  WARN 28248 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:11:44.746+01:00  WARN 28248 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:11:44.747+01:00  WARN 28248 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:11:46.321+01:00 ERROR 28248 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:11:56.725+01:00  WARN 25448 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:11:56.726+01:00  WARN 25448 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:11:58.150+01:00  WARN 25448 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:11:58.823+01:00  WARN 25448 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:11:58.823+01:00  WARN 25448 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:15:00.905+01:00  WARN 28192 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:15:01.635+01:00  WARN 28192 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:15:01.635+01:00  WARN 28192 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:15:05.082+01:00  WARN 28192 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:15:06.345+01:00  WARN 28192 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:15:06.345+01:00  WARN 28192 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:15:08.391+01:00  WARN 28192 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:15:08.392+01:00  WARN 28192 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:15:08.867+01:00  WARN 28192 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:15:09.189+01:00  WARN 28192 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:15:09.190+01:00  WARN 28192 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:15:10.992+01:00 ERROR 28192 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:18:16.410+01:00  WARN 28436 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:18:17.017+01:00  WARN 28436 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:18:17.018+01:00  WARN 28436 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:18:19.626+01:00  WARN 28436 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:18:20.693+01:00  WARN 28436 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:18:20.694+01:00  WARN 28436 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:18:22.472+01:00  WARN 28436 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:18:22.472+01:00  WARN 28436 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:18:22.837+01:00  WARN 28436 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:18:23.082+01:00  WARN 28436 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:18:23.082+01:00  WARN 28436 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:18:24.636+01:00 ERROR 28436 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:19:40.362+01:00  WARN 22272 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:19:40.977+01:00  WARN 22272 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:19:40.978+01:00  WARN 22272 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:19:43.467+01:00  WARN 22272 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:19:44.547+01:00  WARN 22272 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:19:44.548+01:00  WARN 22272 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:19:46.250+01:00  WARN 22272 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:19:46.251+01:00  WARN 22272 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:19:46.542+01:00  WARN 22272 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:19:46.793+01:00  WARN 22272 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:19:46.793+01:00  WARN 22272 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:19:48.135+01:00 ERROR 22272 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:20:54.372+01:00  WARN 23188 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:20:54.979+01:00  WARN 23188 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:20:54.979+01:00  WARN 23188 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:20:57.399+01:00  WARN 23188 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:20:58.511+01:00  WARN 23188 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:20:58.512+01:00  WARN 23188 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:21:00.601+01:00  WARN 23188 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:21:00.601+01:00  WARN 23188 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:21:01.003+01:00  WARN 23188 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:21:01.290+01:00  WARN 23188 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:21:01.290+01:00  WARN 23188 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:21:02.846+01:00 ERROR 23188 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:23:08.262+01:00  WARN 20916 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:23:08.907+01:00  WARN 20916 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:23:08.907+01:00  WARN 20916 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:23:11.426+01:00  WARN 20916 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:23:12.405+01:00  WARN 20916 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:23:12.405+01:00  WARN 20916 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:23:14.468+01:00  WARN 20916 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:23:14.469+01:00  WARN 20916 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:23:14.821+01:00  WARN 20916 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:23:15.095+01:00  WARN 20916 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:23:15.095+01:00  WARN 20916 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:23:16.756+01:00 ERROR 20916 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:24:09.073+01:00  WARN 28040 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:24:09.793+01:00  WARN 28040 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:24:09.794+01:00  WARN 28040 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:24:12.688+01:00  WARN 28040 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:24:13.933+01:00  WARN 28040 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:24:13.933+01:00  WARN 28040 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:24:16.325+01:00  WARN 28040 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:24:16.325+01:00  WARN 28040 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:24:16.715+01:00  WARN 28040 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:24:16.999+01:00  WARN 28040 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:24:16.999+01:00  WARN 28040 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:24:18.708+01:00 ERROR 28040 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:27:26.938+01:00  WARN 17328 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:27:27.545+01:00  WARN 17328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:27:27.546+01:00  WARN 17328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:27:30.078+01:00  WARN 17328 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:27:31.226+01:00  WARN 17328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:27:31.226+01:00  WARN 17328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:27:33.063+01:00  WARN 17328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:27:33.063+01:00  WARN 17328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:27:33.401+01:00  WARN 17328 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:27:33.656+01:00  WARN 17328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:27:33.656+01:00  WARN 17328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:27:35.367+01:00 ERROR 17328 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:31:55.047+01:00  WARN 17924 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:31:55.654+01:00  WARN 17924 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:31:55.654+01:00  WARN 17924 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:31:58.396+01:00  WARN 17924 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:31:59.497+01:00  WARN 17924 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:31:59.497+01:00  WARN 17924 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:32:01.419+01:00  WARN 17924 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:32:01.420+01:00  WARN 17924 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:32:01.742+01:00  WARN 17924 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:32:01.968+01:00  WARN 17924 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:32:01.969+01:00  WARN 17924 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:32:03.485+01:00 ERROR 17924 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:33:32.408+01:00  WARN 5472 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:33:33.016+01:00  WARN 5472 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:33:33.016+01:00  WARN 5472 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:33:35.676+01:00  WARN 5472 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:33:37.169+01:00  WARN 5472 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:33:37.169+01:00  WARN 5472 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:33:39.194+01:00  WARN 5472 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:33:39.194+01:00  WARN 5472 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:33:39.534+01:00  WARN 5472 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:33:39.769+01:00  WARN 5472 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:33:39.770+01:00  WARN 5472 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:33:41.123+01:00 ERROR 5472 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T15:34:00.940+01:00  WARN 13328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:34:00.946+01:00  WARN 13328 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:34:03.876+01:00  WARN 13328 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:34:04.792+01:00  WARN 13328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:34:04.792+01:00  WARN 13328 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:39:11.795+01:00  WARN 25728 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T15:39:12.383+01:00  WARN 25728 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:39:12.383+01:00  WARN 25728 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:39:14.949+01:00  WARN 25728 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:39:16.079+01:00  WARN 25728 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:39:16.080+01:00  WARN 25728 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:39:18.170+01:00  WARN 25728 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:39:18.170+01:00  WARN 25728 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T15:39:18.549+01:00  WARN 25728 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T15:39:18.790+01:00  WARN 25728 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T15:39:18.790+01:00  WARN 25728 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T15:39:20.796+01:00 ERROR 25728 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T16:14:24.740+01:00  WARN 5532 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T16:14:25.662+01:00  WARN 5532 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:14:25.662+01:00  WARN 5532 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:14:29.406+01:00  WARN 5532 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T16:14:31.395+01:00  WARN 5532 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T16:14:31.395+01:00  WARN 5532 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T16:14:34.649+01:00  WARN 5532 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:14:34.649+01:00  WARN 5532 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:14:35.144+01:00  WARN 5532 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T16:14:35.426+01:00  WARN 5532 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T16:14:35.426+01:00  WARN 5532 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T16:14:38.084+01:00 ERROR 5532 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T16:14:55.323+01:00  WARN 20600 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T16:14:55.988+01:00  WARN 20600 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:14:55.989+01:00  WARN 20600 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:14:59.009+01:00  WARN 20600 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T16:15:00.246+01:00  WARN 20600 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T16:15:00.246+01:00  WARN 20600 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T16:15:02.264+01:00  WARN 20600 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:15:02.264+01:00  WARN 20600 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:15:02.723+01:00  WARN 20600 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T16:15:03.104+01:00  WARN 20600 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T16:15:03.105+01:00  WARN 20600 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T16:15:05.358+01:00 ERROR 20600 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T16:15:25.060+01:00  WARN 27184 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:15:25.062+01:00  WARN 27184 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:15:26.605+01:00  WARN 27184 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T16:15:27.304+01:00  WARN 27184 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T16:15:27.304+01:00  WARN 27184 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T16:45:35.119+01:00  WARN 28176 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T16:45:35.982+01:00  WARN 28176 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:45:35.982+01:00  WARN 28176 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:45:39.168+01:00  WARN 28176 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T16:45:40.570+01:00  WARN 28176 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T16:45:40.570+01:00  WARN 28176 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T16:45:42.772+01:00  WARN 28176 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:45:42.773+01:00  WARN 28176 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T16:45:43.156+01:00  WARN 28176 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T16:45:43.417+01:00  WARN 28176 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T16:45:43.417+01:00  WARN 28176 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T16:45:45.156+01:00 ERROR 28176 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T17:23:42.213+01:00  WARN 27692 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T17:23:42.944+01:00  WARN 27692 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:23:42.945+01:00  WARN 27692 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:23:45.936+01:00  WARN 27692 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T17:23:47.082+01:00  WARN 27692 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T17:23:47.083+01:00  WARN 27692 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T17:23:49.159+01:00  WARN 27692 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:23:49.159+01:00  WARN 27692 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:23:49.488+01:00  WARN 27692 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T17:23:49.708+01:00  WARN 27692 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T17:23:49.709+01:00  WARN 27692 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T17:23:51.480+01:00 ERROR 27692 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T17:24:08.692+01:00  WARN 22108 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T17:24:09.336+01:00  WARN 22108 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:24:09.337+01:00  WARN 22108 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:24:12.168+01:00  WARN 22108 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T17:24:13.423+01:00  WARN 22108 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T17:24:13.424+01:00  WARN 22108 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T17:24:15.480+01:00  WARN 22108 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:24:15.481+01:00  WARN 22108 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:24:15.875+01:00  WARN 22108 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T17:24:16.138+01:00  WARN 22108 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T17:24:16.139+01:00  WARN 22108 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T17:24:17.997+01:00 ERROR 22108 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T17:24:35.965+01:00  WARN 22976 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:24:35.967+01:00  WARN 22976 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T17:24:37.743+01:00  WARN 22976 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T17:24:38.539+01:00  WARN 22976 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T17:24:38.540+01:00  WARN 22976 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T18:13:08.328+01:00  WARN 22976 --- [SmartLogiV2] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=42m34s267ms823µs).
+2025-11-14T19:20:38.051+01:00  WARN 22976 --- [SmartLogiV2] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h7m29s722ms953µs400ns).
+2025-11-14T20:38:14.239+01:00  WARN 17776 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:38:14.242+01:00  WARN 17776 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:38:16.157+01:00  WARN 17776 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:38:17.029+01:00  WARN 17776 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:38:17.029+01:00  WARN 17776 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:39:06.396+01:00  WARN 22140 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T20:39:07.060+01:00  WARN 22140 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:39:07.060+01:00  WARN 22140 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:39:09.793+01:00  WARN 22140 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:39:11.104+01:00  WARN 22140 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:39:11.104+01:00  WARN 22140 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:39:13.057+01:00  WARN 22140 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:39:13.058+01:00  WARN 22140 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:39:13.389+01:00  WARN 22140 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:39:13.636+01:00  WARN 22140 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:39:13.636+01:00  WARN 22140 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:39:15.436+01:00 ERROR 22140 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T20:41:07.587+01:00  WARN 23436 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:41:07.589+01:00  WARN 23436 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:41:09.126+01:00  WARN 23436 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:41:09.848+01:00  WARN 23436 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:41:09.848+01:00  WARN 23436 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:44:27.387+01:00  WARN 21824 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T20:44:28.060+01:00  WARN 21824 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:44:28.061+01:00  WARN 21824 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:44:30.875+01:00  WARN 21824 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:44:32.022+01:00  WARN 21824 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:44:32.023+01:00  WARN 21824 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:44:33.919+01:00  WARN 21824 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:44:33.920+01:00  WARN 21824 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:44:34.239+01:00  WARN 21824 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:44:34.469+01:00  WARN 21824 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:44:34.470+01:00  WARN 21824 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:44:36.395+01:00 ERROR 21824 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T20:54:25.516+01:00  WARN 28780 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T20:54:26.170+01:00  WARN 28780 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:54:26.170+01:00  WARN 28780 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:54:28.743+01:00  WARN 28780 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:54:29.807+01:00  WARN 28780 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:54:29.807+01:00  WARN 28780 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:54:31.591+01:00  WARN 28780 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:54:31.591+01:00  WARN 28780 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:54:31.927+01:00  WARN 28780 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:54:32.159+01:00  WARN 28780 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:54:32.159+01:00  WARN 28780 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:54:34.682+01:00 ERROR 28780 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T20:54:53.588+01:00  WARN 23368 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T20:54:54.447+01:00  WARN 23368 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:54:54.447+01:00  WARN 23368 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:54:58.006+01:00  WARN 23368 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:54:59.600+01:00  WARN 23368 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:54:59.600+01:00  WARN 23368 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:55:02.225+01:00  WARN 23368 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:55:02.226+01:00  WARN 23368 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:55:02.690+01:00  WARN 23368 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:55:03.033+01:00  WARN 23368 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:55:03.033+01:00  WARN 23368 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T20:55:06.124+01:00 ERROR 23368 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T20:55:59.122+01:00  WARN 21096 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:55:59.124+01:00  WARN 21096 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T20:56:00.538+01:00  WARN 21096 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T20:56:01.171+01:00  WARN 21096 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T20:56:01.171+01:00  WARN 21096 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T21:28:27.254+01:00  WARN 21096 --- [SmartLogiV2] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m59s879ms535µs400ns).
+2025-11-14T21:56:58.009+01:00  WARN 21096 --- [SmartLogiV2] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m31s666ms915µs800ns).
+2025-11-14T22:11:27.356+01:00  WARN 18832 --- [SmartLogiV2] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-14T22:11:28.040+01:00  WARN 18832 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T22:11:28.041+01:00  WARN 18832 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T22:11:31.186+01:00  WARN 18832 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T22:11:32.565+01:00  WARN 18832 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T22:11:32.565+01:00  WARN 18832 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T22:11:34.791+01:00  WARN 18832 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T22:11:34.792+01:00  WARN 18832 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T22:11:35.198+01:00  WARN 18832 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T22:11:35.463+01:00  WARN 18832 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T22:11:35.463+01:00  WARN 18832 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-11-14T22:11:37.683+01:00 ERROR 18832 --- [SmartLogiV2] [main] com.app.api.service.ColisService         : la colis est d�ja on status : creer
+2025-11-14T22:15:26.138+01:00  WARN 11492 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.app.api.entity.ColisProduitKey
+2025-11-14T22:15:26.140+01:00  WARN 11492 --- [SmartLogiV2] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.app.api.entity.ColisProduitKey
+2025-11-14T22:15:27.632+01:00  WARN 11492 --- [SmartLogiV2] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-14T22:15:28.381+01:00  WARN 11492 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-11-14T22:15:28.382+01:00  WARN 11492 --- [SmartLogiV2] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'

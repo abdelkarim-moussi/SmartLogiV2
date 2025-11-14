@@ -1,10 +1,12 @@
 package com.app.api.dto.produitDTO;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ProduitDTO {
     private String id;
     private String nom;

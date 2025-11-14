@@ -18,8 +18,8 @@ public class LivraisonController {
         this.livraisonService = livraisonService;
     }
     @PostMapping("/{colis_id}/livreur/{livreur_id}")
-    ResponseEntity<ColisResponseDTO> assignLivreurToColis(@PathVariable("colis_id") String colisId,
-                                                          @PathVariable("livreur_id") String livreurId){
+    public ResponseEntity<ColisResponseDTO> assignLivreurToColis(@PathVariable("colis_id") String colisId,
+                                                                 @PathVariable("livreur_id") String livreurId){
        ColisResponseDTO colis = livraisonService.assignLivreurToColis(colisId,livreurId);
        return ResponseEntity.ok(colis);
     }

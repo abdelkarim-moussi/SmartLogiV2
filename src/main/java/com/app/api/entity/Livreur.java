@@ -1,7 +1,6 @@
 package com.app.api.entity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -9,6 +8,9 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "livreurs")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Livreur extends Person{
 
     private String vehicule;
@@ -17,10 +19,4 @@ public class Livreur extends Person{
     @ManyToOne
     private Zone zone;
 
-    public Livreur(){}
-
-    public Livreur(String nom, String prenom, String telephone,String email, String vehicule){
-        super(nom,prenom,telephone,email);
-        this.vehicule = vehicule;
-    }
 }

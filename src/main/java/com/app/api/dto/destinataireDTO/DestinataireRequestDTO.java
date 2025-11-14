@@ -3,11 +3,13 @@ package com.app.api.dto.destinataireDTO;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class DestinataireRequestDTO {
 
     @NotNull(message = "entrer un nom valide")

@@ -20,32 +20,32 @@ public class LivreurController {
     }
 
     @GetMapping()
-    List<LivreurResponseDTO> getAllLivreur(){
+    public List<LivreurResponseDTO> getAllLivreur(){
         List<LivreurResponseDTO> livreurs = livreurService.getAllLivreur();
         return livreurs;
     }
 
     @GetMapping("/{id}")
-    LivreurResponseDTO getOneLivreur(@PathVariable("id") String id){
+    public LivreurResponseDTO getOneLivreur(@PathVariable("id") String id){
         LivreurResponseDTO livreurResponseDTO = livreurService.getOneLivreur(id);
         return livreurResponseDTO;
     }
 
     @PostMapping("/create")
-    LivreurResponseDTO createLivreur(@RequestBody @Valid LivreurRequestDTO livreurRequestDTO){
+    public LivreurResponseDTO createLivreur(@RequestBody @Valid LivreurRequestDTO livreurRequestDTO){
         LivreurResponseDTO livreurResponseDTO = livreurService.createLivreur(livreurRequestDTO);
         return livreurResponseDTO;
     }
 
     @PutMapping("/{id}/update")
-    LivreurResponseDTO updateLivreur(@PathVariable("id") String id,@RequestBody @Valid LivreurRequestDTO livreurRequestDTO){
+    public LivreurResponseDTO updateLivreur(@PathVariable("id") String id, @RequestBody @Valid LivreurRequestDTO livreurRequestDTO){
         LivreurResponseDTO livreurResponseDTO = livreurService.updateLivreur(id,livreurRequestDTO);
         return livreurResponseDTO;
     }
 
     @DeleteMapping("/{id}/delete")
-    String deleteLivreur(@PathVariable("id") String id){
+    public String deleteLivreur(@PathVariable("id") String id){
         livreurService.deleteLivreur(id);
-        return "livreur avec id : "+id+" supprimer avec succes";
+        return "livreur avec id : "+id+" supprimer avec success";
     }
 }

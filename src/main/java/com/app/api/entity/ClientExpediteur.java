@@ -1,7 +1,9 @@
 package com.app.api.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "clients_expediteurs")
+@AllArgsConstructor
 public class ClientExpediteur extends Person{
 
     private String adresse;

@@ -11,6 +11,7 @@ import com.app.api.exception.ResourceNotFoundException;
 import com.app.api.mapper.*;
 import com.app.api.repository.*;
 import com.app.api.specification.ColisSpecification;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.SortDirection;
@@ -21,6 +22,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -80,7 +82,7 @@ public class ColisService {
     public ColisResponseDTO createColis(ColisRequestDTO colisRequestDTO){
 
         if(colisRequestDTO == null){
-            throw new InvalidDataException("données invalide "+null);
+            throw new InvalidDataException("données invalide");
         }
 
         Colis colis = colisMapper.toEntity(colisRequestDTO);
@@ -96,10 +98,10 @@ public class ColisService {
     public ColisResponseDTO updateColis(String id,ColisRequestDTO colisRequestDTO){
 
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("invalid id : "+id);
+            throw new InvalidDataException("invalid id");
         }
         if(colisRequestDTO == null){
-            throw new InvalidDataException("données invalide "+null);
+            throw new InvalidDataException("données invalide");
         }
 
         Colis existingColis = colisRepository.findById(id).orElseThrow(
@@ -114,6 +116,7 @@ public class ColisService {
 
         setRelations(colisRequestDTO,existingColis);
         setProduits(colisRequestDTO,existingColis);
+
         Colis updatedColis = colisRepository.save(existingColis);
 
         return colisMapper.toDTO(updatedColis);
@@ -140,13 +143,13 @@ public class ColisService {
                 .map(colisMapper::toDTO);
     }
 
-    public ColisResponseDTO getOneColisById(String id){
+    public ColisResponseDTO getColisById(String id){
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("invcalide id :"+id);
+            throw new InvalidDataException("invalide id");
         }
 
         Colis colis = colisRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("aucune colis disponible avec cet id : "+id)
+                () -> new EntityNotFoundException("Colis not found: "+id)
         );
 
         return colisMapper.toDTO(colis);
@@ -155,10 +158,10 @@ public class ColisService {
 
     public void deleteColis(String id){
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("invalide id = "+id);
+            throw new InvalidDataException("invalide id");
         }
-        Colis colis = colisRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("aucune colis avec id = "+id)
+        colisRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("aucune colis avec id : "+id)
         );
 
         colisRepository.deleteById(id);
@@ -166,7 +169,7 @@ public class ColisService {
 
     public ColisResponseDTO updateColisStatus(String id,ColisStatus colisStatus){
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("invalide id = "+id);
+            throw new InvalidDataException("invalide id");
         }
 
         Colis colis = colisRepository.findById(id).orElseThrow(
@@ -256,6 +259,25 @@ public class ColisService {
             });
 
         }
-            colis.setColisProduits(colisProduits);
+        colis.setColisProduits(colisProduits);
+    }
+
+
+    public List<ColisResponseDTO> changeAllColisStatus(String livreurId,String status){
+
+        Livreur livreur = livreurRepository.findById(livreurId).orElse(new Livreur());
+        List<Colis> colisList= colisRepository.getAllByLivreur(livreur);
+
+        if(!colisList.isEmpty()){
+            colisList.forEach(colis ->
+                    colis.setStatus(ColisStatus.valueOf(status))
+                    );
+            colisRepository.saveAll(colisList);
+        }
+        List<ColisResponseDTO> colisResponseDTOList = colisList.stream().map(
+                colis -> colisMapper.toDTO(colis))
+                .toList();
+
+        return colisResponseDTOList;
     }
 }
