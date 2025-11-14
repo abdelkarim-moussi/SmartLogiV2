@@ -336,4 +336,11 @@ class ColisServiceUnitTest {
         assertThrows(InvalidDataException.class,()-> colisService.updateColisStatus(null,ColisStatus.livrer));
     }
 
+    @Test
+    void updateColisStatus_WithInvalidId_ShouldThrowException(){
+        when(colisRepository.findById(anyString())).thenReturn(Optional.empty());
+        assertThrows(ResourceNotFoundException.class,
+                ()-> colisService.updateColisStatus(colisId,ColisStatus.livrer));
+    }
+
 }
