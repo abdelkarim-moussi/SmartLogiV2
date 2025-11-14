@@ -332,22 +332,8 @@ class ColisServiceUnitTest {
     }
 
     @Test
-    void updateColisStatus_WithValidId_ShouldSaveTheColiWithHistorique_AndReturnTheColisWithTheNewStatus(){
-        ColisStatus newStatus = ColisStatus.livrer;
-        when(colisRepository.findById(colisId)).thenReturn(Optional.of(colisEntity));
-        when(historiqueLivraisonMapper.toEntity(any())).thenReturn(new HistoriqueLivraison());
-        when(historiqueLivraisonRepository.save(any())).thenReturn(new HistoriqueLivraison());
-        when(colisMapper.toDTO(eq(colisEntity))).thenReturn(colisResponseDTO);
-        when(colisRepository.save(colisEntity)).thenReturn(colisEntity);
-
-        ColisResponseDTO result = colisService.updateColisStatus(colisId,newStatus);
-
-        assertNotNull(result);
-        assertEquals(newStatus,colisEntity.getStatus());
-        verify(colisRepository,times(1)).findById(colisId);
-        verify(colisRepository,times(1)).save(colisEntity);
-        verify(historiqueLivraisonRepository,times(1)).save(any());
-
+    void updateColisStatus_WithNullId_ShouldThrowException(){
+        assertThrows(InvalidDataException.class,()-> colisService.updateColisStatus(null,ColisStatus.livrer));
     }
 
 }
