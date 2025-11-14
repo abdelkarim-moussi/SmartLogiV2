@@ -44,6 +44,9 @@ public class LivreurService {
         if(id == null || id.trim().isEmpty()) {
             throw new InvalidDataException("id invalide id = "+id);
         };
+        livreurRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("aucun livreur avec cet id")
+        );
         livreurRepository.deleteById(id);
     }
 

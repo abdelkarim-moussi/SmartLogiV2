@@ -11,6 +11,7 @@ import com.app.api.exception.ResourceNotFoundException;
 import com.app.api.mapper.*;
 import com.app.api.repository.*;
 import com.app.api.specification.ColisSpecification;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.SortDirection;
@@ -142,13 +143,13 @@ public class ColisService {
                 .map(colisMapper::toDTO);
     }
 
-    public ColisResponseDTO getOneColisById(String id){
+    public ColisResponseDTO getColisById(String id){
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("invcalide id :"+id);
+            throw new InvalidDataException("invalide id");
         }
 
         Colis colis = colisRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("aucune colis disponible avec cet id : "+id)
+                () -> new EntityNotFoundException("Colis not found: "+id)
         );
 
         return colisMapper.toDTO(colis);
@@ -157,10 +158,10 @@ public class ColisService {
 
     public void deleteColis(String id){
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("invalide id = "+id);
+            throw new InvalidDataException("invalide id");
         }
-        Colis colis = colisRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("aucune colis avec id = "+id)
+        colisRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("aucune colis avec id : "+id)
         );
 
         colisRepository.deleteById(id);
@@ -168,7 +169,7 @@ public class ColisService {
 
     public ColisResponseDTO updateColisStatus(String id,ColisStatus colisStatus){
         if(id == null || id.trim().isEmpty()){
-            throw new InvalidDataException("invalide id = "+id);
+            throw new InvalidDataException("invalide id");
         }
 
         Colis colis = colisRepository.findById(id).orElseThrow(

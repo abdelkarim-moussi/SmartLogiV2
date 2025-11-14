@@ -1,8 +1,7 @@
 package com.app.api.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -10,6 +9,8 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "destinataires")
+@Builder
+@AllArgsConstructor
 public class Destinataire extends Person{
 
     private String adresse;
