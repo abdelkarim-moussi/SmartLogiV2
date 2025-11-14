@@ -13,7 +13,7 @@ import com.app.api.exception.ResourceNotFoundException;
 import com.app.api.mapper.*;
 import com.app.api.repository.*;
 import com.app.api.service.ColisService;
-import io.micrometer.core.instrument.config.validate.Validated;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,13 +25,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.swing.text.html.Option;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -184,7 +183,7 @@ class ColisServiceUnitTest {
     }
 
     @Test
-    void  updateColis_WithNullId_ShouldThrowException(){
+    void updateColis_WithNullId_ShouldThrowException(){
         InvalidDataException exception = assertThrows(InvalidDataException.class,() -> colisService.updateColis(null,colisRequestDTO));
 
         assertEquals("invalid id",exception.getMessage());
@@ -200,6 +199,8 @@ class ColisServiceUnitTest {
 
     @Test
     void updateColis_WithNullData_ShouldThrowResourceNotFoundException(){
+        // Mocking findById to return empty optional for this test
+        when(colisRepository.findById(colisId)).thenReturn(Optional.empty());
 
         ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,() -> colisService.updateColis(colisId,colisRequestDTO));
         assertEquals("aucune colis trouver avec id : "+colisId,exception.getMessage());
@@ -233,17 +234,20 @@ class ColisServiceUnitTest {
     void getAllColis_WithInvalidSort_ShouldReturn_CorrectPageWithByDefaultSort(){
         List<Colis> colisEntities = List.of(new Colis(),new Colis(),new Colis());
         String invalidSort = "invalidSort";
-        Pageable pageable1 = PageRequest.of(0,5,Sort.by(invalidSort).ascending());
+        // Note: The service logic overrides invalidSort, so the actual mockPageable may not reflect it.
+        Pageable pageable1 = PageRequest.of(0,5,Sort.by("status").ascending());
+
 
         Page<Colis> mockPage = new PageImpl<>(colisEntities,pageable1,colisEntities.size());
 
         when(colisRepository.findAll(any(Specification.class), any(Pageable.class)))
                 .thenAnswer(invocation -> {
-                        Pageable pageable = invocation.getArgument(1);
-                        assertTrue(pageable.getSort().getOrderFor("status") != null);
-                        return mockPage;
+                            Pageable pageable = invocation.getArgument(1);
+                            // Check if the sort field was correctly set to the default "status"
+                            assertTrue(pageable.getSort().getOrderFor("status") != null);
+                            return mockPage;
                         }
-                        )
+                )
                 .thenReturn(mockPage);
         when(colisMapper.toDTO(any(Colis.class))).thenReturn(colisResponseDTO);
 
@@ -283,11 +287,11 @@ class ColisServiceUnitTest {
     }
 
     @Test
-    void getOneColis_WithValidId_ShouldReturnCorrectResult(){
+    void getOneColisById_WithValidId_ShouldReturnCorrectResult(){
         when(colisRepository.findById(colisId)).thenReturn(Optional.of(colisEntity));
         when(colisMapper.toDTO(colisEntity)).thenReturn(colisResponseDTO);
 
-        ColisResponseDTO result = colisService.getOneColisById(colisId);
+        ColisResponseDTO result = colisService.getColisById(colisId);
 
         assertNotNull(result);
         assertEquals(colisId,result.getId());
@@ -295,17 +299,19 @@ class ColisServiceUnitTest {
     }
 
     @Test
-    void getOneColis_WithNullId_ShouldThrowException(){
-        InvalidDataException exception = assertThrows(InvalidDataException.class,() -> colisService.getOneColisById(null));
+    void getOneColisById_WithNullId_ShouldThrowException(){
+        InvalidDataException exception = assertThrows(InvalidDataException.class,() -> colisService.getColisById(null));
 
         assertEquals("invalide id",exception.getMessage());
 
     }
 
     @Test
-    void getOneColis_WithInvalidId_ShouldThrowException(){
-        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,()-> colisService.getOneColisById("COLIS_ID"));
-        assertEquals("aucune colis disponible avec cet id : COLIS_ID",exception.getMessage());
+    void getOneColisById_WithInvalidId_ShouldThrowException(){
+        when(colisRepository.findById(anyString())).thenReturn(Optional.empty());
+
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,()-> colisService.getColisById("COLIS_ID"));
+        assertEquals("Colis not found: COLIS_ID",exception.getMessage());
     }
 
     @Test
@@ -328,6 +334,7 @@ class ColisServiceUnitTest {
 
     @Test
     void deleteColis_WithInvalid_ShouldThrowException(){
+        when(colisRepository.findById(anyString())).thenReturn(Optional.empty());
         ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,()-> colisService.deleteColis("COLIS_ID"));
         assertEquals("aucune colis avec id : COLIS_ID",exception.getMessage());
     }
@@ -389,5 +396,4 @@ class ColisServiceUnitTest {
 
         verify(colisRepository,times(1)).findById(colisId);
     }
-
 }
