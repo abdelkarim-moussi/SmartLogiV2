@@ -315,5 +315,11 @@ class ColisServiceUnitTest {
         verify(colisRepository,times(1)).findById(colisId);
     }
 
+    @Test
+    void deleteColis_WithNullId_ShouldThrowException(){
+        InvalidDataException exception = assertThrows(InvalidDataException.class,() -> colisService.deleteColis(null));
+
+        assertEquals("invalide id",exception.getMessage());
+    }
 
 }
