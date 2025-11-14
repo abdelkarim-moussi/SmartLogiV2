@@ -15,6 +15,8 @@ import com.app.api.service.ColisService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -78,6 +80,8 @@ class ColisServiceUnitTest {
     private ColisResponseDTO colisResponseDTO;
     private String colisId;
     private Pageable pageable;
+    @Captor
+    private ArgumentCaptor<Pageable> pageableCaptor;
 
     @BeforeEach
     void setUp() {
@@ -248,5 +252,42 @@ class ColisServiceUnitTest {
         assertNotNull(page);
         verify(colisRepository).findAll(any(Specification.class),any(Pageable.class));
     }
+
+    @Test
+    void getAllColis_WithDescendingSort_ShouldApplyDescendingSort() {
+        // Arrange
+        String sortBy = "priority";
+        String sortDir = "desc"; // Should create DESCENDING sort
+
+        Page<Colis> colisPage = new PageImpl<>(List.of(colisEntity));
+        when(colisRepository.findAll(any(Specification.class), any(Pageable.class)))
+                .thenReturn(colisPage);
+        when(colisMapper.toDTO(colisEntity)).thenReturn(colisResponseDTO);
+
+        // Act
+        colisService.getAllColis(new ColisFilterDTO(), 0, 10, sortBy, sortDir);
+
+        // Assert
+        verify(colisRepository).findAll(any(Specification.class), pageableCaptor.capture());
+
+        Pageable usedPageable = pageableCaptor.getValue();
+        Sort.Order sortOrder = usedPageable.getSort().getOrderFor("priority");
+
+        assertNotNull(sortOrder);
+        assertEquals(Sort.Direction.DESC, sortOrder.getDirection());
+    }
+
+    @Test
+    void getOneColis_WithValidId_ShouldReturnCorrectResult(){
+        when(colisRepository.findById(colisId)).thenReturn(Optional.of(colisEntity));
+        when(colisMapper.toDTO(colisEntity)).thenReturn(colisResponseDTO);
+
+        ColisResponseDTO result = colisService.getOneColisById(colisId);
+
+        assertNotNull(result);
+        assertEquals(colisId,result.getId());
+        verify(colisRepository,times(1)).findById(colisId);
+    }
+
 
 }
