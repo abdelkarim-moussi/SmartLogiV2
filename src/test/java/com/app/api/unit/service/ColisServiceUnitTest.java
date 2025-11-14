@@ -4,6 +4,7 @@ import com.app.api.dto.colisDTO.ColisFilterDTO;
 import com.app.api.dto.colisDTO.ColisRequestDTO;
 import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.dto.destinataireDTO.DestinataireRequestDTO;
+import com.app.api.dto.historiqueLivraisonDTO.HistoriqueLivraisonRequestDTO;
 import com.app.api.entity.*;
 import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
@@ -24,6 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 
+import javax.swing.text.html.Option;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -105,6 +107,7 @@ class ColisServiceUnitTest {
         colisEntity.setPriority(ColisPriority.express);
         colisEntity.setStatus(ColisStatus.creer);
         colisEntity.setVilleDestination("Casablanca");
+        colisEntity.setHistoriqueLivraison(new HashSet<>());
 
         colisResponseDTO = ColisResponseDTO.builder()
                 .id(colisId)
@@ -326,6 +329,25 @@ class ColisServiceUnitTest {
     void deleteColis_WithInvalid_ShouldThrowException(){
         ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,()-> colisService.deleteColis("COLIS_ID"));
         assertEquals("aucune colis avec id : COLIS_ID",exception.getMessage());
+    }
+
+    @Test
+    void updateColisStatus_WithValidId_ShouldSaveTheColiWithHistorique_AndReturnTheColisWithTheNewStatus(){
+        ColisStatus newStatus = ColisStatus.livrer;
+        when(colisRepository.findById(colisId)).thenReturn(Optional.of(colisEntity));
+        when(historiqueLivraisonMapper.toEntity(any())).thenReturn(new HistoriqueLivraison());
+        when(historiqueLivraisonRepository.save(any())).thenReturn(new HistoriqueLivraison());
+        when(colisMapper.toDTO(eq(colisEntity))).thenReturn(colisResponseDTO);
+        when(colisRepository.save(colisEntity)).thenReturn(colisEntity);
+
+        ColisResponseDTO result = colisService.updateColisStatus(colisId,newStatus);
+
+        assertNotNull(result);
+        assertEquals(newStatus,colisEntity.getStatus());
+        verify(colisRepository,times(1)).findById(colisId);
+        verify(colisRepository,times(1)).save(colisEntity);
+        verify(historiqueLivraisonRepository,times(1)).save(any());
+
     }
 
 }
