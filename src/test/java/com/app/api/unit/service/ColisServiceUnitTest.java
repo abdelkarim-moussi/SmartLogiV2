@@ -322,4 +322,10 @@ class ColisServiceUnitTest {
         assertEquals("invalide id",exception.getMessage());
     }
 
+    @Test
+    void deleteColis_WithInvalid_ShouldThrowException(){
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,()-> colisService.deleteColis("COLIS_ID"));
+        assertEquals("aucune colis avec id : COLIS_ID",exception.getMessage());
+    }
+
 }
