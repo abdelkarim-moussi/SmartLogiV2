@@ -343,4 +343,14 @@ class ColisServiceUnitTest {
                 ()-> colisService.updateColisStatus(colisId,ColisStatus.livrer));
     }
 
+    @Test
+    void updateColisStatus_ShouldThrowExceptionWhenStatusIsTheSame(){
+        when(colisRepository.findById(colisId)).thenReturn(Optional.of(colisEntity));
+
+        assertThrows(InvalidDataException.class,
+                ()-> colisService.updateColisStatus(colisId,colisEntity.getStatus()));
+
+        verify(colisRepository,times(1)).findById(colisId);
+    }
+
 }
