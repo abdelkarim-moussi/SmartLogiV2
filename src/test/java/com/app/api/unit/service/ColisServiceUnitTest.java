@@ -301,8 +301,19 @@ class ColisServiceUnitTest {
     @Test
     void getOneColis_WithInvalidId_ShouldThrowException(){
         ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,()-> colisService.getOneColisById("COLIS_ID"));
-
         assertEquals("aucune colis disponible avec cet id : COLIS_ID",exception.getMessage());
     }
+
+    @Test
+    void deleteColis_WithValidId_ShouldDeleteTheColis(){
+        when(colisRepository.findById(colisId)).thenReturn(Optional.of(colisEntity));
+        doNothing().when(colisRepository).deleteById(colisId);
+
+        colisService.deleteColis(colisId);
+
+        verify(colisRepository,times(1)).deleteById(colisId);
+        verify(colisRepository,times(1)).findById(colisId);
+    }
+
 
 }
