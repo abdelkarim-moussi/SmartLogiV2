@@ -12,6 +12,7 @@ import com.app.api.exception.ResourceNotFoundException;
 import com.app.api.mapper.*;
 import com.app.api.repository.*;
 import com.app.api.service.ColisService;
+import io.micrometer.core.instrument.config.validate.Validated;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -289,5 +290,19 @@ class ColisServiceUnitTest {
         verify(colisRepository,times(1)).findById(colisId);
     }
 
+    @Test
+    void getOneColis_WithNullId_ShouldThrowException(){
+        InvalidDataException exception = assertThrows(InvalidDataException.class,() -> colisService.getOneColisById(null));
+
+        assertEquals("invalide id",exception.getMessage());
+
+    }
+
+    @Test
+    void getOneColis_WithInvalidId_ShouldThrowException(){
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,()-> colisService.getOneColisById("COLIS_ID"));
+
+        assertEquals("aucune colis disponible avec cet id : COLIS_ID",exception.getMessage());
+    }
 
 }
