@@ -22,6 +22,8 @@ public class User {
     private String userId;
     @Column(unique = true,length = 100,nullable = false)
     private String email;
+    @Column(nullable = false)
+    private String password;
     @CreationTimestamp
     @Column(updatable = false)
     private Date createdAt;
