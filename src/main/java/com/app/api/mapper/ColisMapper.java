@@ -12,7 +12,8 @@ uses = {
         ClientExpediteurMapper.class,
         DestinataireMapper.class,
         ZoneMapper.class,
-        ColisProduitMapper.class
+        ColisProduitMapper.class,
+        HistoriqueLivraisonMapper.class
 })
 
 public interface ColisMapper {
@@ -21,6 +22,7 @@ public interface ColisMapper {
     @Mapping(source = "clientExpediteurId",target = "clientExpediteur", ignore = true)
     @Mapping(source = "destinataire",target = "destinataire", ignore = true)
     @Mapping(source = "codePostal", target = "zone" , ignore = true)
+    @Mapping(target = "historiqueLivraison",ignore = true)
     @Mapping(target = "colisProduits",ignore = true)
     Colis toEntity(ColisRequestDTO colisRequestDTO);
 

@@ -24,14 +24,14 @@ public class ColisController {
     }
 
     @GetMapping
-    ResponseEntity<Page<ColisResponseDTO>> getAllColis(
-            @RequestParam(name = "page",defaultValue = "0") Integer page,
+    public ResponseEntity<Page<ColisResponseDTO>> getAllColis(
+            @RequestParam(name = "page", defaultValue = "0") Integer page,
             @RequestParam(name = "size", defaultValue = "5") Integer size,
-            @RequestParam(name = "sortBy",defaultValue = "status") String sortBy,
-            @RequestParam(name = "sortDir",defaultValue = "DESC") String sortDir,
-            @RequestParam(name = "status", required = false ) String status,
+            @RequestParam(name = "sortBy", defaultValue = "status") String sortBy,
+            @RequestParam(name = "sortDir", defaultValue = "DESC") String sortDir,
+            @RequestParam(name = "status", required = false) String status,
             @RequestParam(name = "priority", required = false) String priority,
-            @RequestParam(name = "ville" , required = false) String ville,
+            @RequestParam(name = "ville", required = false) String ville,
             @RequestParam(name = "zone", required = false) String zone,
             @RequestParam(name = "search", required = false) String search
     ){
@@ -53,31 +53,31 @@ public class ColisController {
         return ResponseEntity.ok(colisList);
     }
     @GetMapping("/{id}")
-    ResponseEntity<ColisResponseDTO> getOneColis(@PathVariable("id") String id){
-        ColisResponseDTO colis = colisService.getOneColisById(id);
+    public ResponseEntity<ColisResponseDTO> getOneColis(@PathVariable("id") String id){
+        ColisResponseDTO colis = colisService.getColisById(id);
         return ResponseEntity.ok(colis);
     }
 
     @PostMapping("/create")
-    ColisResponseDTO createColis(@RequestBody @Valid ColisRequestDTO colisRequestDTO){
+    public ColisResponseDTO createColis(@RequestBody @Valid ColisRequestDTO colisRequestDTO){
         ColisResponseDTO createdColis = colisService.createColis(colisRequestDTO);
         return createdColis;
     }
 
     @PutMapping("/{id}/update")
-    ColisResponseDTO updateColis(@PathVariable("id") String id, @RequestBody @Valid ColisRequestDTO colisRequestDTO){
+    public ColisResponseDTO updateColis(@PathVariable("id") String id, @RequestBody @Valid ColisRequestDTO colisRequestDTO){
         ColisResponseDTO updatedColis = colisService.updateColis(id,colisRequestDTO);
         return updatedColis;
     }
 
     @DeleteMapping("/{id}/delete")
-    ResponseEntity<Void> deleteColis(@PathVariable("id") String id){
+    public ResponseEntity<Void> deleteColis(@PathVariable("id") String id){
         colisService.deleteColis(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}/status/{status}")
-    ColisResponseDTO updateColisStatus(@PathVariable("id") String id, @PathVariable("status") String status){
+    public ColisResponseDTO updateColisStatus(@PathVariable("id") String id, @PathVariable("status") String status){
         ColisResponseDTO updatedColis = colisService.updateColisStatus(id,ColisStatus.valueOf(status));
         return updatedColis;
     }
