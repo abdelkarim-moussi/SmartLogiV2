@@ -12,11 +12,14 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Livreur extends Person{
-
     private String vehicule;
     @OneToMany(mappedBy = "livreur",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Colis> colisLivrer;
     @ManyToOne
     private Zone zone;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
 
 }

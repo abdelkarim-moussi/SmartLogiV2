@@ -3,7 +3,6 @@ package com.app.api.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -21,6 +20,10 @@ public class ClientExpediteur extends Person{
         super(nom,prenom,telephone,email);
         this.adresse = adresse;
     }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
 
     @OneToMany(mappedBy = "clientExpediteur",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Colis> colisEnvoyes;

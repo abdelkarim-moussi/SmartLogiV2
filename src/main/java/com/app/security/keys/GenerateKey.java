@@ -1,4 +1,4 @@
-package com.app.api.security.keys;
+package com.app.security.keys;
 
 
 import io.jsonwebtoken.security.Keys;

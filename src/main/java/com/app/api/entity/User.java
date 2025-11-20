@@ -1,4 +1,4 @@
-package com.app.security.entity;
+package com.app.api.entity;
 
 import com.app.api.enums.UserRole;
 import jakarta.persistence.*;
@@ -24,7 +24,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
-    private String id;
+    private String userId;
     @Column(unique = true, length = 100, nullable = false)
     private String email;
     @Column(nullable = false)
