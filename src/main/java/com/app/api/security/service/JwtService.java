@@ -1,5 +1,6 @@
 package com.app.api.security.service;
 
+import com.app.api.dto.user.AuthRequest;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -7,6 +8,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -15,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-@Service
+@Component
 public class JwtService {
     @Value("${security.jwt.secret-key}")
     private String secretKey;
@@ -31,12 +33,12 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(),userDetails);
+    public String generateToken(AuthRequest authRequest){
+        return generateToken(new HashMap<>(),authRequest);
     }
 
-    public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails){
-        return buildToken(extraClaims,userDetails,jwtExpiration);
+    public String generateToken(Map<String,Object> extraClaims, AuthRequest authRequest){
+        return buildToken(extraClaims,authRequest,jwtExpiration);
     }
     public long getExpirationTime(){
         return jwtExpiration;
@@ -44,12 +46,12 @@ public class JwtService {
 
     private String buildToken(
             Map<String,Object> claims,
-            UserDetails userDetails,
+            AuthRequest authRequest,
             long expiration
     ){
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(authRequest.getUserEmail())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()+expiration))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)

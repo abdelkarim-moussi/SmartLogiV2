@@ -8,4 +8,6 @@ databaseChangeLog:
       file: db/changelog/2025/11/20-11-add-user_id-field-to-client-livreur-changelog.yaml
   - include:
       file: db/changelog/2025/11/21-11-changelog.yaml
+  - include:
+      file: db/changelog/2025/12/17-02-changelog.yaml
 

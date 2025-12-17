@@ -1,7 +1,6 @@
 package com.app.api.security.service;
 
 import com.app.api.entity.UserInfo;
-import com.app.api.enums.UserRole;
 import lombok.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
