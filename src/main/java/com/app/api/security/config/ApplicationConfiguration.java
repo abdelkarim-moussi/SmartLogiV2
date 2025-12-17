@@ -1,4 +1,4 @@
-package com.app.api.security.configs;
+package com.app.api.security.config;
 
 import com.app.api.repository.UserRepository;
 import org.springframework.context.annotation.Bean;

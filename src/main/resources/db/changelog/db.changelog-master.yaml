@@ -5,10 +5,7 @@ databaseChangeLog:
   - include:
       file: db/changelog/2025/11/11-01-changelog.yaml
   - include:
-      file: db/changelog/2025/11/19-11-create-user-table-changelog.yaml
-  - include:
       file: db/changelog/2025/11/20-11-add-user_id-field-to-client-livreur-changelog.yaml
-
-
-
+  - include:
+      file: db/changelog/2025/11/21-11-changelog.yaml
 
