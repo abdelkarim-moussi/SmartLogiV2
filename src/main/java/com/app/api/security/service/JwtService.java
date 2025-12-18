@@ -1,21 +1,21 @@
 package com.app.api.security.service;
-
-import com.app.api.dto.user.AuthRequest;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtService {
@@ -33,12 +33,22 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(AuthRequest authRequest){
-        return generateToken(new HashMap<>(),authRequest);
-    }
+    public String generateToken(UserDetailsImpl userDetails){
+        Map<String,Object> claims = new HashMap<>();
+        Set<String> roles = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .filter(authority -> authority.startsWith("ROLE_"))
+                .collect(Collectors.toSet());
+        claims.put("roles",roles);
 
-    public String generateToken(Map<String,Object> extraClaims, AuthRequest authRequest){
-        return buildToken(extraClaims,authRequest,jwtExpiration);
+        Set<String> permissions = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .filter(authority -> !authority.startsWith("ROLE_"))
+                .collect(Collectors.toSet());
+
+        claims.put("permissions",permissions);
+
+        return buildToken(claims,userDetails.getUsername(),jwtExpiration);
     }
     public long getExpirationTime(){
         return jwtExpiration;
@@ -46,12 +56,12 @@ public class JwtService {
 
     private String buildToken(
             Map<String,Object> claims,
-            AuthRequest authRequest,
+            String userName,
             long expiration
     ){
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(authRequest.getUserEmail())
+                .setSubject(userName)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()+expiration))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)

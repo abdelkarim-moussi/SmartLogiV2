@@ -43,4 +43,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleIllegaleStateException(IllegalStateException ex){
         return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
     }
+
+    @ExceptionHandler(EmailAlreadyUsedException.class)
+    public ResponseEntity<String> handleEmailAlreadyUsedException(EmailAlreadyUsedException ex){
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+    }
 }

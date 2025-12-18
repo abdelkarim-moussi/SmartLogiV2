@@ -1,3 +1,3 @@
-package com.app.api.controller;
+package com.app.api.dto;
 
 public record RoleRequest(String role){}

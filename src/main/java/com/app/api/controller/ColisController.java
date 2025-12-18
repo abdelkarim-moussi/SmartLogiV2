@@ -6,11 +6,15 @@ import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.enums.ColisStatus;
 import com.app.api.service.ColisService;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.SortDirection;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -52,6 +56,13 @@ public class ColisController {
         );
         return ResponseEntity.ok(colisList);
     }
+
+    @GetMapping("/livreurs")
+    public ResponseEntity<List<ColisResponseDTO>> getLivreurColis(@PathParam(value = "id") String id){
+        List<ColisResponseDTO> livreurColis = colisService.getColisByLivreur(id);
+        return ResponseEntity.ok(livreurColis);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ColisResponseDTO> getOneColis(@PathVariable("id") String id){
         ColisResponseDTO colis = colisService.getColisById(id);

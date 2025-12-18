@@ -23,7 +23,7 @@ public class ClientExpediteur extends Person{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
-    private UserInfo user;
+    private User user;
 
     @OneToMany(mappedBy = "clientExpediteur",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Colis> colisEnvoyes;

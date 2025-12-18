@@ -143,6 +143,21 @@ public class ColisService {
                 .map(colisMapper::toDTO);
     }
 
+    public List<ColisResponseDTO> getColisByLivreur(String livreurId){
+        if(livreurId == null || livreurId.isEmpty()){
+            throw new InvalidParameterException("client id is required");
+        }
+
+        Livreur livreur = livreurRepository.findById(livreurId).orElseThrow(
+                () -> new InvalidDataException("livreur not found by id : "+livreurId)
+        );
+
+        return colisRepository.getAllByLivreur(livreur)
+                .stream().map(colisMapper::toDTO)
+                .toList();
+
+    }
+
     public ColisResponseDTO getColisById(String id){
         if(id == null || id.trim().isEmpty()){
             throw new InvalidDataException("invalide id");

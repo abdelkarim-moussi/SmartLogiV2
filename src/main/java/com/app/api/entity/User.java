@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserInfo {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
@@ -25,11 +25,11 @@ public class UserInfo {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
     @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn("user_id"),
-            inverseJoinColumns = @JoinColumn("role_id"))
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
     @CreationTimestamp
     @Column(updatable = false)

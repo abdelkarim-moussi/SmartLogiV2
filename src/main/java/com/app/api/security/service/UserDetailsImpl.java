@@ -1,27 +1,33 @@
 package com.app.api.security.service;
 
-import com.app.api.entity.UserInfo;
-import lombok.*;
+import com.app.api.entity.Permission;
+import com.app.api.entity.Role;
+import com.app.api.entity.User;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
-public class UserInfoDetails implements UserDetails {
-    private String userEmail;
-    private String password;
-    private List<GrantedAuthority> authorities;
+public class UserDetailsImpl implements UserDetails {
+    private User user;
+    private final String userEmail;
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserInfoDetails(UserInfo user) {
+    public UserDetailsImpl(User user) {
         this.userEmail = user.getEmail(); // Use email as username
         this.password = user.getPassword();
-        this.authorities = Arrays.stream(user.getRoles().toString().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+        Set<GrantedAuthority> auths = new HashSet<>();
+
+        for (Role role : user.getRoles()){
+            auths.add(new SimpleGrantedAuthority("ROLE_"+role.getName()));
+            for (Permission permission : role.getPermissions()){
+                auths.add(new SimpleGrantedAuthority(permission.getName()));
+            }
+        }
+
+        this.authorities = auths;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.app.api.exception;
 
-public class EmailAreadyUsedException extends RuntimeException {
-  public EmailAreadyUsedException(String message) {
-    super(message);
-  }
+public class EmailAlreadyUsedException extends RuntimeException {
+    public EmailAlreadyUsedException(String message) {
+        super(message);
+    }
 }
