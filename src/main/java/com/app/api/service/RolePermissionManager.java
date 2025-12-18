@@ -1,5 +1,6 @@
 package com.app.api.service;
 
+import com.app.api.dto.RolePermissionsRequest;
 import com.app.api.entity.Permission;
 import com.app.api.entity.Role;
 import com.app.api.exception.InvalidDataException;
@@ -15,7 +16,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class RolesPermissionsManager {
+public class RolePermissionManager {
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
 
@@ -23,7 +24,7 @@ public class RolesPermissionsManager {
         if(roleName == null || roleName.isEmpty()) throw new InvalidDataException("role name is required");
 
         Role role = Role.builder()
-                .name(roleName).build();
+                .name(roleName.toUpperCase()).build();
 
         return roleRepository.save(role);
     }
@@ -37,23 +38,24 @@ public class RolesPermissionsManager {
         return permissionRepository.save(permission);
     }
 
-    public Object assignPermissionsToRole(String roleName, List<String> permissions){
-        if(roleName == null || roleName.isEmpty()) throw new InvalidDataException("role is required");
-        if(permissions == null) throw new InvalidDataException("permissions is required");
+    public Object assignPermissionsToRole(RolePermissionsRequest request){
+        if(request.role() == null || request.role().isEmpty()) throw new InvalidDataException("role is required");
+        if(request.permissions() == null) throw new InvalidDataException("permissions is required");
 
-        Role existingRole = roleRepository.findByName(roleName).orElseThrow(
-                () -> new ResourceNotFoundException("no role found with name "+roleName)
+        Role existingRole = roleRepository.findByName(request.role()).orElseThrow(
+                () -> new ResourceNotFoundException("role not found with name "+request.role())
         );
 
         Set<Permission> managedPermissions = new HashSet<>();
-        for (String permissionName : permissions){
+        for (String permissionName : request.permissions()){
             Permission existingPermission = permissionRepository.findByName(permissionName).orElseThrow(
-                    () -> new ResourceNotFoundException("no role found with name "+roleName)
+                    () -> new ResourceNotFoundException("permission not found with name "+permissionName)
             );
 
             managedPermissions.add(existingPermission);
         }
 
+        existingRole.setPermissions(managedPermissions);
         return roleRepository.save(existingRole);
 
     }
