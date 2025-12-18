@@ -1,11 +1,12 @@
 package com.app.api.entity;
 
-import com.app.api.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Table(name = "users")
 @Entity
@@ -24,8 +25,12 @@ public class UserInfo {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn("user_id"),
+            inverseJoinColumns = @JoinColumn("role_id"))
+    private Set<Role> roles = new HashSet<>();
     @CreationTimestamp
     @Column(updatable = false)
     private Date createdAt;
