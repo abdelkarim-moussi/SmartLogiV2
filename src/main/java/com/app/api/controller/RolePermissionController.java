@@ -5,13 +5,11 @@ import com.app.api.dto.RolePermissionsRequest;
 import com.app.api.dto.RoleRequest;
 import com.app.api.dto.UserRolesRequest;
 import com.app.api.service.RolePermissionManager;
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -45,6 +43,20 @@ public class RolePermissionController {
     public ResponseEntity<Object> assignRolesToUser(@RequestBody UserRolesRequest request){
         Object result = rolePermissionManager.assignRolesToUser(request);
         return ResponseEntity.ok(result);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/roles/{name}")
+    public String deleteRole(@PathVariable(value = "name") String name){
+        rolePermissionManager.deleteRole(name);
+        return "Role Deleted Successfully";
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/permissions/{name}")
+    public String deletePermission(@PathVariable(value = "name") String name){
+        rolePermissionManager.deletePermission(name);
+        return "Permission Deleted Successfully";
     }
 }
 

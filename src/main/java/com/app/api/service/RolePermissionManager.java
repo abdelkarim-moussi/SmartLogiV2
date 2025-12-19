@@ -84,5 +84,23 @@ public class RolePermissionManager {
         return userRepository.save(existingUser);
 
     }
+
+    public void deleteRole(String role){
+        if(role == null || role.isEmpty()) throw new InvalidDataException("role name is required");
+
+        Role roleExist = roleRepository.findByName(role)
+                .orElseThrow(() -> new NotFoundException("Role not found"));
+
+        roleRepository.delete(roleExist);
+    }
+
+    public void deletePermission(String permission){
+        if(permission == null || permission.isEmpty()) throw new InvalidDataException("permission name is required");
+
+        Permission permissionExist = permissionRepository.findByName(permission)
+                .orElseThrow(() -> new NotFoundException("Permission not found"));
+
+        permissionRepository.delete(permissionExist);
+    }
 }
 
