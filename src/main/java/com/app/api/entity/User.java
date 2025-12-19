@@ -37,4 +37,11 @@ public class User {
     @UpdateTimestamp
     private Date updatedAt;
 
+    @OneToOne(mappedBy = "user")
+    private Livreur livreur;
+
+    @OneToOne(mappedBy = "user")
+    private ClientExpediteur clientExpediteur;
+
+
 }

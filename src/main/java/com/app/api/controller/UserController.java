@@ -2,6 +2,7 @@ package com.app.api.controller;
 
 import com.app.api.dto.user.AuthRequest;
 import com.app.api.dto.user.CreateUserRequest;
+import com.app.api.entity.User;
 import com.app.api.security.service.AuthService;
 import com.app.api.security.service.UserService;
 import jakarta.validation.Valid;
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/addNewUser")
-    public String addNewUser(@RequestBody CreateUserRequest user) {
+    public User addNewUser(@RequestBody CreateUserRequest user) {
         return userService.addUser(user);
     }
 }

@@ -5,6 +5,7 @@ import com.app.api.entity.Role;
 import com.app.api.entity.User;
 import com.app.api.exception.EmailAlreadyUsedException;
 import com.app.api.exception.InvalidDataException;
+import com.app.api.exception.NotFoundException;
 import com.app.api.mapper.UserMapper;
 import com.app.api.repository.RoleRepository;
 import com.app.api.repository.UserRepository;
@@ -38,7 +39,7 @@ public class UserService implements UserDetailsService {
         return new UserDetailsImpl(user);
     }
 
-    public String addUser(CreateUserRequest user) {
+    public User addUser(CreateUserRequest user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         boolean isEmailExist = userRepository.existsByEmail(user.getEmail());
@@ -49,12 +50,22 @@ public class UserService implements UserDetailsService {
         Set<Role> userRoles = new HashSet<>();
         for (Role role : user.getRoles()){
             Role existingRole = roleRepository.findByName(role.getName())
-                    .orElseThrow(() -> new InvalidDataException("Role "+role.getName() +"does not exist"));
+                    .orElseThrow(() -> new InvalidDataException("Role "+role.getName() +" does not exist"));
             userRoles.add(existingRole);
         }
 
         user.setRoles(userRoles);
-        userRepository.save(userMapper.toEntity(user));
-        return "User added successfully!";
+        return userRepository.save(userMapper.toEntity(user));
+    }
+
+    public User addUserHelper(String email, String password, Set<Role> roles){
+
+        CreateUserRequest request = CreateUserRequest.builder()
+                .email(email)
+                .password(password)
+                .roles(roles)
+                .build();
+
+        return this.addUser(request);
     }
 }

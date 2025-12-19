@@ -1,9 +1,7 @@
 package com.app.api.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,21 +9,16 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "clients_expediteurs")
+@NoArgsConstructor
 @AllArgsConstructor
 public class ClientExpediteur extends Person{
-
+    @Column(nullable = false)
     private String adresse;
-    public ClientExpediteur(){}
-    public ClientExpediteur(String nom, String prenom, String telephone, String email,String adresse){
-        super(nom,prenom,telephone,email);
-        this.adresse = adresse;
-    }
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
     @OneToMany(mappedBy = "clientExpediteur",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<Colis> colisEnvoyes;
+    private List<Colis> colisEnvoyer;
 
 }
