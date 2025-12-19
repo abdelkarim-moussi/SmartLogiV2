@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,17 +16,29 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFound(NotFoundException ex){
-        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);
+    public ResponseEntity<ExceptionResponse> NotFoundException(NotFoundException ex, WebRequest request){
+        ExceptionResponse response = ExceptionResponse.builder()
+                .status(404)
+                .error("not found")
+                .message(ex.getMessage())
+                .path(request.getContextPath())
+                .build();
+        return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(InvalidDataException.class)
-    public ResponseEntity<String> handleInvalidData(InvalidDataException ex){
-        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+    public ResponseEntity<ExceptionResponse> handleInvalidData(InvalidDataException ex, WebRequest request){
+        ExceptionResponse response = ExceptionResponse.builder()
+                .status(406)
+                .error("not acceptable value or content")
+                .message(ex.getMessage())
+                .path(request.getContextPath())
+                .build();
+        return new ResponseEntity<>(response,HttpStatus.NOT_ACCEPTABLE);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,String>> handleValidationException(MethodArgumentNotValidException ex){
+    public ResponseEntity<Map<String,String>> handleValidationException(MethodArgumentNotValidException ex, WebRequest request){
         Map<String, String> errorsMap = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(error -> {
             errorsMap.put(error.getField(),error.getDefaultMessage());
@@ -34,17 +47,35 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<String> handleEntityNotFoundException(EntityNotFoundException ex){
-        return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ExceptionResponse> handleEntityNotFoundException(EntityNotFoundException ex,WebRequest request){
+        ExceptionResponse response = ExceptionResponse.builder()
+                .status(404)
+                .error("not found")
+                .message(ex.getMessage())
+                .path(request.getContextPath())
+                .build();
+        return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(IllegalStateException.class)
-    public ResponseEntity<String> handleIllegaleStateException(IllegalStateException ex){
-        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+    public ResponseEntity<ExceptionResponse> handleIllegaleStateException(IllegalStateException ex, WebRequest request){
+        ExceptionResponse response = ExceptionResponse.builder()
+                .status(406)
+                .error("Illegal content")
+                .message(ex.getMessage())
+                .path(request.getContextPath())
+                .build();
+        return new ResponseEntity<>(response,HttpStatus.NOT_ACCEPTABLE);
     }
 
     @ExceptionHandler(EmailAlreadyUsedException.class)
-    public ResponseEntity<String> handleEmailAlreadyUsedException(EmailAlreadyUsedException ex){
-        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+    public ResponseEntity<ExceptionResponse> handleEmailAlreadyUsedException(EmailAlreadyUsedException ex, WebRequest request){
+        ExceptionResponse response = ExceptionResponse.builder()
+                .status(406)
+                .error("Email Already used")
+                .message(ex.getMessage())
+                .path(request.getContextPath())
+                .build();
+        return new ResponseEntity<>(response,HttpStatus.NOT_ACCEPTABLE);
     }
 }

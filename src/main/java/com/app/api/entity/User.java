@@ -43,5 +43,4 @@ public class User {
     @OneToOne(mappedBy = "user")
     private ClientExpediteur clientExpediteur;
 
-
 }
