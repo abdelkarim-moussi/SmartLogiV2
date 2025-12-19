@@ -1,7 +1,6 @@
 package com.app.api.exception;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,8 +14,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFound(ResourceNotFoundException ex){
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<String> handleResourceNotFound(NotFoundException ex){
         return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);
     }
 
@@ -41,6 +40,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<String> handleIllegaleStateException(IllegalStateException ex){
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler(EmailAlreadyUsedException.class)
+    public ResponseEntity<String> handleEmailAlreadyUsedException(EmailAlreadyUsedException ex){
         return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
     }
 }

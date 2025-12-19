@@ -3,55 +3,70 @@ package com.app.api.service;
 import com.app.api.dto.clientExpediteurDTO.ClientExpediteurRequestDTO;
 import com.app.api.dto.clientExpediteurDTO.ClientExpediteurResponseDTO;
 import com.app.api.entity.ClientExpediteur;
+import com.app.api.entity.Role;
+import com.app.api.entity.User;
+import com.app.api.exception.AlreadyExistException;
 import com.app.api.exception.InvalidDataException;
 import com.app.api.mapper.ClientExpediteurMapper;
 import com.app.api.repository.ClientExpediteurRepository;
+import com.app.api.repository.RoleRepository;
+import com.app.api.security.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.InvalidParameterException;
+import java.util.Set;
 
 @Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class ClientExpediteurService {
 
-    ClientExpediteurRepository clientExpediteurRepository;
-    ClientExpediteurMapper clientExpediteurMapper;
-    public ClientExpediteurService(ClientExpediteurRepository clientExpediteurRepository, ClientExpediteurMapper clientExpediteurMapper){
-        this.clientExpediteurRepository = clientExpediteurRepository;
-        this.clientExpediteurMapper = clientExpediteurMapper;
-    }
+    private final ClientExpediteurRepository clientExpediteurRepository;
+    private final ClientExpediteurMapper clientExpediteurMapper;
+    private final RoleRepository roleRepository;
+    private final UserService userService;
 
+    @Transactional(readOnly = true)
     public Page<ClientExpediteurResponseDTO> getAllClients(int page, int size){
 
         Pageable pageable = PageRequest.of(page,size);
 
-        Page<ClientExpediteurResponseDTO> clients = clientExpediteurRepository.findAll(pageable)
+        return clientExpediteurRepository.findAll(pageable)
                 .map(clientExpediteurMapper::toDTO);
-
-        return clients;
     }
 
-    public ClientExpediteurResponseDTO createClientExpediteur(ClientExpediteurRequestDTO clientExpediteurRequestDTO){
-        if(clientExpediteurRequestDTO != null){
-            ClientExpediteur existingClient = clientExpediteurRepository.findByEmail(clientExpediteurRequestDTO.getEmail()).orElse(null);
+    public ClientExpediteurResponseDTO createClientExpediteur(ClientExpediteurRequestDTO request){
+        if(request == null) {
+            throw new InvalidDataException("les données de création ne peut être pas null");
+        }
 
-            if(existingClient == null) {
-                ClientExpediteur createdClient = clientExpediteurRepository.save(clientExpediteurMapper.toEntity(clientExpediteurRequestDTO));
-                return clientExpediteurMapper.toDTO(createdClient);
-            }
+        boolean existingClient = clientExpediteurRepository
+                .existsByEmail(request.getEmail());
 
-            return null;
+        if(existingClient) {
+            throw new AlreadyExistException("email already used "+request.getEmail());
+        }
 
-        }else throw new InvalidDataException("les données de création ne peut être pas null");
+        ClientExpediteur client = clientExpediteurMapper.toEntity(request);
+
+        Set<Role> roles = Set.of(Role.builder().name("CLIENT").build());
+
+        User user = userService.addUserHelper(request.getEmail(), request.getPassword(),roles);
+
+        client.setUser(user);
+        return clientExpediteurMapper.toDTO(client);
+
     }
 
+    @Transactional(readOnly = true)
     public ClientExpediteurResponseDTO getOneClient(String id){
         if(id == null || id.trim().isEmpty()){
             throw new InvalidParameterException("id ne peut pas être null");
@@ -64,21 +79,21 @@ public class ClientExpediteurService {
         return clientExpediteurMapper.toDTO(client);
     }
 
-    public ClientExpediteurResponseDTO updateClientExpediteur(String id,ClientExpediteurRequestDTO clientExpediteurRequestDTO){
+    public ClientExpediteurResponseDTO updateClientExpediteur(String id,ClientExpediteurRequestDTO request){
         if(id == null || id.trim().isEmpty()){
             throw new IllegalArgumentException("client id ne peut pas être null");
         }
 
-        if(clientExpediteurRequestDTO != null){
+        if(request != null){
             ClientExpediteur existingClient = clientExpediteurRepository.findById(id).orElseThrow(
                     () -> new EntityNotFoundException("aucun client avec cet id "+id)
             );
 
-            existingClient.setNom(clientExpediteurRequestDTO.getNom());
-            existingClient.setPrenom(clientExpediteurRequestDTO.getPrenom());
-            existingClient.setTelephone(clientExpediteurRequestDTO.getTelephone());
-            existingClient.setEmail(clientExpediteurRequestDTO.getEmail());
-            existingClient.setAdresse(clientExpediteurRequestDTO.getAdresse());
+            existingClient.setNom(request.getNom());
+            existingClient.setPrenom(request.getPrenom());
+            existingClient.setTelephone(request.getTelephone());
+            existingClient.setEmail(request.getEmail());
+            existingClient.setAdresse(request.getAdresse());
 
             ClientExpediteur updatedClient = clientExpediteurRepository.save(existingClient);
             return clientExpediteurMapper.toDTO(updatedClient);

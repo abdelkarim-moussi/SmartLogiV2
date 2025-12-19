@@ -12,7 +12,22 @@ import java.util.Optional;
 
 public interface ColisRepository extends JpaRepository<Colis,String>, JpaSpecificationExecutor<Colis> {
 
-    List<Colis> getAllByLivreur(Livreur livreur);
+    List<Colis> findAllByLivreur(Livreur livreur);
+
+    @Query("select c from Colis c where c.livreur.user.id = :userId")
+    List<Colis> findByLivreurUserId(@Param("userId") String userId);
+
+    @Query("select c from Colis c where c.clientExpediteur.user.id = :uderId")
+    List<Colis> findByClientExpediteurUserId(@Param("userId") String userId);
+
+    @Query("select case when count(c) > 0 then true else false end " +
+            "from Colis c where c.id =: colisId and c.livreur.user.id =: userId")
+
+    boolean belongsToLivreur(@Param("colisId") String colisId,@Param("userId") String userId);
+
+    @Query("select case when count(c) > 0 then true else false end " +
+            "from Colis c where c.id =: colisId and c.clientExpediteur.user.id =: userId")
+    boolean belongsToClientExpediteur(@Param("colisId") String colisId,@Param("userId") String userId);
 
     @Query("SELECT c FROM Colis c " +
             "LEFT JOIN FETCH c.livreur " +

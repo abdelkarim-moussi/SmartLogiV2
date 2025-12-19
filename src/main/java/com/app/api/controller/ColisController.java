@@ -6,11 +6,15 @@ import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.enums.ColisStatus;
 import com.app.api.service.ColisService;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.SortDirection;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -52,6 +56,19 @@ public class ColisController {
         );
         return ResponseEntity.ok(colisList);
     }
+
+    @GetMapping("/myColis")
+    public ResponseEntity<List<ColisResponseDTO>> getMyColis(){
+        List<ColisResponseDTO> livreurColis = colisService.getMyColis();
+        return ResponseEntity.ok(livreurColis);
+    }
+
+    @GetMapping("/userColis/{id}")
+    public ResponseEntity<List<ColisResponseDTO>> getColisByUser(@PathVariable (value = "id") String id){
+        List<ColisResponseDTO> userColis = colisService.getColisByUser(id);
+        return ResponseEntity.ok(userColis);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ColisResponseDTO> getOneColis(@PathVariable("id") String id){
         ColisResponseDTO colis = colisService.getColisById(id);
@@ -60,14 +77,12 @@ public class ColisController {
 
     @PostMapping("/create")
     public ColisResponseDTO createColis(@RequestBody @Valid ColisRequestDTO colisRequestDTO){
-        ColisResponseDTO createdColis = colisService.createColis(colisRequestDTO);
-        return createdColis;
+        return colisService.createColis(colisRequestDTO);
     }
 
     @PutMapping("/{id}/update")
     public ColisResponseDTO updateColis(@PathVariable("id") String id, @RequestBody @Valid ColisRequestDTO colisRequestDTO){
-        ColisResponseDTO updatedColis = colisService.updateColis(id,colisRequestDTO);
-        return updatedColis;
+        return colisService.updateColis(id,colisRequestDTO);
     }
 
     @DeleteMapping("/{id}/delete")
@@ -78,7 +93,6 @@ public class ColisController {
 
     @PutMapping("/{id}/status/{status}")
     public ColisResponseDTO updateColisStatus(@PathVariable("id") String id, @PathVariable("status") String status){
-        ColisResponseDTO updatedColis = colisService.updateColisStatus(id,ColisStatus.valueOf(status));
-        return updatedColis;
+        return colisService.updateColisStatus(id,ColisStatus.valueOf(status));
     }
 }

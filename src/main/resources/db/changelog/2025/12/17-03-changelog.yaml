@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1766006806024-1
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_users_roles
+                  name: role_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_users_roles
+                  name: user_id
+                  type: VARCHAR(255)
+            tableName: users_roles
+  - changeSet:
+      id: 1766006806024-2
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: role_id
+            baseTableName: users_roles
+            constraintName: fk_userol_on_role
+            referencedColumnNames: id
+            referencedTableName: roles
+  - changeSet:
+      id: 1766006806024-3
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: users_roles
+            constraintName: fk_userol_on_user
+            referencedColumnNames: id
+            referencedTableName: users
+

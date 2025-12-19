@@ -2,41 +2,58 @@ package com.app.api.service;
 
 import com.app.api.dto.livreurDTO.LivreurRequestDTO;
 import com.app.api.dto.livreurDTO.LivreurResponseDTO;
+import com.app.api.entity.Role;
+import com.app.api.entity.User;
+import com.app.api.exception.AlreadyExistException;
 import com.app.api.exception.InvalidDataException;
-import com.app.api.exception.ResourceNotFoundException;
+import com.app.api.exception.NotFoundException;
 import com.app.api.mapper.LivreurMapper;
 import com.app.api.entity.Livreur;
 import com.app.api.repository.LivreurRepository;
-import jakarta.transaction.Transactional;
+import com.app.api.repository.UserRepository;
+import com.app.api.security.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class LivreurService {
 
-    LivreurMapper livreurMapper;
-    LivreurRepository livreurRepository;
+    private final LivreurMapper livreurMapper;
+    private final LivreurRepository livreurRepository;
+    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public LivreurService(LivreurMapper livreurMapper, LivreurRepository livreurRepository){
-        this.livreurMapper = livreurMapper;
-        this.livreurRepository = livreurRepository;
-    }
+    public LivreurResponseDTO createLivreur(LivreurRequestDTO request){
 
-    public LivreurResponseDTO createLivreur(LivreurRequestDTO livreurRequestDTO){
-
-        if(livreurRequestDTO == null){
+        if(request == null){
             throw new InvalidDataException("données invalide "+null);
         }
 
-        Livreur livreur = livreurMapper.toEntity(livreurRequestDTO);
-        Livreur createdLivreur = livreurRepository.save(livreur);
+        boolean existsByEmail = userRepository.existsByEmail(request.getNonUtilisateur());
 
-        return livreurMapper.toDTO(createdLivreur);
+        if(existsByEmail){
+            throw new AlreadyExistException("user name already used");
+        }
+
+        Set<Role> roles = Set.of(Role.builder()
+                .name("LIVREUR").build());
+
+        User user = userService.addUserHelper(request.getNonUtilisateur(),request.getPassword(),roles);
+
+        Livreur livreur = livreurMapper.toEntity(request);
+
+        livreur.setUser(user);
+
+        return livreurMapper.toDTO(livreurRepository.save(livreur));
 
     }
 
@@ -44,8 +61,9 @@ public class LivreurService {
         if(id == null || id.trim().isEmpty()) {
             throw new InvalidDataException("id invalide id = "+id);
         };
+
         livreurRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("aucun livreur avec cet id")
+                ()-> new NotFoundException("aucun livreur avec cet id")
         );
         livreurRepository.deleteById(id);
     }
@@ -59,7 +77,7 @@ public class LivreurService {
         }
 
         Livreur existingLivreur = livreurRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("aucun livreur trouver avec id = "+id)
+                () -> new NotFoundException("aucun livreur trouver avec id = "+id)
         );
 
         existingLivreur.setNom(livreurRequestDTO.getNom());
@@ -73,23 +91,25 @@ public class LivreurService {
         return livreurMapper.toDTO(livreur);
     }
 
+    @Transactional(readOnly = true)
     public LivreurResponseDTO getOneLivreur(String id){
         if(id == null || id.trim().isEmpty()) {
             throw new InvalidDataException("invalide id = "+id);
         };
 
         Livreur livreur = livreurRepository.findById(id).
-                orElseThrow(()->new ResourceNotFoundException("aucun livreur trouver avec id = "+id));
+                orElseThrow(()->new NotFoundException("aucun livreur trouver avec id = "+id));
         return livreurMapper.toDTO(livreur);
 
     }
 
+    @Transactional(readOnly = true)
     public List<LivreurResponseDTO> getAllLivreur(){
 
         List<Livreur> livreurs = livreurRepository.findAll();
         List<LivreurResponseDTO> livreurResponseDTOS = new ArrayList<>();
 
-        if(livreurs.isEmpty()) throw new ResourceNotFoundException("aucun livreur disponible");
+        if(livreurs.isEmpty()) throw new NotFoundException("aucun livreur disponible");
 
         livreurs.forEach(livreur ->
                 livreurResponseDTOS.add(livreurMapper.toDTO(livreur))

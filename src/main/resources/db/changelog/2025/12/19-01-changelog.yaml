@@ -1,0 +1,122 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1766169200127-1
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: adresse
+            tableName: clients_expediteurs
+            validate: true
+  - changeSet:
+      id: 1766169200127-2
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: nom
+            tableName: clients_expediteurs
+            validate: true
+  - changeSet:
+      id: 1766169200127-3
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: nom
+            tableName: destinataires
+            validate: true
+  - changeSet:
+      id: 1766169200127-4
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: nom
+            tableName: livreurs
+            validate: true
+  - changeSet:
+      id: 1766169200127-5
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: prenom
+            tableName: clients_expediteurs
+            validate: true
+  - changeSet:
+      id: 1766169200127-6
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: prenom
+            tableName: destinataires
+            validate: true
+  - changeSet:
+      id: 1766169200127-7
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: prenom
+            tableName: livreurs
+            validate: true
+  - changeSet:
+      id: 1766169200127-8
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: telephone
+            tableName: clients_expediteurs
+            validate: true
+  - changeSet:
+      id: 1766169200127-9
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: telephone
+            tableName: destinataires
+            validate: true
+  - changeSet:
+      id: 1766169200127-10
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: telephone
+            tableName: livreurs
+            validate: true
+  - changeSet:
+      id: 1766169200127-11
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: user_id
+            tableName: livreurs
+            validate: true
+  - changeSet:
+      id: 1766169200127-12
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: vehicule
+            tableName: livreurs
+            validate: true
+

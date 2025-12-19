@@ -3,7 +3,7 @@ package com.app.api.unit.controller;
 import com.app.api.controller.LivreurController;
 import com.app.api.dto.livreurDTO.LivreurRequestDTO;
 import com.app.api.dto.livreurDTO.LivreurResponseDTO;
-import com.app.api.exception.ResourceNotFoundException;
+import com.app.api.exception.NotFoundException;
 import com.app.api.service.LivreurService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -132,10 +132,10 @@ class LivreurControllerUnitTest {
     @Test
     void deleteLivreur_shouldPropagateResourceNotFoundException() {
         // Arrange
-        doThrow(new ResourceNotFoundException("aucun livreur avec cet id")).when(livreurService).deleteLivreur(NON_EXISTENT_ID);
+        doThrow(new NotFoundException("aucun livreur avec cet id")).when(livreurService).deleteLivreur(NON_EXISTENT_ID);
 
         // Act & Assert
-        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,
+        NotFoundException exception = assertThrows(NotFoundException.class,
                 () -> livreurController.deleteLivreur(NON_EXISTENT_ID));
 
         // Verify the error message propagated

@@ -1,0 +1,114 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1765971898050-6
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: role
+                  type: VARCHAR(255)
+            tableName: users
+  - changeSet:
+      id: 1765971898050-7
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: role
+            tableName: users
+  - changeSet:
+      id: 1765971898050-8
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: user_id
+            constraintName: uc_clients_expediteurs_user
+            tableName: clients_expediteurs
+  - changeSet:
+      id: 1765971898050-9
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: user_id
+            constraintName: uc_livreurs_user
+            tableName: livreurs
+  - changeSet:
+      id: 1765971898050-10
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: clients_expediteurs
+            constraintName: FK_CLIENTS_EXPEDITEURS_ON_USER
+            referencedColumnNames: id
+            referencedTableName: users
+  - changeSet:
+      id: 1765971898050-11
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: livreurs
+            constraintName: FK_LIVREURS_ON_USER
+            referencedColumnNames: id
+            referencedTableName: users
+  - changeSet:
+      id: 1765971898050-12
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: clients
+  - changeSet:
+      id: 1765971898050-1
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - modifyDataType:
+            columnName: email
+            newDataType: VARCHAR(100)
+            tableName: users
+  - changeSet:
+      id: 1765971898050-2
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - modifyDataType:
+            columnName: id
+            newDataType: VARCHAR(255)
+            tableName: users
+  - changeSet:
+      id: 1765971898050-3
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - modifyDataType:
+            columnName: password
+            newDataType: VARCHAR(255)
+            tableName: users
+  - changeSet:
+      id: 1765971898050-4
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - modifyDataType:
+            columnName: user_id
+            newDataType: VARCHAR(255)
+            tableName: clients_expediteurs
+  - changeSet:
+      id: 1765971898050-5
+      author: abdelkarim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - modifyDataType:
+            columnName: user_id
+            newDataType: VARCHAR(255)
+            tableName: livreurs
+
