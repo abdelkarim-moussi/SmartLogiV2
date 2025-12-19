@@ -3,6 +3,7 @@ package com.app.api.controller;
 import com.app.api.dto.PermissionRequest;
 import com.app.api.dto.RolePermissionsRequest;
 import com.app.api.dto.RoleRequest;
+import com.app.api.dto.UserRolesRequest;
 import com.app.api.service.RolePermissionManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -38,6 +37,13 @@ public class RolePermissionController {
     @PostMapping("/roles/permissions")
     public ResponseEntity<Object> assignPermissionsToRole(@RequestBody RolePermissionsRequest request){
         Object result = rolePermissionManager.assignPermissionsToRole(request);
+        return ResponseEntity.ok(result);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/users/roles")
+    public ResponseEntity<Object> assignRolesToUser(@RequestBody UserRolesRequest request){
+        Object result = rolePermissionManager.assignRolesToUser(request);
         return ResponseEntity.ok(result);
     }
 }
