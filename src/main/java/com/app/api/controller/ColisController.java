@@ -57,9 +57,9 @@ public class ColisController {
         return ResponseEntity.ok(colisList);
     }
 
-    @GetMapping("/livreurs")
-    public ResponseEntity<List<ColisResponseDTO>> getLivreurColis(@PathParam(value = "id") String id){
-        List<ColisResponseDTO> livreurColis = colisService.getColisByLivreur(id);
+    @GetMapping("/myColis")
+    public ResponseEntity<List<ColisResponseDTO>> getMyColis(){
+        List<ColisResponseDTO> livreurColis = colisService.getMyColis();
         return ResponseEntity.ok(livreurColis);
     }
 
@@ -71,14 +71,12 @@ public class ColisController {
 
     @PostMapping("/create")
     public ColisResponseDTO createColis(@RequestBody @Valid ColisRequestDTO colisRequestDTO){
-        ColisResponseDTO createdColis = colisService.createColis(colisRequestDTO);
-        return createdColis;
+        return colisService.createColis(colisRequestDTO);
     }
 
     @PutMapping("/{id}/update")
     public ColisResponseDTO updateColis(@PathVariable("id") String id, @RequestBody @Valid ColisRequestDTO colisRequestDTO){
-        ColisResponseDTO updatedColis = colisService.updateColis(id,colisRequestDTO);
-        return updatedColis;
+        return colisService.updateColis(id,colisRequestDTO);
     }
 
     @DeleteMapping("/{id}/delete")
@@ -89,7 +87,6 @@ public class ColisController {
 
     @PutMapping("/{id}/status/{status}")
     public ColisResponseDTO updateColisStatus(@PathVariable("id") String id, @PathVariable("status") String status){
-        ColisResponseDTO updatedColis = colisService.updateColisStatus(id,ColisStatus.valueOf(status));
-        return updatedColis;
+        return colisService.updateColisStatus(id,ColisStatus.valueOf(status));
     }
 }
