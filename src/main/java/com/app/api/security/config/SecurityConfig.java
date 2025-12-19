@@ -37,8 +37,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**")
                 .permitAll()
-                .requestMatchers("/api/colis/livreurs")
-                .hasAnyRole("ADMIN","MANAGER","LIVREUR")
+                .requestMatchers("/api/colis/myColis")
+                .hasAnyRole("CLIENT","LIVREUR")
                 .requestMatchers("/api/colis/**","/api/livreurs/**")
                 .hasAnyRole("MANAGER","ADMIN")
                 .anyRequest()
