@@ -43,13 +43,26 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public String getCurrentUserId(){
-        return getCurrentUser().getId();
-    }
 
     public boolean hasRole(String role){
         return getCurrentUser().getRoles()
                 .stream().anyMatch(r -> r.getName().equals(role));
+    }
+
+    public boolean isLivreur(){
+        return hasRole("LIVREUR");
+    }
+
+    public boolean isClient(){
+        return hasRole("CLIENT");
+    }
+
+    public boolean isManager(){
+        return hasRole("MANAGER");
+    }
+
+    public boolean isADMIN(){
+        return hasRole("ADMIN");
     }
 
 }
