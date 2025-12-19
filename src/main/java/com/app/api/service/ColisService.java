@@ -6,14 +6,17 @@ import com.app.api.dto.colisDTO.ColisResponseDTO;
 import com.app.api.dto.historiqueLivraisonDTO.HistoriqueLivraisonRequestDTO;
 import com.app.api.entity.*;
 import com.app.api.enums.ColisStatus;
+import com.app.api.exception.ForbiddenException;
 import com.app.api.exception.InvalidDataException;
 import com.app.api.exception.ResourceNotFoundException;
 import com.app.api.mapper.*;
 import com.app.api.repository.*;
+import com.app.api.security.service.AuthService;
 import com.app.api.security.service.UserDetailsImpl;
 import com.app.api.specification.ColisSpecification;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.SortDirection;
 import org.springframework.data.domain.Page;
@@ -36,6 +39,7 @@ import java.util.Set;
 @Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class ColisService {
     private final LivreurRepository livreurRepository;
     private final ClientExpediteurRepository clientExpediteurRepository;
@@ -46,42 +50,14 @@ public class ColisService {
     private final DestinataireMapper destinataireMapper;
     private final ZoneMapper zoneMapper;
     private final ColisProduitRepository colisProduitRepository;
-    private ColisRepository colisRepository;
-    private ColisMapper colisMapper;
-    private HistoriqueLivraisonRepository historiqueLivraisonRepository;
-    private HistoriqueLivraisonMapper historiqueLivraisonMapper;
+    private final ColisRepository colisRepository;
+    private final ColisMapper colisMapper;
+    private final HistoriqueLivraisonRepository historiqueLivraisonRepository;
+    private final HistoriqueLivraisonMapper historiqueLivraisonMapper;
+    private final AuthService authService;
 
     private static final Set<String> ALLOWED_SORT_FIELDS = Set.of("status","priority");
 
-    public ColisService(ColisRepository colisRepository,
-                        ColisMapper colisMapper,
-                        LivreurRepository livreurRepository,
-                        ClientExpediteurRepository clientExpediteurRepository,
-                        DestinataireRepository destinataireRepository,
-                        ZoneRepository zoneRepository,
-                        ProduitRepository produitRepository,
-                        ProduitMapper produitMapper,
-                        DestinataireMapper destinataireMapper,
-                        ZoneMapper zoneMapper,
-                        ColisProduitRepository colisProduitRepository,
-                        HistoriqueLivraisonRepository historiqueLivraisonRepository,
-                        HistoriqueLivraisonMapper historiqueLivraisonMapper
-    ){
-
-        this.colisRepository = colisRepository;
-        this.colisMapper = colisMapper;
-        this.livreurRepository = livreurRepository;
-        this.clientExpediteurRepository = clientExpediteurRepository;
-        this.destinataireRepository = destinataireRepository;
-        this.zoneRepository = zoneRepository;
-        this.produitRepository = produitRepository;
-        this.produitMapper = produitMapper;
-        this.destinataireMapper = destinataireMapper;
-        this.zoneMapper = zoneMapper;
-        this.colisProduitRepository = colisProduitRepository;
-        this.historiqueLivraisonRepository = historiqueLivraisonRepository;
-        this.historiqueLivraisonMapper = historiqueLivraisonMapper;
-    }
 
     public ColisResponseDTO createColis(ColisRequestDTO colisRequestDTO){
 
@@ -147,32 +123,20 @@ public class ColisService {
                 .map(colisMapper::toDTO);
     }
 
-    public List<ColisResponseDTO> getColisByLivreur(String livreurId){
-        String authUserRole = SecurityContextHolder.getContext()
-                .getAuthentication().getAuthorities()
-                .stream(). map(GrantedAuthority::getAuthority)
-                .filter(auth -> auth.startsWith("ROLE_"))
-                .findFirst()
-                .orElse("ROLE_");
+    public List<ColisResponseDTO> getMyColis(){
 
-        UserDetailsImpl authUser = (UserDetailsImpl) SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
+        User currentUser = authService.getCurrentUser();
+        List<Colis> colisList;
 
-        if(livreurId == null || livreurId.isEmpty()){
-            throw new InvalidParameterException("client id is required");
+        if(authService.isLivreur()){
+            colisList = colisRepository.findByLivreurUserId(currentUser.getId());
         }
-
-        Livreur livreur = livreurRepository.findById(livreurId).orElseThrow(
-                () -> new InvalidDataException("livreur not found by id : "+livreurId)
-        );
-
-        if(authUserRole.equals("ROLE_LIVREUR") && !authUser.getUserId().equals(livreur.getUser().getId())){
-            throw new RuntimeException("access denieded");
+        else if(authService.isClient()){
+            colisList = colisRepository.findByClientExpediteurUserId(currentUser.getId());
         }
+        else throw new ForbiddenException("Role not authorized to view colis");
 
-        return colisRepository.getAllByLivreur(livreur)
-                .stream().map(colisMapper::toDTO)
-                .toList();
+        return colisList.stream().map(colisMapper::toDTO).toList();
 
     }
 
@@ -299,7 +263,7 @@ public class ColisService {
     public List<ColisResponseDTO> changeAllColisStatus(String livreurId,String status){
 
         Livreur livreur = livreurRepository.findById(livreurId).orElse(new Livreur());
-        List<Colis> colisList= colisRepository.getAllByLivreur(livreur);
+        List<Colis> colisList= colisRepository.findByLivreurUserId(livreur.getId());
 
         if(!colisList.isEmpty()){
             colisList.forEach(colis ->
