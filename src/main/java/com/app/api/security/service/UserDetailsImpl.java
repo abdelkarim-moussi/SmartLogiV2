@@ -3,6 +3,7 @@ package com.app.api.security.service;
 import com.app.api.entity.Permission;
 import com.app.api.entity.Role;
 import com.app.api.entity.User;
+import lombok.Getter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,12 +11,14 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.*;
 
 public class UserDetailsImpl implements UserDetails {
-    private User user;
+    @Getter
+    private String userId;
     private final String userEmail;
     private final String password;
     private final Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(User user) {
+        this.userId = user.getId();
         this.userEmail = user.getEmail(); // Use email as username
         this.password = user.getPassword();
         Set<GrantedAuthority> auths = new HashSet<>();
@@ -44,4 +47,5 @@ public class UserDetailsImpl implements UserDetails {
     public String getUsername() {
         return this.userEmail;
     }
+
 }

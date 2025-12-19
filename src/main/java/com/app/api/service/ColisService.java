@@ -10,6 +10,7 @@ import com.app.api.exception.InvalidDataException;
 import com.app.api.exception.ResourceNotFoundException;
 import com.app.api.mapper.*;
 import com.app.api.repository.*;
+import com.app.api.security.service.UserDetailsImpl;
 import com.app.api.specification.ColisSpecification;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -20,6 +21,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.InvalidParameterException;
@@ -144,6 +148,16 @@ public class ColisService {
     }
 
     public List<ColisResponseDTO> getColisByLivreur(String livreurId){
+        String authUserRole = SecurityContextHolder.getContext()
+                .getAuthentication().getAuthorities()
+                .stream(). map(GrantedAuthority::getAuthority)
+                .filter(auth -> auth.startsWith("ROLE_"))
+                .findFirst()
+                .orElse("ROLE_");
+
+        UserDetailsImpl authUser = (UserDetailsImpl) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
         if(livreurId == null || livreurId.isEmpty()){
             throw new InvalidParameterException("client id is required");
         }
@@ -151,6 +165,10 @@ public class ColisService {
         Livreur livreur = livreurRepository.findById(livreurId).orElseThrow(
                 () -> new InvalidDataException("livreur not found by id : "+livreurId)
         );
+
+        if(authUserRole.equals("ROLE_LIVREUR") && !authUser.getUserId().equals(livreur.getUser().getId())){
+            throw new RuntimeException("access denieded");
+        }
 
         return colisRepository.getAllByLivreur(livreur)
                 .stream().map(colisMapper::toDTO)

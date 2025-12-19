@@ -1,17 +1,19 @@
 package com.app.api.service;
 
 import com.app.api.dto.RolePermissionsRequest;
+import com.app.api.dto.UserRolesRequest;
 import com.app.api.entity.Permission;
 import com.app.api.entity.Role;
+import com.app.api.entity.User;
 import com.app.api.exception.InvalidDataException;
 import com.app.api.exception.ResourceNotFoundException;
 import com.app.api.repository.PermissionRepository;
 import com.app.api.repository.RoleRepository;
+import com.app.api.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -19,6 +21,7 @@ import java.util.Set;
 public class RolePermissionManager {
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
+    private final UserRepository userRepository;
 
     public Object createNewRole(String roleName){
         if(roleName == null || roleName.isEmpty()) throw new InvalidDataException("role name is required");
@@ -57,6 +60,29 @@ public class RolePermissionManager {
 
         existingRole.setPermissions(managedPermissions);
         return roleRepository.save(existingRole);
+    }
+
+    public Object assignRolesToUser(UserRolesRequest request){
+        if(request.userId() == null || request.userId().isEmpty()) throw new InvalidDataException("userId is required");
+        if(request.roles() == null) throw new InvalidDataException("roles is required");
+
+        User existingUser = userRepository.findById(request.userId()).orElseThrow(
+                () -> new ResourceNotFoundException("role not found with name "+request.userId())
+        );
+
+        Set<Role> managedRoles = new HashSet<>();
+        for (String roleName : request.roles()){
+            Role existingRole = roleRepository.findByName(roleName).orElseThrow(
+                    () -> new ResourceNotFoundException("role not found with name "+roleName)
+            );
+
+            managedRoles.add(existingRole);
+        }
+
+        existingUser.setRoles(managedRoles);
+
+        return userRepository.save(existingUser);
 
     }
 }
+
