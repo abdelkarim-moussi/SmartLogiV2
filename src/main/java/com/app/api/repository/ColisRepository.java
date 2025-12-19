@@ -22,6 +22,7 @@ public interface ColisRepository extends JpaRepository<Colis,String>, JpaSpecifi
 
     @Query("select case when count(c) > 0 then true else false end " +
             "from Colis c where c.id =: colisId and c.livreur.user.id =: userId")
+
     boolean belongsToLivreur(@Param("colisId") String colisId,@Param("userId") String userId);
 
     @Query("select case when count(c) > 0 then true else false end " +

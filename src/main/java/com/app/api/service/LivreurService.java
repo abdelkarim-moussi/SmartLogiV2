@@ -3,7 +3,7 @@ package com.app.api.service;
 import com.app.api.dto.livreurDTO.LivreurRequestDTO;
 import com.app.api.dto.livreurDTO.LivreurResponseDTO;
 import com.app.api.exception.InvalidDataException;
-import com.app.api.exception.ResourceNotFoundException;
+import com.app.api.exception.NotFoundException;
 import com.app.api.mapper.LivreurMapper;
 import com.app.api.entity.Livreur;
 import com.app.api.repository.LivreurRepository;
@@ -45,7 +45,7 @@ public class LivreurService {
             throw new InvalidDataException("id invalide id = "+id);
         };
         livreurRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("aucun livreur avec cet id")
+                ()-> new NotFoundException("aucun livreur avec cet id")
         );
         livreurRepository.deleteById(id);
     }
@@ -59,7 +59,7 @@ public class LivreurService {
         }
 
         Livreur existingLivreur = livreurRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("aucun livreur trouver avec id = "+id)
+                () -> new NotFoundException("aucun livreur trouver avec id = "+id)
         );
 
         existingLivreur.setNom(livreurRequestDTO.getNom());
@@ -79,7 +79,7 @@ public class LivreurService {
         };
 
         Livreur livreur = livreurRepository.findById(id).
-                orElseThrow(()->new ResourceNotFoundException("aucun livreur trouver avec id = "+id));
+                orElseThrow(()->new NotFoundException("aucun livreur trouver avec id = "+id));
         return livreurMapper.toDTO(livreur);
 
     }
@@ -89,7 +89,7 @@ public class LivreurService {
         List<Livreur> livreurs = livreurRepository.findAll();
         List<LivreurResponseDTO> livreurResponseDTOS = new ArrayList<>();
 
-        if(livreurs.isEmpty()) throw new ResourceNotFoundException("aucun livreur disponible");
+        if(livreurs.isEmpty()) throw new NotFoundException("aucun livreur disponible");
 
         livreurs.forEach(livreur ->
                 livreurResponseDTOS.add(livreurMapper.toDTO(livreur))

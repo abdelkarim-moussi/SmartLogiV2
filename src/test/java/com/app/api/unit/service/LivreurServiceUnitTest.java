@@ -4,7 +4,7 @@ import com.app.api.dto.livreurDTO.LivreurRequestDTO;
 import com.app.api.dto.livreurDTO.LivreurResponseDTO;
 import com.app.api.entity.Livreur;
 import com.app.api.exception.InvalidDataException;
-import com.app.api.exception.ResourceNotFoundException;
+import com.app.api.exception.NotFoundException;
 import com.app.api.mapper.LivreurMapper;
 import com.app.api.repository.LivreurRepository;
 import com.app.api.service.LivreurService;
@@ -149,7 +149,7 @@ class LivreurServiceUnitTest {
         when(livreurRepository.findById(LIVREUR_ID)).thenReturn(Optional.empty());
 
         // Act & Assert
-        assertThrows(ResourceNotFoundException.class,
+        assertThrows(NotFoundException.class,
                 () -> livreurService.updateLivreur(LIVREUR_ID, requestDTO));
         verify(livreurRepository, never()).save(any());
     }
@@ -197,7 +197,7 @@ class LivreurServiceUnitTest {
         when(livreurRepository.findById(LIVREUR_ID)).thenReturn(Optional.empty());
 
         // Act & Assert
-        assertThrows(ResourceNotFoundException.class, () -> livreurService.getOneLivreur(LIVREUR_ID));
+        assertThrows(NotFoundException.class, () -> livreurService.getOneLivreur(LIVREUR_ID));
     }
 
     // --- 5. getAllLivreur Tests ---
@@ -225,7 +225,7 @@ class LivreurServiceUnitTest {
         when(livreurRepository.findAll()).thenReturn(Collections.emptyList());
 
         // Act & Assert
-        assertThrows(ResourceNotFoundException.class, () -> livreurService.getAllLivreur());
+        assertThrows(NotFoundException.class, () -> livreurService.getAllLivreur());
         verify(livreurRepository, times(1)).findAll();
         verify(livreurMapper, never()).toDTO(any());
     }

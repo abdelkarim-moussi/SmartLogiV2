@@ -8,7 +8,7 @@ import com.app.api.entity.*;
 import com.app.api.enums.ColisPriority;
 import com.app.api.enums.ColisStatus;
 import com.app.api.exception.InvalidDataException;
-import com.app.api.exception.ResourceNotFoundException;
+import com.app.api.exception.NotFoundException;
 import com.app.api.mapper.*;
 import com.app.api.repository.*;
 import com.app.api.service.ColisService;
@@ -201,7 +201,7 @@ class ColisServiceUnitTest {
         // Mocking findById to return empty optional for this test
         when(colisRepository.findById(colisId)).thenReturn(Optional.empty());
 
-        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,() -> colisService.updateColis(colisId,colisRequestDTO));
+        NotFoundException exception = assertThrows(NotFoundException.class,() -> colisService.updateColis(colisId,colisRequestDTO));
         assertEquals("aucune colis trouver avec id : "+colisId,exception.getMessage());
 
     }
@@ -334,7 +334,7 @@ class ColisServiceUnitTest {
     @Test
     void deleteColis_WithInvalid_ShouldThrowException(){
         when(colisRepository.findById(anyString())).thenReturn(Optional.empty());
-        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,()-> colisService.deleteColis("COLIS_ID"));
+        NotFoundException exception = assertThrows(NotFoundException.class,()-> colisService.deleteColis("COLIS_ID"));
         assertEquals("aucune colis avec id : COLIS_ID",exception.getMessage());
     }
 
@@ -382,7 +382,7 @@ class ColisServiceUnitTest {
     @Test
     void updateColisStatus_WithInvalidId_ShouldThrowException(){
         when(colisRepository.findById(anyString())).thenReturn(Optional.empty());
-        assertThrows(ResourceNotFoundException.class,
+        assertThrows(NotFoundException.class,
                 ()-> colisService.updateColisStatus(colisId,ColisStatus.livrer));
     }
 

@@ -6,7 +6,7 @@ import com.app.api.entity.Permission;
 import com.app.api.entity.Role;
 import com.app.api.entity.User;
 import com.app.api.exception.InvalidDataException;
-import com.app.api.exception.ResourceNotFoundException;
+import com.app.api.exception.NotFoundException;
 import com.app.api.repository.PermissionRepository;
 import com.app.api.repository.RoleRepository;
 import com.app.api.repository.UserRepository;
@@ -46,13 +46,13 @@ public class RolePermissionManager {
         if(request.permissions() == null) throw new InvalidDataException("permissions is required");
 
         Role existingRole = roleRepository.findByName(request.role()).orElseThrow(
-                () -> new ResourceNotFoundException("role not found with name "+request.role())
+                () -> new NotFoundException("role not found with name "+request.role())
         );
 
         Set<Permission> managedPermissions = new HashSet<>();
         for (String permissionName : request.permissions()){
             Permission existingPermission = permissionRepository.findByName(permissionName).orElseThrow(
-                    () -> new ResourceNotFoundException("permission not found with name "+permissionName)
+                    () -> new NotFoundException("permission not found with name "+permissionName)
             );
 
             managedPermissions.add(existingPermission);
@@ -67,13 +67,13 @@ public class RolePermissionManager {
         if(request.roles() == null) throw new InvalidDataException("roles is required");
 
         User existingUser = userRepository.findById(request.userId()).orElseThrow(
-                () -> new ResourceNotFoundException("role not found with name "+request.userId())
+                () -> new NotFoundException("role not found with name "+request.userId())
         );
 
         Set<Role> managedRoles = new HashSet<>();
         for (String roleName : request.roles()){
             Role existingRole = roleRepository.findByName(roleName).orElseThrow(
-                    () -> new ResourceNotFoundException("role not found with name "+roleName)
+                    () -> new NotFoundException("role not found with name "+roleName)
             );
 
             managedRoles.add(existingRole);
