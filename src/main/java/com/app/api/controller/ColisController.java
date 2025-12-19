@@ -63,6 +63,12 @@ public class ColisController {
         return ResponseEntity.ok(livreurColis);
     }
 
+    @GetMapping("/userColis/{id}")
+    public ResponseEntity<List<ColisResponseDTO>> getColisByUser(@PathVariable (value = "id") String id){
+        List<ColisResponseDTO> userColis = colisService.getColisByUser(id);
+        return ResponseEntity.ok(userColis);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ColisResponseDTO> getOneColis(@PathVariable("id") String id){
         ColisResponseDTO colis = colisService.getColisById(id);
