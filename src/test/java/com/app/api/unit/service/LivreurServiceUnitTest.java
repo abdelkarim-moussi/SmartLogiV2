@@ -3,10 +3,13 @@ package com.app.api.unit.service;
 import com.app.api.dto.livreurDTO.LivreurRequestDTO;
 import com.app.api.dto.livreurDTO.LivreurResponseDTO;
 import com.app.api.entity.Livreur;
+import com.app.api.entity.User;
 import com.app.api.exception.InvalidDataException;
 import com.app.api.exception.NotFoundException;
 import com.app.api.mapper.LivreurMapper;
 import com.app.api.repository.LivreurRepository;
+import com.app.api.repository.UserRepository;
+import com.app.api.security.service.UserService;
 import com.app.api.service.LivreurService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,12 +39,20 @@ class LivreurServiceUnitTest {
     @Mock
     private LivreurRepository livreurRepository;
 
+    @Mock
+    private UserRepository userRepository;
+
+    @Mock
+    private UserService userService;
+
     @InjectMocks
     private LivreurService livreurService;
+
 
     private LivreurRequestDTO requestDTO;
     private Livreur livreurEntity;
     private LivreurResponseDTO responseDTO;
+    private User mockUser;
 
     @BeforeEach
     void setUp() {
@@ -58,6 +69,9 @@ class LivreurServiceUnitTest {
         livreurEntity.setNom("Dupont");
         livreurEntity.setVehicule("Moto");
 
+        mockUser = new User();
+        mockUser.setId("U001");
+
 
         responseDTO = LivreurResponseDTO.builder()
                 .id(LIVREUR_ID)
@@ -70,17 +84,23 @@ class LivreurServiceUnitTest {
     @Test
     void createLivreur_shouldSucceedAndReturnResponseDTO() {
         // Arrange
-        when(livreurMapper.toEntity(any(LivreurRequestDTO.class))).thenReturn(livreurEntity);
+        when(userRepository.existsByEmail(requestDTO.getNonUtilisateur())).thenReturn(false);
+        when(userService.addUserHelper(eq(requestDTO.getNonUtilisateur()), eq(requestDTO.getPassword()), anySet()))
+                .thenReturn(mockUser);
+        when(livreurMapper.toEntity(requestDTO)).thenReturn(livreurEntity);
         when(livreurRepository.save(any(Livreur.class))).thenReturn(livreurEntity);
-        when(livreurMapper.toDTO(any(Livreur.class))).thenReturn(responseDTO);
+        when(livreurMapper.toDTO(livreurEntity)).thenReturn(responseDTO);
 
         // Act
         LivreurResponseDTO result = livreurService.createLivreur(requestDTO);
 
         // Assert
         assertNotNull(result);
-        assertEquals(LIVREUR_ID, result.getId());
-        verify(livreurRepository, times(1)).save(livreurEntity);
+        assertEquals("LIVR-001", result.getId());
+        verify(userRepository).existsByEmail(requestDTO.getNonUtilisateur());
+        verify(livreurRepository).save(livreurEntity);
+        // Verify that the user was set on the entity
+        assertEquals(mockUser, livreurEntity.getUser());
     }
 
     @Test

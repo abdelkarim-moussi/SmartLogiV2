@@ -3,9 +3,13 @@ package com.app.api.unit.service;
 import com.app.api.dto.clientExpediteurDTO.ClientExpediteurRequestDTO;
 import com.app.api.dto.clientExpediteurDTO.ClientExpediteurResponseDTO;
 import com.app.api.entity.ClientExpediteur;
+import com.app.api.entity.User;
+import com.app.api.exception.AlreadyExistException;
 import com.app.api.exception.InvalidDataException;
 import com.app.api.mapper.ClientExpediteurMapper;
 import com.app.api.repository.ClientExpediteurRepository;
+import com.app.api.repository.UserRepository;
+import com.app.api.security.service.UserService;
 import com.app.api.service.ClientExpediteurService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +40,12 @@ class ClientExpediteurUnitTest {
 
     @Mock
     private ClientExpediteurMapper clientExpediteurMapper;
+
+    @Mock
+    private UserService userService;
+
+    @Mock
+    private UserRepository userRepository;
 
     @InjectMocks
     private ClientExpediteurService clientExpediteurService;
@@ -99,9 +109,13 @@ class ClientExpediteurUnitTest {
     @Test
     void createClientExpediteur_shouldSucceed_whenClientDoesNotExist() {
         // Arrange
-        when(clientExpediteurRepository.findByEmail(EMAIL)).thenReturn(Optional.empty());
+        when(clientExpediteurRepository.existsByEmail(requestDTO.getEmail())).thenReturn(false);
         when(clientExpediteurMapper.toEntity(requestDTO)).thenReturn(clientEntity);
-        when(clientExpediteurRepository.save(clientEntity)).thenReturn(clientEntity);
+
+        // Mock the User creation
+        User mockUser = new User(); // Or use builder
+        when(userService.addUserHelper(any(), any(), any())).thenReturn(mockUser);
+
         when(clientExpediteurMapper.toDTO(clientEntity)).thenReturn(responseDTO);
 
         // Act
@@ -109,23 +123,31 @@ class ClientExpediteurUnitTest {
 
         // Assert
         assertNotNull(result);
-        assertEquals(CLIENT_ID, result.getId());
-        verify(clientExpediteurRepository, times(1)).findByEmail(EMAIL);
-        verify(clientExpediteurRepository, times(1)).save(clientEntity);
+        verify(clientExpediteurRepository).existsByEmail(requestDTO.getEmail());
+        verify(userService).addUserHelper(eq(requestDTO.getEmail()), eq(requestDTO.getPassword()), anySet());
+        verify(clientExpediteurMapper).toDTO(clientEntity);
     }
 
     @Test
-    void createClientExpediteur_shouldReturnNull_whenClientAlreadyExists() {
+    void createClientExpediteur_shouldThrowAlreadyExistException_whenClientExists() {
         // Arrange
-        when(clientExpediteurRepository.findByEmail(EMAIL)).thenReturn(Optional.of(clientEntity));
+        when(clientExpediteurRepository.existsByEmail(requestDTO.getEmail())).thenReturn(true);
 
-        // Act
-        ClientExpediteurResponseDTO result = clientExpediteurService.createClientExpediteur(requestDTO);
+        // Act & Assert
+        assertThrows(AlreadyExistException.class, () ->
+                clientExpediteurService.createClientExpediteur(requestDTO)
+        );
 
-        // Assert
-        assertNull(result);
-        verify(clientExpediteurRepository, times(1)).findByEmail(EMAIL);
-        verify(clientExpediteurRepository, never()).save(any());
+        verify(clientExpediteurRepository).existsByEmail(requestDTO.getEmail());
+        verify(userService, never()).addUserHelper(any(), any(), any());
+    }
+
+    @Test
+    void createClientExpediteur_shouldThrowInvalidDataException_whenRequestIsNull() {
+        // Act & Assert
+        assertThrows(InvalidDataException.class, () ->
+                clientExpediteurService.createClientExpediteur(null)
+        );
     }
 
     @Test
