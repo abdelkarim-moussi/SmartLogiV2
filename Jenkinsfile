@@ -15,7 +15,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 // Using bat for Windows
-                bat 'mvnw.cmd clean package'
+                bat 'mvn clean package'
             }
         }
         stage('Build Docker Image'){
