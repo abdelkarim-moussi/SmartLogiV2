@@ -4,7 +4,6 @@ pipeline {
     environment {
         // This ID must match what you created in Jenkins Credentials
         DOCKERHUB_CREDENTIALS = 'dockerhub-pwd'
-        IMAGE_NAME = "/CICD"
     }
 
     stages {
@@ -16,15 +15,15 @@ pipeline {
         stage('Build & Test') {
             steps {
                 // Using bat for Windows
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
         stage('Build Docker Image'){
             steps {
                 script {
                     // Build the image using the Dockerfile in your project
-                    sh "docker build -t %IMAGE_NAME%:%BUILD_NUMBER% ."
-                    sh "docker tag %IMAGE_NAME%:%BUILD_NUMBER% %IMAGE_NAME%:latest"
+                    bat "docker build -t %IMAGE_NAME%:%BUILD_NUMBER% ."
+                    bat "docker tag %IMAGE_NAME%:%BUILD_NUMBER% %IMAGE_NAME%:latest"
                 }
             }
         }
@@ -32,9 +31,9 @@ pipeline {
             steps {
                 // This block securely logs you into Docker Hub
                 withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                    sh "docker login -u %USER% -p %PASS%"
-                    sh "docker push %IMAGE_NAME%:%BUILD_NUMBER%"
-                    sh "docker push %IMAGE_NAME%:latest"
+                    bat "docker login -u %USER% -p %PASS%"
+                    bat "docker push %IMAGE_NAME%:%BUILD_NUMBER%"
+                    bat "docker push %IMAGE_NAME%:latest"
                 }
             }
         }
