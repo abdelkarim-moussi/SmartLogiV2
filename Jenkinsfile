@@ -15,8 +15,10 @@ pipeline {
         }
         stage('Build & Test') {
             steps {
-                // Using bat for Windows
-                sh './mvnw clean package'
+                // Use ./mvnw instead of mvn.
+                // We add 'chmod +x' to ensure the script has permission to run.
+                sh "chmod +x mvnw"
+                sh "./mvnw clean package"
             }
         }
         stage('Build Docker Image'){
