@@ -15,15 +15,15 @@ pipeline {
         stage('Build & Test') {
             steps {
                 // Using bat for Windows
-                bat 'mvn clean package'
+                sh 'mvn clean package'
             }
         }
         stage('Build Docker Image'){
             steps {
                 script {
                     // Build the image using the Dockerfile in your project
-                    bat "docker build -t %IMAGE_NAME%:%BUILD_NUMBER% ."
-                    bat "docker tag %IMAGE_NAME%:%BUILD_NUMBER% %IMAGE_NAME%:latest"
+                    sh "docker build -t %IMAGE_NAME%:%BUILD_NUMBER% ."
+                    sh "docker tag %IMAGE_NAME%:%BUILD_NUMBER% %IMAGE_NAME%:latest"
                 }
             }
         }
@@ -31,9 +31,9 @@ pipeline {
             steps {
                 // This block securely logs you into Docker Hub
                 withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                    bat "docker login -u %USER% -p %PASS%"
-                    bat "docker push %IMAGE_NAME%:%BUILD_NUMBER%"
-                    bat "docker push %IMAGE_NAME%:latest"
+                    sh "docker login -u %USER% -p %PASS%"
+                    sh "docker push %IMAGE_NAME%:%BUILD_NUMBER%"
+                    sh "docker push %IMAGE_NAME%:latest"
                 }
             }
         }
