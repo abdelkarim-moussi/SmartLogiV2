@@ -4,6 +4,7 @@ pipeline {
     environment {
         // This ID must match what you created in Jenkins Credentials
         DOCKERHUB_CREDENTIALS = 'dockerhub-pwd'
+        IMAGE_NAME = "/CICD"
     }
 
     stages {
@@ -15,7 +16,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 // Using bat for Windows
-                bat 'mvn clean package'
+                bat './mvnw clean package'
             }
         }
         stage('Build Docker Image'){
