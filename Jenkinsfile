@@ -4,6 +4,7 @@ pipeline {
     environment {
         // This ID must match what you created in Jenkins Credentials
         DOCKERHUB_CREDENTIALS = 'dockerhub-pwd'
+        IMAGE_NAME = 'SmartLogiV2'
     }
 
     stages {
@@ -27,15 +28,6 @@ pipeline {
                 }
             }
         }
-        stage('Push to Docker Hub') {
-            steps {
-                // This block securely logs you into Docker Hub
-                withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                    sh "docker login -u %USER% -p %PASS%"
-                    sh "docker push %IMAGE_NAME%:%BUILD_NUMBER%"
-                    sh "docker push %IMAGE_NAME%:latest"
-                }
-            }
-        }
+
     }
 }
