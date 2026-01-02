@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        // This ID must match what you created in Jenkins Credentials
         DOCKERHUB_CREDENTIALS = 'dockerhub-pwd'
-        IMAGE_NAME = 'SmartLogiV2'
+        IMAGE_NAME = 'smartlogiv2'  // DockerHub images should be lowercase
+        DOCKERHUB_USERNAME = 'abdelkarim25'  // Add your username
     }
 
     stages {
@@ -13,23 +13,46 @@ pipeline {
                 checkout scm
             }
         }
+
         stage('Build & Test') {
             steps {
-                // Use ./mvnw instead of mvn.
-                // We add 'chmod +x' to ensure the script has permission to run.
                 sh "chmod +x mvnw"
                 sh "./mvnw clean package"
             }
         }
-        stage('Build Docker Image'){
+
+        stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the image using the Dockerfile in your project
-                    sh "docker build -t %IMAGE_NAME%:%BUILD_NUMBER% ."
-                    sh "docker tag %IMAGE_NAME%:%BUILD_NUMBER% %IMAGE_NAME%:latest"
+                    // Fixed: Use $VAR or ${VAR} for Unix environment variables
+                    sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
+                    sh "docker tag ${IMAGE_NAME}:${BUILD_NUMBER} ${IMAGE_NAME}:latest"
                 }
             }
         }
 
+        stage('Push to DockerHub') {
+            steps {
+                script {
+                    // Login to DockerHub using credentials
+                    withCredentials([usernamePassword(
+                        credentialsId: 'dockerhub-pwd',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASS'
+                    )]) {
+                        sh "echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin"
+                        sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER}"
+                        sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest"
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Logout and cleanup
+            sh "docker logout"
+        }
     }
 }
