@@ -5,12 +5,27 @@ spring:
     username: test
     password: ""
 
-security:
-  jwt:
-    secret-key: "3+wl5+tux1PRBfTRAvOM8ZQfetDMMyT/emTY5qaM7nQ="
-    expiration-time: 3600000
-
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create-drop
+
+  security:
+    oauth2:
+      client:
+        registration:
+          okta:
+            client-id: "fake secret for test"
+            client-secret: "fake secret for test"
+            scope:
+              - profile
+              - email
+            redirect-uri: "{baseUrl}/login/oauth2/code/okta"
+        provider:
+          okta:
+            issuer-uri: "https://dev-gazduazgdgaz.us.auth0.com/"
+
+security:
+  jwt:
+    secret-key: "3+wl5+tux1PRBfTRAvOM8ZQfetDMMyT/emTY5qaM7nQ="
+    expiration-time: 3600000
