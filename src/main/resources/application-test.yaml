@@ -13,16 +13,8 @@ spring:
   security:
     oauth2:
       client:
-        registration:
-          okta:
-            client-id: "fake secret for test"
-            client-secret: "fake secret for test"
-            scope:
-              - profile
-              - email
-            redirect-uri: "{baseUrl}/login/oauth2/code/okta"
-        provider:
-          okta:
+        enabled: false
+
 
 security:
   jwt:
