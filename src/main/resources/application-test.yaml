@@ -23,7 +23,6 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/okta"
         provider:
           okta:
-            issuer-uri: "https://dev-gazduazgdgaz.us.auth0.com/"
 
 security:
   jwt:
