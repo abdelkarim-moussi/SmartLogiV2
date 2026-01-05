@@ -4,9 +4,13 @@ spring:
     driver-class-name: org.h2.Driver
     username: test
     password: ""
+
+security:
+  jwt:
+    secret-key: "3+wl5+tux1PRBfTRAvOM8ZQfetDMMyT/emTY5qaM7nQ="
+    expiration-time: 3600000
+
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create-drop
-  liquibase:
-    enabled: false # This stops the Liquibase errors you saw earlier
