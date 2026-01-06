@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = 'dockerhub-pwd'
         IMAGE_NAME = 'smartlogiv2'
-        DOCKERHUB_USERNAME = 'abdelkarim25'
+        DOCKERHUB_USERNAME = 'your-dockerhub-username'
     }
 
     stages {
@@ -14,47 +14,33 @@ pipeline {
             }
         }
 
-        stage('Inject application.yaml file') {
-            steps {
-                configFileProvider([
-                    configFile(fileId: 'app-config-yaml',
-                        targetLocation: 'src/main/resources/application.yaml')
-                ])
-                echo "Configuration file injected"
-            }
-        }
-
         stage('Build & Test') {
             steps {
-                sh "chmod +x mvnw"
-                sh "./mvnw clean package"
+                withCredentials([
+                    string(credentialsId: 'db-url', variable: 'DB_URL'),
+                    string(credentialsId: 'db-username', variable: 'DB_USERNAME'),
+                    string(credentialsId: 'db-password', variable: 'DB_PASSWORD'),
+                    string(credentialsId: 'client-id', variable: 'CLIENT_ID'),
+                    string(credentialsId: 'client-secret', variable: 'CLIENT_SECRET'),
+                    string(credentialsId: 'issuer-uri', variable: 'ISSUER_URI'),
+                    string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
+                ]) {
+                    sh "chmod +x mvnw"
+                    sh "./mvnw clean package"
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Fixed: Use $VAR or ${VAR} for Unix environment variables
-                    sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
-                    sh "docker tag ${IMAGE_NAME}:${BUILD_NUMBER} ${IMAGE_NAME}:latest"
+                    sh "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ."
+                    sh "docker tag ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest"
                 }
             }
         }
 
-        stage('Push to DockerHub') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(
-                        credentialsId: 'dockerhub-pwd',
-                        usernameVariable: 'DOCKER_USER',
-                        passwordVariable: 'DOCKER_PASS'
-                    )]) {
-                        sh "echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin"
-                        sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER}"
-                        sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest"
-                    }
-                }
-            }
-        }
     }
+
+
 }
