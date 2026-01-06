@@ -29,8 +29,8 @@ pipeline {
                     string(credentialsId: 'issuer-id', variable: 'ISSUER_URI'),
                     string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
                 ]) {
-                    sh "chmod +x mvnw"
-                    sh "./mvnw clean package -Dskiptests"
+                    bat "chmod +x mvnw"
+                    bat "./mvnw clean package -Dskiptests"
                 }
             }
         }
@@ -38,8 +38,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ."
-                    sh "docker tag ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest"
+                    bat "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ."
+                    bat "docker tag ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest"
                 }
             }
         }
