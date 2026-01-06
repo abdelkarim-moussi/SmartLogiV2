@@ -15,6 +15,10 @@ pipeline {
         }
 
         stage('Build & Test') {
+            options {
+                        timeout(time: 10, unit: 'MINUTES')  // Add timeout
+                    }
+
             steps {
                 withCredentials([
                     string(credentialsId: 'db-url', variable: 'DB_URL'),
