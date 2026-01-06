@@ -16,17 +16,19 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                withCredentials([
-                    string(credentialsId: 'db-url', variable: 'DB_URL'),
-                    string(credentialsId: 'db-username', variable: 'DB_USERNAME'),
-                    string(credentialsId: 'db-password', variable: 'DB_PASSWORD'),
-                    string(credentialsId: 'client-id', variable: 'CLIENT_ID'),
-                    string(credentialsId: 'client-secret', variable: 'CLIENT_SECRET'),
-                    string(credentialsId: 'issuer-id', variable: 'ISSUER_URI'),
-                    string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
-                ]) {
-                    sh "chmod +x mvnw"
-                    sh "./mvnw clean package -Dskiptests"
+                script {
+                    withCredentials([
+                        string(credentialsId: 'db-url', variable: 'DB_URL'),
+                        string(credentialsId: 'db-username', variable: 'DB_USERNAME'),
+                        string(credentialsId: 'db-password', variable: 'DB_PASSWORD'),
+                        string(credentialsId: 'client-id', variable: 'CLIENT_ID'),
+                        string(credentialsId: 'client-secret', variable: 'CLIENT_SECRET'),
+                        string(credentialsId: 'issuer-id', variable: 'ISSUER_URI'),
+                        string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
+                    ]) {
+                        sh "chmod +x mvnw"
+                        sh "./mvnw clean package -Dskiptests"
+                    }
                 }
             }
         }
