@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = 'dockerhub-pwd'
         IMAGE_NAME = 'smartlogiv2'
-        DOCKERHUB_USERNAME = 'your-dockerhub-username'
+        DOCKERHUB_USERNAME = 'abdelkarim25'
     }
 
     stages {
