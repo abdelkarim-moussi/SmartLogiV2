@@ -3,14 +3,24 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = 'dockerhub-pwd'
-        IMAGE_NAME = 'smartlogiv2'  // DockerHub images should be lowercase
-        DOCKERHUB_USERNAME = 'abdelkarim25'  // Add your username
+        IMAGE_NAME = 'smartlogiv2'
+        DOCKERHUB_USERNAME = 'abdelkarim25'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage("Inject application.yaml file") {
+            steps {
+                configFileProvider([
+                    configFile(fileId: 'app-config-yaml',
+                        targetLocation: 'src/main/resources/application.yaml')
+                ])
+                echo "Configuration file injected"
             }
         }
 
@@ -34,7 +44,6 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    // Login to DockerHub using credentials
                     withCredentials([usernamePassword(
                         credentialsId: 'dockerhub-pwd',
                         usernameVariable: 'DOCKER_USER',
@@ -46,13 +55,6 @@ pipeline {
                     }
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            // Logout and cleanup
-            sh "docker logout"
         }
     }
 }
