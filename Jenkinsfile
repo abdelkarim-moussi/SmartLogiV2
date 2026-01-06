@@ -15,10 +15,6 @@ pipeline {
         }
 
         stage('Build & Test') {
-            options {
-                        timeout(time: 10, unit: 'MINUTES')  // Add timeout
-                    }
-
             steps {
                 withCredentials([
                     string(credentialsId: 'db-url', variable: 'DB_URL'),
@@ -29,8 +25,8 @@ pipeline {
                     string(credentialsId: 'issuer-id', variable: 'ISSUER_URI'),
                     string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
                 ]) {
-                    bat "chmod +x mvnw"
-                    bat "./mvnw clean package -Dskiptests"
+                    sh "chmod +x mvnw"
+                    sh "./mvnw clean package -Dskiptests"
                 }
             }
         }
@@ -38,8 +34,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ."
-                    bat "docker tag ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest"
+                    sh "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ."
+                    sh "docker tag ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest"
                 }
             }
         }
