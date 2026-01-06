@@ -14,14 +14,13 @@ pipeline {
             }
         }
 
-        stage('Inject Config File') {
+        stage('Inject application.yaml file') {
             steps {
-                script {
-                    // Copy the secret file to the resources directory
-                    withCredentials([file(credentialsId: 'app-yaml-config', variable: 'APP_CONFIG')]) {
-                        sh 'cp $APP_CONFIG src/main/resources/application.yaml'
-                    }
-                }
+                configFileProvider([
+                    configFile(fileId: 'app-config-yaml',
+                        targetLocation: 'src/main/resources/application.yaml')
+                ])
+                echo "Configuration file injected"
             }
         }
 
@@ -35,8 +34,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ."
-                    sh "docker tag ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest"
+                    // Fixed: Use $VAR or ${VAR} for Unix environment variables
+                    sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
+                    sh "docker tag ${IMAGE_NAME}:${BUILD_NUMBER} ${IMAGE_NAME}:latest"
                 }
             }
         }
@@ -55,12 +55,6 @@ pipeline {
                     }
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            sh "docker logout"
         }
     }
 }
