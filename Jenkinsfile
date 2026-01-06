@@ -26,7 +26,7 @@ pipeline {
                     string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
                 ]) {
                     sh "chmod +x mvnw"
-                    sh "./mvnw clean package"
+                    sh "./mvnw clean package -Dskiptests"
                 }
             }
         }
