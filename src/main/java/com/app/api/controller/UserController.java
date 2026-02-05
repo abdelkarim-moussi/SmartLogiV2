@@ -1,6 +1,7 @@
 package com.app.api.controller;
 
 import com.app.api.dto.user.AuthRequest;
+import com.app.api.dto.user.AuthResponse;
 import com.app.api.dto.user.CreateUserRequest;
 import com.app.api.entity.User;
 import com.app.api.security.service.AuthService;
@@ -20,7 +21,7 @@ public class UserController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public String authenticateAndGetToken(@RequestBody @Valid AuthRequest authRequest){
+    public AuthResponse authenticateAndGetToken(@RequestBody @Valid AuthRequest authRequest){
         return authService.authenticate(authRequest);
     }
 

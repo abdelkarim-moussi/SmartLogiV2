@@ -85,7 +85,7 @@ public class ColisService {
         existingColis.setDescription(colisRequestDTO.getDescription());
         existingColis.setPriority(colisRequestDTO.getPriority());
         existingColis.setStatus(colisRequestDTO.getStatus());
-        existingColis.setVilleDestination(colisRequestDTO.getVilleDestination());
+        existingColis.setDestination(colisRequestDTO.getVilleDestination());
 
         setRelations(colisRequestDTO,existingColis);
         setProduits(colisRequestDTO,existingColis);

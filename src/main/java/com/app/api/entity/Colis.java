@@ -21,7 +21,8 @@ public class Colis {
 
     private Float poids;
     private String description;
-    private String villeDestination;
+    @Column(name = "ville_destination")
+    private String destination;
 
     @Enumerated(EnumType.STRING)
     private ColisPriority priority;

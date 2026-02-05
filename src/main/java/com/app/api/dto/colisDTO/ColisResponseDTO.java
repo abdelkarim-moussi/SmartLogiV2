@@ -21,7 +21,7 @@ public class ColisResponseDTO {
     private String id;
     private Float poids;
     private String description;
-    private String villeDestination;
+    private String destination;
     private ColisPriority priority;
     private ColisStatus status;
     private LivreurResponseDTO livreur;

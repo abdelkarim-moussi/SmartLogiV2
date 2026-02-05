@@ -105,7 +105,7 @@ class ColisServiceUnitTest {
         colisEntity.setDescription("Package contenant des documents");
         colisEntity.setPriority(ColisPriority.express);
         colisEntity.setStatus(ColisStatus.creer);
-        colisEntity.setVilleDestination("Casablanca");
+        colisEntity.setDestination("Casablanca");
         colisEntity.setHistoriqueLivraison(new HashSet<>());
 
         colisResponseDTO = ColisResponseDTO.builder()
@@ -114,7 +114,7 @@ class ColisServiceUnitTest {
                 .description("Package contenant des documents")
                 .priority(ColisPriority.express)
                 .status(ColisStatus.creer)
-                .villeDestination("Casablanca")
+                .destination("Casablanca")
                 .build();
 
         pageable = PageRequest.of(0,5,Sort.by("status").ascending());

@@ -17,7 +17,7 @@ public interface ColisRepository extends JpaRepository<Colis,String>, JpaSpecifi
     @Query("select c from Colis c where c.livreur.user.id = :userId")
     List<Colis> findByLivreurUserId(@Param("userId") String userId);
 
-    @Query("select c from Colis c where c.clientExpediteur.user.id = :uderId")
+    @Query("select c from Colis c where c.clientExpediteur.user.id = :userId")
     List<Colis> findByClientExpediteurUserId(@Param("userId") String userId);
 
     @Query("select case when count(c) > 0 then true else false end " +

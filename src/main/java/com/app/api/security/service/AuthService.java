@@ -1,6 +1,7 @@
 package com.app.api.security.service;
 
 import com.app.api.dto.user.AuthRequest;
+import com.app.api.dto.user.AuthResponse;
 import com.app.api.entity.User;
 import com.app.api.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,15 +21,15 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
 
-    public String authenticate(AuthRequest authRequest){
+    public AuthResponse authenticate(AuthRequest authRequest){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        authRequest.getUserEmail(),authRequest.getPassword())
+                        authRequest.getEmail(),authRequest.getPassword())
         );
 
         if(authentication.isAuthenticated()){
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-            return jwtService.generateToken(userDetails);
+            return new AuthResponse(jwtService.generateToken(userDetails));
         }else {
             throw new UsernameNotFoundException("Invalid user request");
         }

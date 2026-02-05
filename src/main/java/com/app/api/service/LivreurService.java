@@ -38,7 +38,7 @@ public class LivreurService {
             throw new InvalidDataException("données invalide "+null);
         }
 
-        boolean existsByEmail = userRepository.existsByEmail(request.getNonUtilisateur());
+        boolean existsByEmail = userRepository.existsByEmail(request.getUserName());
 
         if(existsByEmail){
             throw new AlreadyExistException("user name already used");
@@ -47,7 +47,7 @@ public class LivreurService {
         Set<Role> roles = Set.of(Role.builder()
                 .name("LIVREUR").build());
 
-        User user = userService.addUserHelper(request.getNonUtilisateur(),request.getPassword(),roles);
+        User user = userService.addUserHelper(request.getUserName(),request.getPassword(),roles);
 
         Livreur livreur = livreurMapper.toEntity(request);
 

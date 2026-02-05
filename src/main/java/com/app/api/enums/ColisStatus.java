@@ -1,10 +1,10 @@
 package com.app.api.enums;
 
 public enum ColisStatus {
-    creer,
-    collecte,
-    en_stock,
-    en_transit,
-    livrer
+    CREATED,
+    COLLECTED,
+    IN_STOCK,
+    IN_TRANSIT,
+    DELIVERED
 
 }

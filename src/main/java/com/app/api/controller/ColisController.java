@@ -80,7 +80,7 @@ public class ColisController {
         return colisService.createColis(colisRequestDTO);
     }
 
-    @PutMapping("/{id}/update")
+    @PatchMapping("/{id}/update")
     public ColisResponseDTO updateColis(@PathVariable("id") String id, @RequestBody @Valid ColisRequestDTO colisRequestDTO){
         return colisService.updateColis(id,colisRequestDTO);
     }
@@ -91,7 +91,7 @@ public class ColisController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}/status/{status}")
+    @PatchMapping("/{id}/status/{status}")
     public ColisResponseDTO updateColisStatus(@PathVariable("id") String id, @PathVariable("status") String status){
         return colisService.updateColisStatus(id,ColisStatus.valueOf(status));
     }

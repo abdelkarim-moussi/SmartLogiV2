@@ -36,6 +36,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**")
                 .permitAll()
@@ -46,8 +47,7 @@ public class SecurityConfig {
                 .anyRequest()
                 .authenticated()
                 )
-                .oauth2Login(oauth -> oauth
-                        .successHandler(oAuth2LoginSuccessHandler))
+
                 .sessionManagement(
                         session ->
                                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -77,7 +77,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:8080","http://localhost:3000","http://localhost:4200"));
+        configuration.setAllowedOrigins(List.of("http://localhost:8080","http://localhost:3000","http://localhost:4200","http://localhost:5173"));
         configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","PATCH"));
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
 
