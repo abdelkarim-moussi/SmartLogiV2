@@ -4,18 +4,35 @@ import com.app.api.dto.PermissionRequest;
 import com.app.api.dto.RolePermissionsRequest;
 import com.app.api.dto.RoleRequest;
 import com.app.api.dto.UserRolesRequest;
+import com.app.api.entity.Permission;
+import com.app.api.entity.Role;
 import com.app.api.service.RolePermissionManager;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class RolePermissionController {
     private final RolePermissionManager rolePermissionManager;
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/roles")
+    public ResponseEntity<List<Role>> getALlRoles(){
+        List<Role> roles = rolePermissionManager.getAllRoles();
+        return ResponseEntity.ok(roles);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/permissions")
+    public ResponseEntity<List<Permission>> getALlPermissions(){
+        List<Permission> permissions = rolePermissionManager.getAllPermissions();
+        return ResponseEntity.ok(permissions);
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/roles")

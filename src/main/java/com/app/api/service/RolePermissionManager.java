@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -22,6 +23,14 @@ public class RolePermissionManager {
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
     private final UserRepository userRepository;
+
+    public List<Role> getAllRoles(){
+        return roleRepository.findAll();
+    }
+
+    public List<Permission> getAllPermissions(){
+        return permissionRepository.findAll();
+    }
 
     public Object createNewRole(String roleName){
         if(roleName == null || roleName.isEmpty()) throw new InvalidDataException("role name is required");
