@@ -1,5 +1,6 @@
 package com.app.api.service;
 
+import com.app.api.dto.AdminStats;
 import com.app.api.dto.RolePermissionsRequest;
 import com.app.api.dto.UserRolesRequest;
 import com.app.api.entity.Permission;
@@ -10,6 +11,7 @@ import com.app.api.exception.NotFoundException;
 import com.app.api.repository.PermissionRepository;
 import com.app.api.repository.RoleRepository;
 import com.app.api.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -80,15 +82,15 @@ public class RolePermissionManager {
         );
 
         Set<Role> managedRoles = new HashSet<>();
+        existingUser.setRoles(managedRoles);
+
         for (String roleName : request.roles()){
             Role existingRole = roleRepository.findByName(roleName).orElseThrow(
                     () -> new NotFoundException("role not found with name "+roleName)
             );
 
-            managedRoles.add(existingRole);
+            existingUser.addRole(existingRole);
         }
-
-        existingUser.setRoles(managedRoles);
 
         return userRepository.save(existingUser);
 
@@ -111,5 +113,15 @@ public class RolePermissionManager {
 
         permissionRepository.delete(permissionExist);
     }
+
+    @Transactional
+    public AdminStats getStats(){
+        int userNum = userRepository.countUsers();
+        int rolesNum = roleRepository.countRoles();
+        int permissionsNum = permissionRepository.countPermissions();
+
+        return new AdminStats(userNum,rolesNum,permissionsNum);
+    }
+
 }
 

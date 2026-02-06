@@ -2,6 +2,7 @@ package com.app.api.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
@@ -22,6 +23,7 @@ public class User {
     private String id;
     @Column(unique = true, length = 100, nullable = false)
     private String email;
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
@@ -38,9 +40,16 @@ public class User {
     private Date updatedAt;
 
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Livreur livreur;
 
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private ClientExpediteur clientExpediteur;
+
+    public Set<Role> addRole(Role role){
+        roles.add(role);
+        return roles;
+    }
 
 }

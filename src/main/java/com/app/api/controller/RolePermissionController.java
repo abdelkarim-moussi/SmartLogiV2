@@ -1,9 +1,6 @@
 package com.app.api.controller;
 
-import com.app.api.dto.PermissionRequest;
-import com.app.api.dto.RolePermissionsRequest;
-import com.app.api.dto.RoleRequest;
-import com.app.api.dto.UserRolesRequest;
+import com.app.api.dto.*;
 import com.app.api.entity.Permission;
 import com.app.api.entity.Role;
 import com.app.api.service.RolePermissionManager;
@@ -74,6 +71,13 @@ public class RolePermissionController {
     public String deletePermission(@PathVariable(value = "name") String name){
         rolePermissionManager.deletePermission(name);
         return "Permission Deleted Successfully";
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/stats")
+    public ResponseEntity<AdminStats> getAdminStats(){
+        AdminStats stats = rolePermissionManager.getStats();
+        return ResponseEntity.ok(stats);
     }
 }
 
