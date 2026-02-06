@@ -42,6 +42,8 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers("/api/colis/myColis")
                 .hasAnyRole("CLIENT","LIVREUR")
+                .requestMatchers("/api/colis/{id}/status/{status}")
+                .hasAnyRole("LIVREUR","MANAGER")
                 .requestMatchers("/api/colis/**","/api/livreurs/**","/api/livraison/**")
                 .hasAnyRole("MANAGER","ADMIN")
                 .anyRequest()

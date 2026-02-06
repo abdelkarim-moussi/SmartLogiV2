@@ -6,5 +6,4 @@ public enum ColisStatus {
     IN_STOCK,
     IN_TRANSIT,
     DELIVERED
-
 }

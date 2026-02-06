@@ -92,7 +92,7 @@ public class ColisController {
     }
 
     @PatchMapping("/{id}/status/{status}")
-    public ColisResponseDTO updateColisStatus(@PathVariable("id") String id, @PathVariable("status") String status){
-        return colisService.updateColisStatus(id,ColisStatus.valueOf(status));
+    public ResponseEntity<ColisResponseDTO> updateColisStatus(@PathVariable("id") String id, @PathVariable("status") String status){
+        return ResponseEntity.ok(colisService.updateColisStatus(id,ColisStatus.valueOf(status)));
     }
 }
